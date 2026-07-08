@@ -3,6 +3,165 @@ import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const loader = new FBXLoader();
+const TUNING_STORAGE_KEY = 'mwp:storySceneTuning:v2';
+const DEFAULT_TUNING = {
+  portrait: {
+    rotation: { x: -0.04, y: 5.08, z: 0.01 },
+    position: { x: 1.42, y: -1.55, z: 0 },
+  },
+  run: {
+    rotation: { x: 4.542, y: -0.025, z: 0 },
+    position: { x: 0.238, y: -0.714, z: 0.512 },
+  },
+};
+
+function cloneTuning(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function readTuning() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(TUNING_STORAGE_KEY));
+    return {
+      portrait: {
+        rotation: { ...DEFAULT_TUNING.portrait.rotation, ...saved?.portrait?.rotation },
+        position: { ...DEFAULT_TUNING.portrait.position, ...saved?.portrait?.position },
+      },
+      run: {
+        rotation: { ...DEFAULT_TUNING.run.rotation, ...saved?.run?.rotation },
+        position: { ...DEFAULT_TUNING.run.position, ...saved?.run?.position },
+      },
+    };
+  } catch {
+    return cloneTuning(DEFAULT_TUNING);
+  }
+}
+
+const tuning = readTuning();
+
+function saveTuning() {
+  try {
+    localStorage.setItem(TUNING_STORAGE_KEY, JSON.stringify(tuning));
+  } catch {
+    // Storage can fail in private browsing; live tuning still works.
+  }
+}
+
+function formatVector(vector) {
+  return `x: ${vector.x.toFixed(3)}, y: ${vector.y.toFixed(3)}, z: ${vector.z.toFixed(3)}`;
+}
+
+function ensureTuningOverlay() {
+  let overlay = document.querySelector('.scene-tuning-panel');
+  if (overlay) return overlay;
+  overlay = document.createElement('div');
+  overlay.className = 'scene-tuning-panel';
+  overlay.innerHTML = `
+    <strong>Scene tuning</strong>
+    <span data-scene-name>Slide 2 cheetah</span>
+    <span>Drag: rotate · Shift-drag: move X/Y · Option-drag: move Z</span>
+    <code data-scene-rotation></code>
+    <code data-scene-position></code>
+  `;
+  document.body.appendChild(overlay);
+  return overlay;
+}
+
+function updateTuningOverlay(sceneName) {
+  const overlay = ensureTuningOverlay();
+  const values = tuning[sceneName];
+  overlay.querySelector('[data-scene-name]').textContent = 'Slide 2 cheetah';
+  overlay.querySelector('[data-scene-rotation]').textContent = `rotation { ${formatVector(values.rotation)} }`;
+  overlay.querySelector('[data-scene-position]').textContent = `position { ${formatVector(values.position)} }`;
+}
+
+function applyTuning(model, sceneName) {
+  const values = tuning[sceneName];
+  model.rotation.set(values.rotation.x, values.rotation.y, values.rotation.z);
+  model.position.set(values.position.x, values.position.y, values.position.z);
+}
+
+function createDragTuner({ canvas, modelRef, sceneName }) {
+  const target = canvas.closest('.story-screen') || canvas;
+  const drag = {
+    active: false,
+    pointerId: null,
+    startX: 0,
+    startY: 0,
+    baseRotationX: 0,
+    baseRotationY: 0,
+    basePositionX: 0,
+    basePositionY: 0,
+    basePositionZ: 0,
+  };
+
+  canvas.style.cursor = 'grab';
+  canvas.style.touchAction = 'none';
+  target.style.cursor = 'grab';
+  target.style.touchAction = 'none';
+
+  target.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+    if (event.target.closest('a, button')) return;
+    drag.active = true;
+    drag.pointerId = event.pointerId;
+    drag.startX = event.clientX;
+    drag.startY = event.clientY;
+    drag.baseRotationX = tuning[sceneName].rotation.x;
+    drag.baseRotationY = tuning[sceneName].rotation.y;
+    drag.basePositionX = tuning[sceneName].position.x;
+    drag.basePositionY = tuning[sceneName].position.y;
+    drag.basePositionZ = tuning[sceneName].position.z;
+    target.setPointerCapture(event.pointerId);
+    canvas.style.cursor = 'grabbing';
+    target.style.cursor = 'grabbing';
+    updateTuningOverlay(sceneName);
+    event.preventDefault();
+  });
+
+  target.addEventListener('pointermove', (event) => {
+    if (!drag.active || event.pointerId !== drag.pointerId) return;
+    const dx = event.clientX - drag.startX;
+    const dy = event.clientY - drag.startY;
+    if (event.shiftKey) {
+      tuning[sceneName].position.x = drag.basePositionX + dx * 0.01;
+      tuning[sceneName].position.y = drag.basePositionY - dy * 0.01;
+    } else if (event.altKey) {
+      tuning[sceneName].position.z = drag.basePositionZ + dy * 0.01;
+    } else {
+      tuning[sceneName].rotation.y = drag.baseRotationY + dx * 0.01;
+      tuning[sceneName].rotation.x = drag.baseRotationX + dy * 0.01;
+    }
+    if (modelRef.current) applyTuning(modelRef.current, sceneName);
+    updateTuningOverlay(sceneName);
+    event.preventDefault();
+  });
+
+  function endDrag(event) {
+    if (!drag.active || event.pointerId !== drag.pointerId) return;
+    drag.active = false;
+    drag.pointerId = null;
+    canvas.style.cursor = 'grab';
+    target.style.cursor = 'grab';
+    saveTuning();
+    updateTuningOverlay(sceneName);
+  }
+
+  target.addEventListener('pointerup', endDrag);
+  target.addEventListener('pointercancel', endDrag);
+}
+
+window.MWP_STORY_TUNING = {
+  get: () => cloneTuning(tuning),
+  reset: () => {
+    Object.assign(tuning.portrait.rotation, DEFAULT_TUNING.portrait.rotation);
+    Object.assign(tuning.portrait.position, DEFAULT_TUNING.portrait.position);
+    Object.assign(tuning.run.rotation, DEFAULT_TUNING.run.rotation);
+    Object.assign(tuning.run.position, DEFAULT_TUNING.run.position);
+    saveTuning();
+    location.reload();
+  },
+};
 
 function fitRenderer(renderer, canvas, camera) {
   const rect = canvas.getBoundingClientRect();
@@ -61,12 +220,13 @@ function createPortraitScene() {
 
   let mixer = null;
   let model = null;
+  const modelRef = { current: null };
   loader.load('assets/SIT.Fbx', (fbx) => {
     model = fbx;
+    modelRef.current = model;
     applyFurMaterial(model);
     normalizeModel(model, 3.4);
-    model.rotation.set(-0.04, 5.08, 0.01);
-    model.position.set(1.42, -1.55, 0);
+    applyTuning(model, 'portrait');
     scene.add(model);
 
     if (model.animations.length) {
@@ -125,24 +285,17 @@ function createRunScene() {
   ground.position.y = -0.62;
   scene.add(ground);
 
-  const streaks = new THREE.Group();
-  const streakMaterial = new THREE.MeshBasicMaterial({ color: 0xf3d28b, transparent: true, opacity: 0.24 });
-  for (let i = 0; i < 34; i++) {
-    const streak = new THREE.Mesh(new THREE.PlaneGeometry(0.035, 2.5), streakMaterial);
-    streak.rotation.x = -Math.PI / 2;
-    streak.position.set((Math.random() - 0.5) * 12, -0.58, -Math.random() * 18);
-    streaks.add(streak);
-  }
-  scene.add(streaks);
-
   let mixer = null;
   let model = null;
+  const modelRef = { current: null };
+  createDragTuner({ canvas, modelRef, sceneName: 'run' });
+  updateTuningOverlay('run');
   loader.load('assets/RUN.Fbx', (fbx) => {
     model = fbx;
+    modelRef.current = model;
     applyFurMaterial(model);
     normalizeModel(model, 1.75);
-    model.rotation.set(0.03, Math.PI, 0);
-    model.position.set(0, -0.62, 0.5);
+    applyTuning(model, 'run');
     scene.add(model);
 
     if (model.animations.length) {
@@ -164,10 +317,6 @@ function createRunScene() {
     const delta = clock.getDelta();
     if (!visible || document.hidden) return;
     if (mixer) mixer.update(delta * 1.18);
-    streaks.children.forEach((streak, i) => {
-      streak.position.z += delta * (5.5 + (i % 5));
-      if (streak.position.z > 5) streak.position.z = -18 - Math.random() * 5;
-    });
     camera.position.x = Math.sin(now * 0.0017) * 0.035;
     camera.position.y = 1.2 + Math.sin(now * 0.0024) * 0.035;
     camera.lookAt(0, 0.95, 0);

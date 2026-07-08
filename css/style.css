@@ -89,6 +89,43 @@ a {
   color: var(--gold);
 }
 
+.scene-tuning-panel {
+  position: fixed;
+  z-index: 30;
+  top: 4.3rem;
+  right: clamp(0.8rem, 2vw, 1.4rem);
+  display: grid;
+  gap: 0.25rem;
+  width: min(25rem, calc(100vw - 1.6rem));
+  border: 1px solid rgba(199, 160, 97, 0.42);
+  border-radius: 8px;
+  background: rgba(18, 8, 6, 0.82);
+  color: var(--gold-pale);
+  font-family: var(--caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  padding: 0.8rem 0.9rem;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+}
+
+.scene-tuning-panel strong {
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.scene-tuning-panel code {
+  color: var(--ivory);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  white-space: normal;
+}
+
 .hero-sequence {
   position: relative;
   height: 340svh;
@@ -102,7 +139,7 @@ a {
   overflow: hidden;
 }
 
-.sequence-panel {
+.hero-sequence .sequence-panel {
   position: absolute;
   inset: 0;
   min-height: 100svh;
@@ -111,7 +148,7 @@ a {
   transition: opacity 0.08s linear;
 }
 
-.sequence-panel.is-active {
+.hero-sequence .sequence-panel.is-active {
   pointer-events: auto;
 }
 
@@ -235,18 +272,12 @@ a {
 .run-atmosphere {
   position: absolute;
   inset: 0;
-  opacity: 0.58;
+  opacity: 0.34;
   background:
-    repeating-linear-gradient(100deg, rgba(255, 238, 180, 0.22) 0 2px, transparent 2px 52px),
-    repeating-linear-gradient(86deg, rgba(45, 25, 14, 0.24) 0 6px, transparent 6px 34px);
-  filter: blur(1px);
+    radial-gradient(circle at 50% 18%, rgba(255, 234, 174, 0.42), transparent 26%),
+    linear-gradient(to top, rgba(62, 33, 18, 0.48), transparent 54%);
+  filter: blur(2px);
   transform-origin: center bottom;
-  animation: terrainRush 1.3s linear infinite;
-}
-
-@keyframes terrainRush {
-  from { transform: translateY(-2%) scale(1.02); }
-  to { transform: translateY(5%) scale(1.08); }
 }
 
 .run-copy {
