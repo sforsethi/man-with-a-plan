@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Man With A Plan</title>
+<meta name="description" content="Man With A Plan creates bespoke wedding experiences across India and the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="nav" aria-label="Primary navigation">
+    <a class="nav-mark" href="/" aria-label="Man With A Plan home">.MWP</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">The House</a>
+      <a href="#begin">Begin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="grand-hero" id="welcome">
+      <canvas id="grand-hero-canvas" aria-label="A jeweled wedding arch above still water with a sitting cheetah on the right" role="img"></canvas>
+      <img class="grand-hero-logo" src="assets/logo.png" alt="MWP - Man With A Plan" width="571" height="298">
+      <div class="grand-hero-copy">
+        <h1>A Vision of Eternal Love. Planned to Perfection.</h1>
+        <p>Bespoke weddings shaped with precision, theatre, and heart.</p>
+        <a class="grand-hero-cta" href="#begin">Begin your plan</a>
+      </div>
+    </section>
+
+    <section class="intro" id="about">
+      <p class="eyebrow">The House</p>
+      <h2>Every detail considered before the day begins.</h2>
+      <p>Man With A Plan designs and produces destination weddings where the setting, ceremony, hospitality, and rhythm of the celebration feel composed as one.</p>
+    </section>
+
+    <section class="begin" id="begin">
+      <p class="eyebrow">Begin</p>
+      <h2>Tell us where the story starts.</h2>
+      <a href="mailto:hello@manwithaplan.in">Write to us</a>
+    </section>
+  </main>
+
+  <script type="importmap">
+  { "imports": {
+    "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+  } }
+  </script>
+  <script type="module" src="js/grand-hero.js?v=11"></script>
+</body>
+</html>
