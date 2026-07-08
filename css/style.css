@@ -21,7 +21,7 @@ html {
 
 body {
   overflow-x: clip;
-  background: var(--maroon);
+  background: #120806;
   color: var(--gold-pale);
   font-family: var(--serif);
   font-size: 1.15rem;
@@ -87,6 +87,163 @@ a {
 .nav-links a:hover {
   border-color: var(--gold);
   color: var(--gold);
+}
+
+.story-screen {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.story-screen canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cheetah-intro {
+  background:
+    radial-gradient(circle at 80% 45%, rgba(145, 96, 52, 0.26), transparent 32%),
+    radial-gradient(circle at 52% 70%, rgba(96, 54, 31, 0.32), transparent 34%),
+    linear-gradient(115deg, #120806 0%, #1a0d0a 48%, #2b1711 100%);
+  border: 0.55rem solid #f5efe4;
+}
+
+.cheetah-intro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(14, 7, 5, 0.24), rgba(14, 7, 5, 0) 52%),
+    radial-gradient(circle at 78% 40%, transparent 0 22%, rgba(14, 7, 5, 0.18) 58%, rgba(14, 7, 5, 0.58) 100%);
+}
+
+.cheetah-intro-copy {
+  position: relative;
+  z-index: 2;
+  width: min(43rem, 78vw);
+  padding: clamp(7rem, 15vh, 10rem) 0 0 clamp(2.4rem, 8vw, 6rem);
+}
+
+.quiet-line {
+  color: rgba(255, 253, 248, 0.74);
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 1.55vw, 1.35rem);
+  line-height: 1.2;
+}
+
+.cheetah-intro-copy ul {
+  display: grid;
+  gap: 0.95rem;
+  margin-top: 1.1rem;
+  list-style: none;
+}
+
+.cheetah-intro-copy li {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 3.15rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.cheetah-intro-copy li::before {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.72rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 68%, #2b1711);
+  transform: translateY(-0.12em) rotate(45deg);
+}
+
+.chosen-line {
+  margin-top: clamp(6rem, 18vh, 10rem);
+  color: rgba(255, 253, 248, 0.76);
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  line-height: 1.2;
+}
+
+.chosen-line span {
+  display: block;
+  margin-top: -0.15rem;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-style: italic;
+  line-height: 0.9;
+  text-transform: lowercase;
+}
+
+.intro-logo {
+  position: absolute;
+  z-index: 2;
+  left: clamp(2.4rem, 8vw, 6rem);
+  bottom: clamp(2rem, 6vh, 4rem);
+  width: clamp(92px, 11vw, 155px);
+  filter: sepia(0.2) saturate(1.2);
+}
+
+.run-hero {
+  background:
+    linear-gradient(to bottom, rgba(18, 8, 6, 0.2), rgba(18, 8, 6, 0.62)),
+    linear-gradient(160deg, #755331 0%, #a46f3d 24%, #d7b06c 52%, #4e2e1b 100%);
+}
+
+.run-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 236, 188, 0.54), transparent 20%),
+    linear-gradient(to top, rgba(31, 16, 10, 0.75), transparent 42%);
+  pointer-events: none;
+}
+
+.run-atmosphere {
+  position: absolute;
+  inset: 0;
+  opacity: 0.58;
+  background:
+    repeating-linear-gradient(100deg, rgba(255, 238, 180, 0.22) 0 2px, transparent 2px 52px),
+    repeating-linear-gradient(86deg, rgba(45, 25, 14, 0.24) 0 6px, transparent 6px 34px);
+  filter: blur(1px);
+  transform-origin: center bottom;
+  animation: terrainRush 1.3s linear infinite;
+}
+
+@keyframes terrainRush {
+  from { transform: translateY(-2%) scale(1.02); }
+  to { transform: translateY(5%) scale(1.08); }
+}
+
+.run-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(1.4rem, 6vw, 5rem);
+  bottom: clamp(2rem, 8vh, 5.5rem);
+  max-width: min(35rem, 84vw);
+  color: var(--ivory);
+  text-shadow: 0 2px 18px rgba(20, 8, 4, 0.52);
+}
+
+.run-copy h1 {
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.run-copy p:last-child {
+  margin-top: 1rem;
+  max-width: 28rem;
+  color: rgba(255, 253, 248, 0.78);
+  font-style: italic;
 }
 
 .grand-hero {
@@ -236,6 +393,19 @@ a {
 @media (max-width: 640px) {
   .nav-links a:first-child {
     display: none;
+  }
+
+  .cheetah-intro {
+    border-width: 0.35rem;
+  }
+
+  .cheetah-intro-copy {
+    width: 94vw;
+    padding: 6.5rem 1.25rem 0;
+  }
+
+  .chosen-line {
+    margin-top: 4rem;
   }
 
   .grand-hero-copy h1 {
