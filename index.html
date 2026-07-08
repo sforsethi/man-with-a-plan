@@ -20,37 +20,41 @@
   </header>
 
   <main>
-    <section class="cheetah-intro story-screen" id="cheetah-intro">
-      <canvas id="cheetah-face-canvas" aria-label="Close-up portrait of a cheetah observing from the right side" role="img"></canvas>
-      <div class="cheetah-intro-copy">
-        <p class="quiet-line">It doesn't chase everything...</p>
-        <ul aria-label="Cheetah qualities">
-          <li>It waits.</li>
-          <li>It observes.</li>
-          <li>It moves with purpose.</li>
-        </ul>
-        <p class="chosen-line">That's why we chose the <span>cheetah.</span></p>
-      </div>
-      <img class="intro-logo" src="assets/logo.png" alt="MWP - Man With A Plan" width="571" height="298">
-    </section>
+    <section class="hero-sequence" id="welcome" aria-label="Cheetah story hero sequence">
+      <div class="sequence-pin">
+        <section class="cheetah-intro story-screen sequence-panel is-active" id="cheetah-intro">
+          <canvas id="cheetah-face-canvas" aria-label="Close-up portrait of a cheetah observing from the right side" role="img"></canvas>
+          <div class="cheetah-intro-copy">
+            <p class="quiet-line">It doesn't chase everything...</p>
+            <ul aria-label="Cheetah qualities">
+              <li>It waits.</li>
+              <li>It observes.</li>
+              <li>It moves with purpose.</li>
+            </ul>
+            <p class="chosen-line">That's why we chose the <span>cheetah.</span></p>
+          </div>
+          <img class="intro-logo" src="assets/logo.png" alt="MWP - Man With A Plan" width="571" height="298">
+        </section>
 
-    <section class="run-hero story-screen" id="pursuit">
-      <canvas id="cheetah-run-canvas" aria-label="A rear point-of-view shot of a cheetah running toward a destination wedding horizon" role="img"></canvas>
-      <div class="run-atmosphere" aria-hidden="true"></div>
-      <div class="run-copy">
-        <p class="eyebrow">The Chase</p>
-        <h1>Momentum, composed.</h1>
-        <p>Every move is deliberate before the celebration appears.</p>
-      </div>
-    </section>
+        <section class="run-hero story-screen sequence-panel" id="pursuit">
+          <canvas id="cheetah-run-canvas" aria-label="A rear point-of-view shot of a cheetah running toward a destination wedding horizon" role="img"></canvas>
+          <div class="run-atmosphere" aria-hidden="true"></div>
+          <div class="run-copy">
+            <p class="eyebrow">The Chase</p>
+            <h1>Momentum, composed.</h1>
+            <p>Every move is deliberate before the celebration appears.</p>
+          </div>
+        </section>
 
-    <section class="grand-hero" id="welcome">
-      <canvas id="grand-hero-canvas" aria-label="A jeweled wedding arch above still water with a sitting cheetah on the right" role="img"></canvas>
-      <img class="grand-hero-logo" src="assets/logo.png" alt="MWP - Man With A Plan" width="571" height="298">
-      <div class="grand-hero-copy">
-        <h1>A Vision of Eternal Love. Planned to Perfection.</h1>
-        <p>Bespoke weddings shaped with precision, theatre, and heart.</p>
-        <a class="grand-hero-cta" href="#begin">Begin your plan</a>
+        <section class="grand-hero sequence-panel" id="finale">
+          <canvas id="grand-hero-canvas" aria-label="A jeweled wedding arch above still water with a sitting cheetah on the right" role="img"></canvas>
+          <img class="grand-hero-logo" src="assets/logo.png" alt="MWP - Man With A Plan" width="571" height="298">
+          <div class="grand-hero-copy">
+            <h1>A Vision of Eternal Love. Planned to Perfection.</h1>
+            <p>Bespoke weddings shaped with precision, theatre, and heart.</p>
+            <a class="grand-hero-cta" href="#begin">Begin your plan</a>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -73,7 +77,8 @@
     "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
   } }
   </script>
-  <script type="module" src="js/story-scenes.js?v=1"></script>
-  <script type="module" src="js/grand-hero.js?v=11"></script>
+  <script type="module" src="js/story-scenes.js?v=2"></script>
+  <script type="module" src="js/scroll-sequence.js?v=1"></script>
+  <script type="module" src="js/grand-hero.js?v=12"></script>
 </body>
 </html>

@@ -89,6 +89,32 @@ a {
   color: var(--gold);
 }
 
+.hero-sequence {
+  position: relative;
+  height: 340svh;
+  background: #120806;
+}
+
+.sequence-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.sequence-panel {
+  position: absolute;
+  inset: 0;
+  min-height: 100svh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.08s linear;
+}
+
+.sequence-panel.is-active {
+  pointer-events: auto;
+}
+
 .story-screen {
   position: relative;
   min-height: 100svh;
