@@ -77,6 +77,7 @@ if (reduceMotion) {
 if (renderer) {
   renderer.setClearColor(0x550c06, 1);
   renderer.autoClear = false;
+  renderer.localClippingEnabled = true;
 
   /* ── Scene 1: the parallax plate (ortho fullscreen quad) ── */
   const plateScene = new THREE.Scene();
@@ -171,6 +172,7 @@ if (renderer) {
 
   /* Gold statue fallback if the supplied FBX cannot load. */
   const cheetah = new THREE.Group();
+  const platformClip = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
   let cheetahModel = null;
   let cheetahMixer = null;
 
@@ -269,22 +271,21 @@ if (renderer) {
     cheetah.add(g);
   }
 
-  new FBXLoader().load(
-    'assets/SIT.Fbx',
-    (model) => {
+  const fbxLoader = new FBXLoader();
+  fbxLoader.loadAsync('assets/SIT.Fbx').then((model) => {
       if (model.animations.length) {
-        const clip = model.animations[0];
         cheetahMixer = new THREE.AnimationMixer(model);
-        const action = cheetahMixer.clipAction(clip);
-        action.setLoop(THREE.LoopRepeat);
-        action.clampWhenFinished = false;
-        action.play();
+        const sitAction = cheetahMixer.clipAction(model.animations[0]);
+        sitAction.setLoop(THREE.LoopRepeat);
+        sitAction.play();
       }
       model.traverse((o) => {
         if (o.isMesh && o.material) {
           o.material.transparent = true;
           o.material.alphaTest = 0.35;
           o.material.side = THREE.DoubleSide;
+          o.material.clippingPlanes = [platformClip];
+          o.material.clipShadows = true;
         }
       });
       model.updateMatrixWorld(true);
@@ -312,10 +313,7 @@ if (renderer) {
         .applyEuler(model.rotation);
       model.position.set(off.x, -box.min.y * scale, off.z);
       cheetah.add(model);
-    },
-    undefined,
-    () => buildStatue()
-  );
+    }).catch(() => buildStatue());
   scene.add(cheetah);
 
   // gold dust drifting up through the scene
@@ -373,6 +371,7 @@ if (renderer) {
     const sy = (CHEETAH_UV.y - cover.oy) / cover.sy;
     const half = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
     anchor.set((sx * 2 - 1) * half * camera.aspect, (sy * 2 - 1) * half, 0);
+    platformClip.constant = -(anchor.y - 0.012);
     const worldH = (CHEETAH_IMG_HEIGHT / cover.sy) * 2 * half;
     cheetah.scale.setScalar(worldH);
     cheetah.position.copy(anchor);

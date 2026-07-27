@@ -7,9 +7,9 @@ function smoothstep(edge0, edge1, value) {
 }
 
 function setPanelOpacities(progress) {
-  const firstOut = smoothstep(0.18, 0.34, progress);
+  const firstOut = smoothstep(0.12, 0.22, progress);
   const secondIn = firstOut;
-  const secondOut = smoothstep(0.52, 0.70, progress);
+  const secondOut = smoothstep(0.80, 0.90, progress);
   const thirdIn = secondOut;
 
   const opacities = [
