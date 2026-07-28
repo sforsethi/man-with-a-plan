@@ -1,0 +1,19 @@
+/* Coming soon page: hold the opening frame of the story sequence indefinitely. */
+body.coming-soon .destination-story {
+  height: 100svh;
+}
+
+body.coming-soon .scroll-to-continue,
+body.coming-soon .abyss-message {
+  display: none;
+}
+
+body.coming-soon .coming-soon-label {
+  color: var(--ivory);
+  font-family: var(--caps);
+  font-size: clamp(0.9rem, 1.6vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.55);
+  text-transform: uppercase;
+}
