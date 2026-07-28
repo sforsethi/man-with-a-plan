@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Man With A Plan</title>
+<meta name="description" content="Man With A Plan creates bespoke wedding experiences across India and the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20">
+</head>
+<body>
+  <header class="nav" aria-label="Primary navigation">
+    <a class="nav-mark" href="./" aria-label="Man With A Plan home">.MWP</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">The House</a>
+      <a href="#begin">Begin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-sequence destination-story" id="welcome" aria-label="Destination wedding story">
+      <div class="destination-pin">
+        <section class="run-hero story-screen is-active" id="pursuit">
+          <canvas id="cheetah-run-canvas" aria-label="A glowing cheetah running across a dark floor that fractures beneath its steps" role="img"></canvas>
+          <div class="run-atmosphere" aria-hidden="true"></div>
+          <div class="scroll-to-continue" aria-hidden="true">Scroll to continue</div>
+          <div class="experience-gate" id="experience-gate">
+            <p class="experience-gate-kicker">Man With A Plan</p>
+            <h1>Some stories<br>begin in motion.</h1>
+            <p>Enter the chase.</p>
+            <button class="experience-gate-button" id="begin-experience" type="button">
+              <span>Begin journey</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div class="destination-polaroids" aria-label="Destination wedding galleries">
+            <button class="destination-polaroid is-left" type="button" data-destination="delhi" aria-label="View Delhi event story">
+              <img src="assets/delhi.jpg" alt="Confetti-filled celebration in Delhi">
+            </button>
+            <button class="destination-polaroid is-right" type="button" data-destination="jaipur" aria-label="View Jaipur event story">
+              <img src="assets/jaipur-2024.jpg" alt="Outdoor celebration venue in Jaipur">
+            </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="mumbai" aria-label="View Mumbai event story">
+              <img src="assets/mumbai-2025.jpeg" alt="Live performance and celebration in Mumbai">
+            </button>
+            <button class="destination-polaroid is-right" type="button" data-destination="bangalore" aria-label="View Bangalore event story">
+              <img src="assets/bangalore.jpg" alt="Blue-lit event installation in Bangalore">
+            </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="hua-hin" aria-label="View Hua Hin wedding story">
+              <img src="assets/hua-hin.jpeg" alt="Sparkler celebration with a couple in Hua Hin">
+            </button>
+          </div>
+          <div class="abyss-message" id="abyss-message" aria-hidden="true">
+            <p>Your vision. Our pursuit.</p>
+            <p>An experience beyond expectation.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="intro" id="about">
+      <p class="eyebrow">The House</p>
+      <h2>Every detail considered before the day begins.</h2>
+      <p>Man With A Plan designs and produces destination weddings where the setting, ceremony, hospitality, and rhythm of the celebration feel composed as one.</p>
+    </section>
+
+    <section class="begin" id="begin">
+      <p class="eyebrow">Begin</p>
+      <h2>Tell us where the story starts.</h2>
+      <a href="mailto:hello@manwithaplan.in">Write to us</a>
+    </section>
+  </main>
+
+  <script type="importmap">
+  { "imports": {
+    "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+  } }
+  </script>
+  <script type="module" src="js/story-scenes.js?v=53"></script>
+  <script type="module" src="js/destination-polaroids.js?v=8"></script>
+</body>
+</html>
