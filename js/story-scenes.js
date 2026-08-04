@@ -384,14 +384,10 @@ function applyFurMaterial(model) {
 }
 
 function createFractureField(scene) {
+  // Fracture debris is intentionally disabled; the running scene stays clean.
+  return () => {};
+
   const group = new THREE.Group();
-  const shardMaterial = new THREE.MeshStandardMaterial({
-    color: 0x38251d,
-    roughness: 0.86,
-    metalness: 0.08,
-    emissive: 0x241006,
-    emissiveIntensity: 0.08,
-  });
   const crackMaterial = new THREE.LineBasicMaterial({
     color: 0xd26c28,
     transparent: true,
@@ -411,28 +407,6 @@ function createFractureField(scene) {
     const z = 1.3 - trail * 10.5;
     const side = i % 2 ? 1 : -1;
     const x = side * (0.22 + random() * 1.15) + Math.sin(i * 2.7) * 0.12;
-    const radius = 0.075 + random() * 0.12;
-    const shard = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.72, radius, 0.055, 5), shardMaterial.clone());
-    shard.position.set(x, -0.595, z + (random() - 0.5) * 0.24);
-    shard.scale.set(1.15 + random() * 0.7, 1, 0.65 + random() * 0.45);
-    shard.rotation.set(0, random() * Math.PI, 0);
-    shard.userData = {
-      trail,
-      baseX: shard.position.x,
-      baseY: shard.position.y,
-      baseZ: shard.position.z,
-      baseRotation: shard.rotation.clone(),
-      lift: 0.08 + random() * 0.2,
-      scatterX: side * (0.05 + random() * 0.2),
-      scatterZ: (random() - 0.5) * 0.24,
-      spinX: (random() - 0.5) * 0.75,
-      spinY: (random() - 0.5) * 1.1,
-      spinZ: (random() - 0.5) * 0.65,
-      birthTravel: null,
-    };
-    group.add(shard);
-    pieces.push(shard);
-
     const points = [new THREE.Vector3(x * 0.1, -0.585, z)];
     for (let j = 1; j < 5; j++) {
       points.push(new THREE.Vector3(
@@ -580,10 +554,11 @@ function createGround(scene) {
         34,
         166
       );
-      // Warm umber and antique gold, sampled from the supplied brand world.
-      data[i * 4] = value * 0.96;
-      data[i * 4 + 1] = value * 0.72;
-      data[i * 4 + 2] = value * 0.5;
+      // Deep maroon ground tint, matching the navigation edge while retaining
+      // the procedural velvet-like variation.
+      data[i * 4] = Math.min(255, value * 1.12);
+      data[i * 4 + 1] = value * 0.34;
+      data[i * 4 + 2] = value * 0.28;
       data[i * 4 + 3] = 255;
     }
   }
@@ -614,9 +589,11 @@ function createGround(scene) {
   edgeFadeTexture.needsUpdate = true;
 
   const ground = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-    color: 0x93765e,
+    color: 0xffffff,
     map: texture,
     bumpMap: texture,
+    emissive: 0x240503,
+    emissiveIntensity: 0.32,
     alphaMap: edgeFadeTexture,
     bumpScale: 0.16,
     roughness: 1,
@@ -836,13 +813,6 @@ function createRunScene() {
   const rim = new THREE.DirectionalLight(0xd0a15a, 3.6);
   rim.position.set(3.6, 1.8, -3.5);
   scene.add(rim);
-  const impactLight = new THREE.PointLight(0xff762c, 0, 8, 2);
-  impactLight.position.set(0, -0.12, -0.5);
-  scene.add(impactLight);
-  const destinationKey = new THREE.PointLight(0xff68ad, 0, 8, 1.55);
-  const destinationRim = new THREE.PointLight(0xd72573, 0, 7, 1.7);
-  scene.add(destinationKey, destinationRim);
-
   const { contact, heightAt, setTravel } = createGround(scene);
   const updateFractures = createFractureField(scene);
   const updateDestinationMarkers = createDestinationGroundMarkers(scene, heightAt);
@@ -905,17 +875,17 @@ function createRunScene() {
     const runProgress = getRunScrollProgress();
     const scrollVelocity = Math.abs(runProgress - previousRunProgress) / Math.max(delta, 0.001);
     const isScrolling = now - lastStoryScrollAt < 180;
-    const movingSpeed = lerp(0.78, 1.18, Math.min(scrollVelocity / 0.9, 1));
+    const movingSpeed = lerp(0.72, 1.55, Math.min(scrollVelocity / 0.55, 1));
     const abyssRun = THREE.MathUtils.smoothstep(runProgress, 0.94, 1);
     const showAbyssMessage = abyssRun >= 0.62;
     abyssMessage?.classList.toggle('is-visible', showAbyssMessage);
     abyssMessage?.setAttribute('aria-hidden', showAbyssMessage ? 'false' : 'true');
     section.classList.toggle('is-abyss-message-visible', showAbyssMessage);
-    // Once the visitor enters, the animal keeps a composed forward run. Scroll
-    // adds urgency, rather than being the sole source of motion.
+    // Once the visitor enters, the animal barely moves when scrolling stops.
+    // Scroll velocity adds urgency, with faster scrolling producing a faster run.
     const targetAnimationSpeed = experienceStarted
-      ? (isScrolling ? movingSpeed : 0.64) * lerp(1, 0.72, abyssRun)
-      : 0.16;
+      ? (isScrolling ? movingSpeed : 0.12) * lerp(1, 0.72, abyssRun)
+      : 0.10;
     animationSpeed = THREE.MathUtils.damp(animationSpeed, targetAnimationSpeed, isScrolling ? 8 : 4.5, delta);
     if (mixer) mixer.update(delta * animationSpeed);
     locomotionDistance += delta * animationSpeed * 0.19;
@@ -933,9 +903,6 @@ function createRunScene() {
     const groundTravel = setTravel(runProgress, locomotionDistance);
     updateDestinationMarkers(runProgress);
     const finalApproach = THREE.MathUtils.smoothstep(runProgress, 0.86, 0.98);
-    impactLight.intensity = (THREE.MathUtils.smoothstep(runProgress, 0.16, 0.48) * 3.4 + finalApproach * 6.2)
-      * (1 - abyssRun);
-    impactLight.position.set(pose.position.x + 0.18, pose.position.y + 0.06, pose.position.z + 0.38);
     scene.fog.density = 0.026 + runProgress * 0.012 + abyssRun * 0.024;
     const gaitPhase = locomotionDistance * 15.5;
     const gaitEnergy = THREE.MathUtils.smoothstep(animationSpeed, 0.08, 0.68);
@@ -948,21 +915,6 @@ function createRunScene() {
     );
 
     const mood = getDestinationMood(runProgress);
-    destinationKey.color.copy(mood.lightColor);
-    destinationRim.color.copy(mood.accentColor);
-    destinationKey.intensity = 11 * gaitEnergy * (1 - abyssRun);
-    destinationRim.intensity = 6 * gaitEnergy * (1 - abyssRun);
-    destinationKey.position.set(
-      pose.position.x + Math.sin(mood.lightAngle) * 1.7,
-      pose.position.y + 1.3,
-      pose.position.z + Math.cos(mood.lightAngle) * 1.7
-    );
-    destinationRim.position.set(
-      pose.position.x - Math.sin(mood.lightAngle) * 1.35,
-      pose.position.y + 0.82,
-      pose.position.z - Math.cos(mood.lightAngle) * 1.35
-    );
-
     const finalCameraMove = 0;
     const orbitPosition = new THREE.Vector3(
       target.x + Math.sin(mood.cameraAngle) * mood.cameraRadius,

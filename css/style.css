@@ -255,9 +255,9 @@ a {
 
 .run-hero {
   background:
-    radial-gradient(circle at 55% 36%, rgba(18, 54, 68, 0.28), transparent 34%),
-    linear-gradient(to bottom, rgba(1, 5, 9, 0.04), rgba(1, 4, 7, 0.3)),
-    #02070b url("../assets/cheetah-night-sky.png") center / cover no-repeat;
+    radial-gradient(circle at 55% 36%, rgba(105, 18, 16, 0.22), transparent 34%),
+    linear-gradient(to bottom, rgba(25, 3, 3, 0.04), rgba(12, 2, 2, 0.3)),
+    #120303;
 }
 
 .run-hero::before {
@@ -273,12 +273,7 @@ a {
 .run-atmosphere {
   position: absolute;
   inset: 0;
-  opacity: 0.58;
-  background:
-    radial-gradient(circle at 46% 42%, rgba(35, 126, 160, 0.13), transparent 23%),
-    radial-gradient(circle at 56% 58%, rgba(225, 139, 56, 0.1), transparent 18%);
-  filter: blur(10px);
-  transform-origin: center bottom;
+  display: none;
 }
 
 .scroll-to-continue {
@@ -518,7 +513,7 @@ body.experience-started .experience-gate {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(2, 7, 11, 0.7), transparent 58%), linear-gradient(to top, rgba(2, 7, 11, 0.48), transparent 42%);
+  background: linear-gradient(90deg, rgba(24, 3, 3, 0.5), transparent 58%), linear-gradient(to top, rgba(24, 3, 3, 0.28), transparent 42%);
 }
 
 .destination-copy {
