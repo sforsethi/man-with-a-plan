@@ -317,10 +317,10 @@ a {
   position: absolute;
   top: 50%;
   color: rgba(255, 250, 239, 0.96);
-  font-family: Arial, sans-serif;
-  font-size: clamp(3.2rem, 7vw, 6.8rem);
-  font-weight: 300;
-  letter-spacing: -0.045em;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 200;
+  letter-spacing: 0.015em;
   line-height: 0.9;
   text-decoration: none;
   text-shadow: 0 0.2rem 1.5rem rgba(0, 0, 0, 0.24);
@@ -336,24 +336,24 @@ a {
 }
 
 .final-action-work {
-  left: clamp(1.5rem, 14vw, 14rem);
+  left: clamp(2.4rem, 18vw, 20rem);
 }
 
 .final-action-contact {
-  right: clamp(1.5rem, 10vw, 10rem);
+  right: clamp(2.4rem, 16vw, 18rem);
 }
 
 @media (max-width: 700px) {
   .final-action {
-    font-size: clamp(2.8rem, 14vw, 5rem);
+    font-size: clamp(2rem, 10vw, 3.8rem);
   }
 
   .final-action-work {
-    left: 1.2rem;
+    left: 1.6rem;
   }
 
   .final-action-contact {
-    right: 1.2rem;
+    right: 1.6rem;
   }
 }
 

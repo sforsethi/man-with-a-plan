@@ -810,9 +810,10 @@ function createPortraitScene() {
 
   let mixer = null;
   let model = null;
+  let modelBaseScale = null;
   const modelRef = { current: null };
   createDragTuner({ canvas, modelRef, sceneName: 'portrait' });
-  loader.load('assets/SIT.Fbx', (fbx) => {
+  loader.load('/assets/SIT.Fbx', (fbx) => {
     model = fbx;
     modelRef.current = model;
     applyFurMaterial(model);
@@ -905,10 +906,11 @@ function createRunScene() {
 
   let mixer = null;
   let model = null;
-  loader.load('assets/RUN.Fbx', (fbx) => {
+  loader.load('/assets/RUN.Fbx', (fbx) => {
     model = fbx;
     applyFurMaterial(model);
     normalizeModel(model, 1.75);
+    modelBaseScale = model.scale.x;
     applyRunScrollPose(model, getRunScrollProgress());
     model.traverse((object) => {
       if (!object.isMesh) return;
@@ -996,6 +998,8 @@ function createRunScene() {
       model.position.x = pose.position.x;
       model.position.y = pose.position.y;
       model.position.z = pose.position.z;
+      const maskScale = THREE.MathUtils.smoothstep(runProgress, 0.945, 0.998);
+      model.scale.setScalar(modelBaseScale * lerp(1, 0.56, maskScale));
     }
     const groundTravel = setTravel(runProgress, locomotionDistance);
     updateDestinationMarkers(runProgress);
@@ -1030,8 +1034,18 @@ function createRunScene() {
       distanceCameraAnchor = null;
     } else if (!distanceCameraAnchor) {
       distanceCameraAnchor = {
-        camera: chaseCamera.clone(),
-        look: lookTarget.clone(),
+        // The animal runs away from us along -Z, so hold a centered rear
+        // camera to make the back view and increasing distance unmistakable.
+        camera: new THREE.Vector3(
+          pose.position.x,
+          pose.position.y + 1.12,
+          pose.position.z + 5.8
+        ),
+        look: new THREE.Vector3(
+          pose.position.x,
+          pose.position.y + 0.78,
+          pose.position.z - 2.3
+        ),
       };
     }
     if (distanceCameraAnchor) {
@@ -1044,8 +1058,8 @@ function createRunScene() {
     // the cheetah remains readable behind the centered MWP mark.
     const finaleCameraMove = THREE.MathUtils.smoothstep(runProgress, 0.985, 1);
     const finaleCamera = new THREE.Vector3(
-      pose.position.x + 4.8,
-      pose.position.y + 1.12,
+      pose.position.x + 6.2,
+      pose.position.y + 1.28,
       pose.position.z + 0.28
     );
     const finaleLook = new THREE.Vector3(
