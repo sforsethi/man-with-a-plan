@@ -101,23 +101,16 @@ const RUN_SCROLL_KEYFRAMES = [
 ];
 
 const RUN_DESTINATIONS = [
-  { name: 'DELHI', x: -1.8, z: 0.90, start: 0.040, end: 0.088, cameraAngle: -0.62, cameraRadius: 5.25, cameraHeight: 0.72, lightAngle: -0.85, lightColor: 0xff68ad, accentColor: 0xd72573 },
-  { name: 'JAIPUR', x: 1.8, z: 0.52, start: 0.095, end: 0.143, cameraAngle: 0.58, cameraRadius: 4.80, cameraHeight: 0.90, lightAngle: 0.72, lightColor: 0xe43c32, accentColor: 0xff7956 },
-  { name: 'UDAIPUR', x: -1.8, z: 0.14, start: 0.150, end: 0.198, cameraAngle: -0.90, cameraRadius: 4.55, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
-  { name: 'RISHIKESH', x: 1.8, z: -0.24, start: 0.205, end: 0.253, cameraAngle: 0.18, cameraRadius: 5.15, cameraHeight: 1.02, lightAngle: 0.35, lightColor: 0xe0a340, accentColor: 0xa94d20 },
-  { name: 'MUMBAI', x: -1.8, z: -0.62, start: 0.260, end: 0.308, cameraAngle: 0.88, cameraRadius: 4.50, cameraHeight: 0.68, lightAngle: 1.18, lightColor: 0x3d6eff, accentColor: 0x657bd8 },
-  { name: 'INDORE', x: 1.8, z: -1.00, start: 0.315, end: 0.363, cameraAngle: -0.40, cameraRadius: 4.35, cameraHeight: 0.52, lightAngle: -0.52, lightColor: 0xf0805f, accentColor: 0xe0b36a },
-  { name: 'GOA', x: -1.8, z: -1.38, start: 0.370, end: 0.418, cameraAngle: 0.52, cameraRadius: 5.05, cameraHeight: 1.04, lightAngle: 0.92, lightColor: 0xd8c08d, accentColor: 0x8f4d38 },
-  { name: 'AGRA', x: 1.8, z: -1.76, start: 0.425, end: 0.473, cameraAngle: -0.72, cameraRadius: 4.75, cameraHeight: 0.78, lightAngle: -1.04, lightColor: 0x45ca78, accentColor: 0x2f8f70 },
-  { name: 'KOLKATA', x: -1.8, z: -2.14, start: 0.480, end: 0.528, cameraAngle: 0.12, cameraRadius: 4.10, cameraHeight: 0.58, lightAngle: 0.20, lightColor: 0x91a9c7, accentColor: 0xd9c394 },
-  { name: 'KOCHI', x: 1.8, z: -2.52, start: 0.535, end: 0.583, cameraAngle: -0.62, cameraRadius: 5.25, cameraHeight: 0.72, lightAngle: -0.85, lightColor: 0xff68ad, accentColor: 0xd72573 },
-  { name: 'BANGALORE', x: -1.8, z: -2.90, start: 0.590, end: 0.638, cameraAngle: 0.58, cameraRadius: 4.80, cameraHeight: 0.90, lightAngle: 0.72, lightColor: 0xe43c32, accentColor: 0xff7956 },
-  { name: 'ISTANBUL', x: 1.8, z: -3.28, start: 0.645, end: 0.693, cameraAngle: -0.90, cameraRadius: 4.55, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
-  { name: 'VENICE', x: -1.8, z: -3.66, start: 0.700, end: 0.748, cameraAngle: 0.18, cameraRadius: 5.15, cameraHeight: 1.02, lightAngle: 0.35, lightColor: 0xe0a340, accentColor: 0xa94d20 },
-  { name: 'ANTALYA', x: 1.8, z: -4.04, start: 0.755, end: 0.803, cameraAngle: 0.88, cameraRadius: 4.50, cameraHeight: 0.68, lightAngle: 1.18, lightColor: 0x3d6eff, accentColor: 0x657bd8 },
-  { name: 'BANGKOK', x: -1.8, z: -4.42, start: 0.810, end: 0.858, cameraAngle: -0.40, cameraRadius: 4.35, cameraHeight: 0.52, lightAngle: -0.52, lightColor: 0xf0805f, accentColor: 0xe0b36a },
-  { name: 'KHAO LAK', x: 1.8, z: -4.80, start: 0.865, end: 0.913, cameraAngle: 0.52, cameraRadius: 5.05, cameraHeight: 1.04, lightAngle: 0.92, lightColor: 0xd8c08d, accentColor: 0x8f4d38 },
-  { name: 'HUA HIN', x: -1.8, z: -5.18, start: 0.920, end: 0.985, cameraAngle: -0.72, cameraRadius: 4.75, cameraHeight: 0.78, lightAngle: -1.04, lightColor: 0x45ca78, accentColor: 0x2f8f70 },
+  { name: 'DELHI', x: 1.8, z: 1.52, start: 0.020, end: 0.095, cameraAngle: -0.62, cameraRadius: 5.25, cameraHeight: 0.72, lightAngle: -0.85, lightColor: 0xff68ad, accentColor: 0xd72573 },
+  { name: 'UDAIPUR', x: -1.8, z: 1.21, start: 0.110, end: 0.185, cameraAngle: -0.90, cameraRadius: 4.55, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
+  { name: 'MUMBAI', x: 1.8, z: 0.90, start: 0.200, end: 0.275, cameraAngle: 0.88, cameraRadius: 4.50, cameraHeight: 0.68, lightAngle: 1.18, lightColor: 0x3d6eff, accentColor: 0x657bd8 },
+  { name: 'INDORE', x: -1.8, z: 0.28, start: 0.290, end: 0.365, cameraAngle: -0.40, cameraRadius: 4.35, cameraHeight: 0.52, lightAngle: -0.52, lightColor: 0xf0805f, accentColor: 0xe0b36a },
+  { name: 'GOA', x: 1.8, z: -0.34, start: 0.380, end: 0.455, cameraAngle: 0.52, cameraRadius: 5.05, cameraHeight: 1.04, lightAngle: 0.92, lightColor: 0xd8c08d, accentColor: 0x8f4d38 },
+  { name: 'KOLKATA', x: -1.8, z: -0.96, start: 0.470, end: 0.545, cameraAngle: 0.12, cameraRadius: 4.10, cameraHeight: 0.58, lightAngle: 0.20, lightColor: 0x91a9c7, accentColor: 0xd9c394 },
+  { name: 'BANGALORE', x: 1.8, z: -1.58, start: 0.560, end: 0.635, cameraAngle: 0.58, cameraRadius: 4.80, cameraHeight: 0.90, lightAngle: 0.72, lightColor: 0xe43c32, accentColor: 0xff7956 },
+  { name: 'ISTANBUL', x: -1.8, z: -2.20, start: 0.650, end: 0.725, cameraAngle: -0.90, cameraRadius: 4.55, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
+  { name: 'HUA HIN', x: 1.8, z: -2.82, start: 0.740, end: 0.815, cameraAngle: 0.18, cameraRadius: 5.15, cameraHeight: 1.02, lightAngle: 0.35, lightColor: 0xe0a340, accentColor: 0xa94d20 },
+  { name: 'VENICE', x: -1.8, z: -3.44, start: 0.830, end: 0.965, cameraAngle: -0.72, cameraRadius: 4.75, cameraHeight: 0.78, lightAngle: -1.04, lightColor: 0x45ca78, accentColor: 0x2f8f70 },
 ];
 
 function cloneTuning(value) {
@@ -679,18 +672,67 @@ function createGround(scene) {
   };
 }
 
+function createStarfield(scene) {
+  const starCount = 190;
+  const positions = new Float32Array(starCount * 3);
+  const radius = 34;
+  for (let i = 0; i < starCount; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    // Spread from near the horizon up to overhead, uniform by solid angle,
+    // relative to the camera's own eye height (set in update() below) so
+    // stars stay in view regardless of how far the camera pitches to
+    // follow the ground.
+    const phi = Math.acos(THREE.MathUtils.lerp(0.02, 0.9, Math.random()));
+    positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = radius * Math.cos(phi);
+    positions[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  // Color kept dim on purpose: the scene's bloom pass blooms anything past
+  // a fairly low brightness threshold, and a bright color here smears into
+  // a uniform haze instead of reading as distinct stars. Size needs to be
+  // fairly large in world units since stars sit ~34 units out.
+  const material = new THREE.PointsMaterial({
+    color: 0x4a5570,
+    size: 0.22,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0.8,
+    depthWrite: false,
+    fog: false,
+  });
+  const stars = new THREE.Points(geometry, material);
+  scene.add(stars);
+
+  return {
+    stars,
+    update: (now, cameraPosition) => {
+      stars.position.copy(cameraPosition);
+      material.opacity = 0.42 + Math.sin(now * 0.00055) * 0.13;
+    },
+  };
+}
+
 function createDestinationGroundMarkers(scene, heightAt) {
   const markers = RUN_DESTINATIONS.map((destination) => {
     const label = document.createElement('canvas');
-    label.width = 1600;
-    label.height = 460;
+    // Keep longer location names legible on the ground plane.
+    label.width = 2200;
+    label.height = 500;
     const context = label.getContext('2d');
     context.clearRect(0, 0, label.width, label.height);
     context.strokeStyle = 'rgba(242, 230, 197, 0.36)';
     context.lineWidth = 5;
     context.strokeRect(26, 26, label.width - 52, label.height - 52);
     context.fillStyle = '#f2e6c5';
-    context.font = '500 182px Marcellus, Georgia, serif';
+    let fontSize = 182;
+    context.font = `500 ${fontSize}px Marcellus, Georgia, serif`;
+    while (context.measureText(destination.name).width > label.width - 180 && fontSize > 112) {
+      fontSize -= 4;
+      context.font = `500 ${fontSize}px Marcellus, Georgia, serif`;
+    }
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillText(destination.name, label.width / 2, label.height / 2 + 4);
@@ -703,10 +745,13 @@ function createDestinationGroundMarkers(scene, heightAt) {
       opacity: 0,
       depthWrite: false,
       side: THREE.DoubleSide,
+      polygonOffset: true,
+      polygonOffsetFactor: -1,
+      polygonOffsetUnits: -1,
     });
-    const marker = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.776), material);
+    const marker = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 0.795), material);
     marker.rotation.x = -Math.PI / 2;
-    marker.position.set(destination.x, heightAt(destination.x, destination.z) + 0.014, destination.z);
+    marker.position.set(destination.x, heightAt(destination.x, destination.z) + 0.04, destination.z);
     marker.visible = false;
     scene.add(marker);
     return { ...destination, marker };
@@ -806,11 +851,17 @@ function createPortraitScene() {
 function createRunScene() {
   const canvas = document.getElementById('cheetah-run-canvas');
   const section = document.querySelector('.run-hero');
-  const abyssMessage = document.getElementById('abyss-message');
+  const maskBackdrop = document.getElementById('mwp-mask-backdrop');
+  const logoMask = document.getElementById('mwp-mask-overlay');
+  const finalActions = document.getElementById('final-actions');
   if (!canvas || !section || reduceMotion) return null;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setClearColor(0x000000, 0);
+  // The post-processing chain (bloom, liquid-metal pass) doesn't carry the
+  // render target's alpha through to the canvas, so the "empty sky" area
+  // always composites as fully opaque — paint it navy instead of relying on
+  // the CSS backdrop showing through.
+  renderer.setClearColor(0x020509, 1);
 
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -819,7 +870,7 @@ function createRunScene() {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x090302, 0.026);
+  scene.fog = new THREE.FogExp2(0x081527, 0.026);
 
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 60);
   camera.position.set(0, 1.15, 5.8);
@@ -843,6 +894,7 @@ function createRunScene() {
   const { contact, heightAt, setTravel } = createGround(scene);
   const updateFractures = createFractureField(scene);
   const updateDestinationMarkers = createDestinationGroundMarkers(scene, heightAt);
+  const { update: updateStars } = createStarfield(scene);
 
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
@@ -896,6 +948,7 @@ function createRunScene() {
   let previousRunProgress = getRunScrollProgress();
   let animationSpeed = 0;
   let locomotionDistance = 0;
+  let distanceCameraAnchor = null;
   renderer.setAnimationLoop((now) => {
     const delta = clock.getDelta();
     if (!visible || document.hidden) return;
@@ -903,11 +956,28 @@ function createRunScene() {
     const scrollVelocity = Math.abs(runProgress - previousRunProgress) / Math.max(delta, 0.001);
     const isScrolling = now - lastStoryScrollAt < 180;
     const movingSpeed = lerp(0.72, 1.55, Math.min(scrollVelocity / 0.55, 1));
-    const abyssRun = THREE.MathUtils.smoothstep(runProgress, 0.94, 1);
+    // Keep the animal moving into the distance before the final reveal begins.
+    const abyssRun = THREE.MathUtils.smoothstep(runProgress, 0.92, 0.985);
     const showAbyssMessage = abyssRun >= 0.62;
-    abyssMessage?.classList.toggle('is-visible', showAbyssMessage);
-    abyssMessage?.setAttribute('aria-hidden', showAbyssMessage ? 'false' : 'true');
     section.classList.toggle('is-abyss-message-visible', showAbyssMessage);
+    // As the cheetah recedes into the distance, the full-bleed scene closes
+    // down into the MWP mark's silhouette: a big, softly out-of-focus mask
+    // zooms in and resolves down to the small logo-shaped window.
+    if (logoMask) {
+      const logoRun = THREE.MathUtils.smoothstep(runProgress, 0.90, 0.995);
+      const logoScale = lerp(3.6, 1, logoRun);
+      // The mask enters only after the cheetah has started receding.
+      const logoOpacity = THREE.MathUtils.smoothstep(runProgress, 0.945, 0.972);
+      logoMask.style.opacity = String(logoOpacity);
+      logoMask.style.transform = `scale(${logoScale.toFixed(4)})`;
+      // Let the white lift arrive after the mask, rather than washing out the
+      // running scene at the same time as the logo appears.
+      if (maskBackdrop) {
+        const whiteLift = THREE.MathUtils.smoothstep(runProgress, 0.972, 0.998);
+        maskBackdrop.style.opacity = String(whiteLift * 0.2);
+      }
+      if (finalActions) finalActions.classList.toggle('is-visible', runProgress >= 0.998);
+    }
     // Once the visitor enters, the animal barely moves when scrolling stops.
     // Scroll velocity adds urgency, with faster scrolling producing a faster run.
     const targetAnimationSpeed = experienceStarted
@@ -953,18 +1023,35 @@ function createRunScene() {
     const chaseCamera = orbitPosition.clone().lerp(pawCamera, finalCameraMove);
     chaseCamera.x += bobX;
     const lookTarget = target.clone().lerp(pawTarget, finalCameraMove);
-    const finaleCameraMove = THREE.MathUtils.smoothstep(runProgress, 0.925, 0.97);
-    // Trail behind the animal instead of locking off. The camera follows its
-    // path while slowly losing ground, letting the cheetah recede naturally.
+
+    // Once the cheetah begins receding, hold the camera in world space so the
+    // animal visibly travels away instead of being followed at a fixed size.
+    if (runProgress < 0.92) {
+      distanceCameraAnchor = null;
+    } else if (!distanceCameraAnchor) {
+      distanceCameraAnchor = {
+        camera: chaseCamera.clone(),
+        look: lookTarget.clone(),
+      };
+    }
+    if (distanceCameraAnchor) {
+      const distanceHold = THREE.MathUtils.smoothstep(runProgress, 0.92, 0.955);
+      chaseCamera.lerp(distanceCameraAnchor.camera, distanceHold);
+      lookTarget.lerp(distanceCameraAnchor.look, distanceHold);
+    }
+
+    // Only after the white lift has arrived, swing to a clean side profile so
+    // the cheetah remains readable behind the centered MWP mark.
+    const finaleCameraMove = THREE.MathUtils.smoothstep(runProgress, 0.985, 1);
     const finaleCamera = new THREE.Vector3(
-      pose.position.x + 0.18,
-      pose.position.y + 1.42,
-      pose.position.z + lerp(5.2, 7.4, abyssRun)
+      pose.position.x + 4.8,
+      pose.position.y + 1.12,
+      pose.position.z + 0.28
     );
     const finaleLook = new THREE.Vector3(
       pose.position.x,
-      pose.position.y + 0.64,
-      pose.position.z - 2.2
+      pose.position.y + 0.84,
+      pose.position.z
     );
     chaseCamera.lerp(finaleCamera, finaleCameraMove);
     lookTarget.lerp(finaleLook, finaleCameraMove);
@@ -1018,6 +1105,7 @@ function createRunScene() {
     liquidMetalPass.uniforms.uTime.value = now * 0.001;
     liquidMetalPass.uniforms.uFlowStrength.value = experienceStarted ? 1 : 0;
     liquidMetalPass.uniforms.uTint.value.copy(mood.lightColor);
+    updateStars(now, camera.position);
     composer.render();
   });
 
