@@ -33,7 +33,13 @@ const LiquidMetalShader = {
       vec2 distortedUv = vUv + liquidFlow;
       distortedUv = clamp(distortedUv, vec2(0.002), vec2(0.998));
 
+      vec2 fromCenter = vUv - 0.5;
+      float edgeAmt = pow(clamp(length(fromCenter) * 1.35, 0.0, 1.0), 2.2);
+      vec2 caOffset = fromCenter * edgeAmt * 0.014;
+
       vec4 sceneColor = texture2D(tDiffuse, distortedUv);
+      sceneColor.r = texture2D(tDiffuse, distortedUv + caOffset).r;
+      sceneColor.b = texture2D(tDiffuse, distortedUv - caOffset).b;
       float metalCrest = pow(max(0.0, broadWave * 0.5 + crossWave * 0.5), 8.0);
       vec3 metalTint = mix(vec3(0.68, 0.73, 0.76), uTint, 0.38);
       sceneColor.rgb += metalTint * metalCrest * 0.035 * uFlowStrength;
@@ -542,6 +548,8 @@ function createGround(scene) {
     return total;
   };
 
+  // Fine perpendicular threads read as a woven carpet pile once tiled small.
+  const weaveThread = 4.2;
   for (let y = 0; y < textureSize; y++) {
     for (let x = 0; x < textureSize; x++) {
       const i = y * textureSize + x;
@@ -549,16 +557,24 @@ function createGround(scene) {
       const brokenDust = mineralNoise(x * 0.061 + 31, y * 0.061 - 17);
       const fineGrain = (random() - 0.5) * 18;
       const grit = random() > 0.993 ? 24 + random() * 38 : 0;
+      // Bend the thread grid through low-frequency noise and patch its
+      // strength unevenly so it reads as a worn, hand-woven pile rather
+      // than a perfect machine-printed checker.
+      const threadBend = mineralNoise(x * 0.05 + 50, y * 0.05 - 50) * 3.4;
+      const warp = Math.sin(((x + threadBend) / weaveThread) * Math.PI * 2);
+      const weft = Math.sin(((y - threadBend) / weaveThread) * Math.PI * 2);
+      const wear = 0.3 + 0.7 * Math.abs(mineralNoise(x * 0.026 - 20, y * 0.026 + 20));
+      const weave = warp * weft * 34 * wear;
       const value = THREE.MathUtils.clamp(
-        46 + broadMineral * 70 + brokenDust * 34 + fineGrain + grit,
+        46 + broadMineral * 70 + brokenDust * 34 + fineGrain + grit + weave,
         34,
         166
       );
-      // Deep maroon ground tint, matching the navigation edge while retaining
-      // the procedural velvet-like variation.
-      data[i * 4] = Math.min(255, value * 1.12);
-      data[i * 4 + 1] = value * 0.34;
-      data[i * 4 + 2] = value * 0.28;
+      // A literal maroon carpet texture: mineral-noise dye variation plus a
+      // fine, irregular woven-thread grain from the warp/weft interference above.
+      data[i * 4] = Math.min(255, 42 + value * 0.42);
+      data[i * 4 + 1] = Math.min(255, 7 + value * 0.065);
+      data[i * 4 + 2] = Math.min(255, 5 + value * 0.05);
       data[i * 4 + 3] = 255;
     }
   }
@@ -570,34 +586,45 @@ function createGround(scene) {
   texture.needsUpdate = true;
 
   const edgeFadeSize = 256;
-  const edgeFadeData = new Uint8Array(edgeFadeSize * edgeFadeSize);
+  // RGBA (not single-channel RedFormat) because alphaMap sampling reads the
+  // texture's alpha channel, which a RedFormat texture leaves undefined.
+  const edgeFadeData = new Uint8Array(edgeFadeSize * edgeFadeSize * 4);
   for (let y = 0; y < edgeFadeSize; y++) {
     for (let x = 0; x < edgeFadeSize; x++) {
       const nx = (x + 0.5) / edgeFadeSize * 2 - 1;
       const ny = (y + 0.5) / edgeFadeSize * 2 - 1;
       const radius = Math.sqrt(nx * nx + ny * ny);
-      const opacity = 1 - THREE.MathUtils.smoothstep(radius, 0.88, 1);
-      edgeFadeData[y * edgeFadeSize + x] = Math.round(opacity * 255);
+      const radialFade = 1 - THREE.MathUtils.smoothstep(radius, 0.74, 1);
+      // Local +y maps to the distant/horizon side of the ground once rotated
+      // into the scene, so start fading that side out well before the disc's
+      // outer rim while leaving the near side (under the camera) solid.
+      const horizonFade = ny > 0 ? 1 - THREE.MathUtils.smoothstep(ny, 0.02, 0.72) : 1;
+      const opacity = Math.round(radialFade * horizonFade * 255);
+      const i = (y * edgeFadeSize + x) * 4;
+      edgeFadeData[i] = opacity;
+      edgeFadeData[i + 1] = opacity;
+      edgeFadeData[i + 2] = opacity;
+      edgeFadeData[i + 3] = opacity;
     }
   }
   const edgeFadeTexture = new THREE.DataTexture(
     edgeFadeData,
     edgeFadeSize,
     edgeFadeSize,
-    THREE.RedFormat
+    THREE.RGBAFormat
   );
   edgeFadeTexture.needsUpdate = true;
 
   const ground = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-    color: 0xffffff,
+    color: 0x74716c,
     map: texture,
     bumpMap: texture,
-    emissive: 0x240503,
-    emissiveIntensity: 0.32,
     alphaMap: edgeFadeTexture,
-    bumpScale: 0.16,
+    bumpScale: 0.14,
     roughness: 1,
     metalness: 0,
+    emissive: 0x380504,
+    emissiveIntensity: 0.1,
     transparent: true,
     alphaTest: 0.015,
   }));
@@ -810,7 +837,7 @@ function createRunScene() {
   sun.shadow.camera.bottom = -7;
   sun.shadow.bias = -0.0004;
   scene.add(sun);
-  const rim = new THREE.DirectionalLight(0xd0a15a, 3.6);
+  const rim = new THREE.DirectionalLight(0x8a3324, 2.4);
   rim.position.set(3.6, 1.8, -3.5);
   scene.add(rim);
   const { contact, heightAt, setTravel } = createGround(scene);
