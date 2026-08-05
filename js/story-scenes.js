@@ -906,6 +906,7 @@ function createRunScene() {
 
   let mixer = null;
   let model = null;
+  let modelBaseScale = null;
   loader.load('/assets/RUN.Fbx', (fbx) => {
     model = fbx;
     applyFurMaterial(model);
@@ -1059,12 +1060,14 @@ function createRunScene() {
     const finaleCameraMove = THREE.MathUtils.smoothstep(runProgress, 0.985, 1);
     const finaleCamera = new THREE.Vector3(
       pose.position.x + 6.2,
-      pose.position.y + 1.28,
+      // Lower the final camera and aim together so the cheetah rises within
+      // the centered MWP glyph instead of sitting too low behind it.
+      pose.position.y + 1.05,
       pose.position.z + 0.28
     );
     const finaleLook = new THREE.Vector3(
       pose.position.x,
-      pose.position.y + 0.84,
+      pose.position.y + 0.61,
       pose.position.z
     );
     chaseCamera.lerp(finaleCamera, finaleCameraMove);

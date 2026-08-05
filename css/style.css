@@ -67,8 +67,16 @@ a {
 }
 
 .nav-mark {
+  display: inline-flex;
+  align-items: center;
   color: var(--gold);
-  font-size: 1.2rem;
+}
+
+.nav-mark img {
+  display: block;
+  width: clamp(4.75rem, 7vw, 6.8rem);
+  height: auto;
+  filter: drop-shadow(0 0.15rem 0.7rem rgba(66, 10, 4, 0.28));
 }
 
 .nav-links {
@@ -316,11 +324,11 @@ a {
 .final-action {
   position: absolute;
   top: 50%;
-  color: rgba(255, 250, 239, 0.96);
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: rgba(239, 217, 181, 0.96);
+  font-family: var(--serif);
   font-size: clamp(2.2rem, 5vw, 5rem);
-  font-weight: 200;
-  letter-spacing: 0.015em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
   line-height: 0.9;
   text-decoration: none;
   text-shadow: 0 0.2rem 1.5rem rgba(0, 0, 0, 0.24);
@@ -336,11 +344,11 @@ a {
 }
 
 .final-action-work {
-  left: clamp(2.4rem, 18vw, 20rem);
+  left: clamp(2.4rem, 8vw, 8rem);
 }
 
 .final-action-contact {
-  right: clamp(2.4rem, 16vw, 18rem);
+  right: clamp(2.4rem, 8vw, 8rem);
 }
 
 @media (max-width: 700px) {
@@ -698,7 +706,7 @@ body.experience-started .experience-gate {
   top: 29%;
   right: auto;
   width: min(18rem, 25vw);
-  padding: 0.55rem 0.55rem 0.9rem;
+  padding: 0.55rem 0.55rem 1.35rem;
 }
 
 .destination-polaroids .destination-polaroid.is-left {
@@ -729,6 +737,18 @@ body.experience-started .experience-gate {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   filter: saturate(0.78) sepia(0.12) contrast(0.94);
+}
+
+.destination-polaroids .polaroid-caption {
+  display: block;
+  padding: 0.85rem 0.15rem 0;
+  color: rgba(36, 23, 13, 0.88);
+  font-family: var(--caps);
+  font-size: clamp(0.52rem, 0.8vw, 0.68rem);
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .grand-hero {
