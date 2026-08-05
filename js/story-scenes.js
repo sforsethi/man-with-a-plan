@@ -2,51 +2,7 @@ import * as THREE from 'three';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-
-const LiquidMetalShader = {
-  uniforms: {
-    tDiffuse: { value: null },
-    uTime: { value: 0 },
-    uFlowStrength: { value: 0 },
-    uTint: { value: new THREE.Color(0xd0a15a) },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tDiffuse;
-    uniform float uTime;
-    uniform float uFlowStrength;
-    uniform vec3 uTint;
-    varying vec2 vUv;
-
-    void main() {
-      float broadWave = sin(vUv.y * 18.0 + vUv.x * 7.0 + uTime * 0.72);
-      float crossWave = cos(vUv.x * 22.0 - vUv.y * 5.0 - uTime * 0.58);
-      vec2 liquidFlow = vec2(crossWave, broadWave) * 0.00115 * uFlowStrength;
-      vec2 distortedUv = vUv + liquidFlow;
-      distortedUv = clamp(distortedUv, vec2(0.002), vec2(0.998));
-
-      vec2 fromCenter = vUv - 0.5;
-      float edgeAmt = pow(clamp(length(fromCenter) * 1.35, 0.0, 1.0), 2.2);
-      vec2 caOffset = fromCenter * edgeAmt * 0.014;
-
-      vec4 sceneColor = texture2D(tDiffuse, distortedUv);
-      sceneColor.r = texture2D(tDiffuse, distortedUv + caOffset).r;
-      sceneColor.b = texture2D(tDiffuse, distortedUv - caOffset).b;
-      float metalCrest = pow(max(0.0, broadWave * 0.5 + crossWave * 0.5), 8.0);
-      vec3 metalTint = mix(vec3(0.68, 0.73, 0.76), uTint, 0.38);
-      sceneColor.rgb += metalTint * metalCrest * 0.035 * uFlowStrength;
-      gl_FragColor = sceneColor;
-    }
-  `,
-};
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const loader = new FBXLoader();
@@ -858,7 +814,7 @@ function createRunScene() {
   if (!canvas || !section || reduceMotion) return null;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  // The post-processing chain (bloom, liquid-metal pass) doesn't carry the
+  // The post-processing chain (bloom) doesn't carry the
   // render target's alpha through to the canvas, so the "empty sky" area
   // always composites as fully opaque — paint it navy instead of relying on
   // the CSS backdrop showing through.
@@ -899,8 +855,6 @@ function createRunScene() {
 
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  const liquidMetalPass = new ShaderPass(LiquidMetalShader);
-  composer.addPass(liquidMetalPass);
   const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.72, 0.7, 0.72);
   composer.addPass(bloom);
 
@@ -1119,9 +1073,6 @@ function createRunScene() {
       * (1 - THREE.MathUtils.smoothstep(abyssRun, 0.65, 1));
     bloom.strength = lerp(0.64, 0.84, fractureBuild)
       + finalApproach * 0.12;
-    liquidMetalPass.uniforms.uTime.value = now * 0.001;
-    liquidMetalPass.uniforms.uFlowStrength.value = experienceStarted ? 1 : 0;
-    liquidMetalPass.uniforms.uTint.value.copy(mood.lightColor);
     updateStars(now, camera.position);
     composer.render();
   });
