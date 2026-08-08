@@ -8,12 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=31">
+<link rel="stylesheet" href="css/style.css?v=38">
 </head>
 <body>
   <header class="nav" aria-label="Primary navigation">
     <a class="nav-mark" href="./" aria-label="Man With A Plan home">
-      <img src="assets/mwp-mask-logo.png" alt="Man With A Plan">
+      <img src="assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan">
     </a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#about">The House</a>
@@ -30,7 +30,7 @@
           <div class="mwp-mask-backdrop" id="mwp-mask-backdrop" aria-hidden="true"></div>
           <div class="mwp-mask-overlay" id="mwp-mask-overlay" aria-hidden="true"></div>
           <nav class="final-actions" id="final-actions" aria-label="Final navigation">
-            <a class="final-action final-action-work" href="#work" id="open-work-gallery">Work</a>
+            <a class="final-action final-action-work" href="/portfolio/">Work</a>
             <a class="final-action final-action-contact" href="#begin">Contact</a>
           </nav>
           <div class="scroll-to-continue" aria-hidden="true">Scroll to continue</div>
@@ -44,35 +44,38 @@
             </button>
           </div>
           <div class="destination-polaroids" aria-label="Destination wedding galleries">
-            <button class="destination-polaroid is-right" type="button" data-destination="delhi" aria-label="View Delhi event story">
+            <button class="destination-polaroid is-left" type="button" data-destination="delhi" aria-label="View Delhi event story">
               <img src="assets/destinations/Delhi.jpg" alt="Reception celebration in Delhi">
               <span class="polaroid-caption">ICWF'24</span>
             </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="jaipur" aria-label="View Jaipur event story">
+              <img src="assets/jaipur-2024.jpg" alt="Wedding celebration in Jaipur">
+            </button>
             <button class="destination-polaroid is-left" type="button" data-destination="udaipur" aria-label="View Udaipur event story">
               <img src="assets/destinations/Udaipur.jpg" alt="Wedding celebration in Udaipur">
-            </button>
-            <button class="destination-polaroid is-left" type="button" data-destination="mumbai" aria-label="View Mumbai event story">
-              <img src="assets/destinations/Mumbai/0Z0A8551.JPG" alt="Wedding celebration in Mumbai">
-              <span class="polaroid-caption">ICWF'25</span>
-            </button>
-            <button class="destination-polaroid is-right" type="button" data-destination="bangalore" aria-label="View Bangalore event story">
-              <img src="assets/destinations/bangalore/1.jpg" alt="Wedding celebration in Bangalore">
-            </button>
-            <button class="destination-polaroid is-right" type="button" data-destination="indore" aria-label="View Indore event story">
-              <img src="assets/destinations/Indore.jpg" alt="Haldi celebration in Indore">
             </button>
             <button class="destination-polaroid is-left" type="button" data-destination="goa" aria-label="View Goa event story">
               <img src="assets/destinations/Goa.jpg" alt="Wedding celebration in Goa">
               <span class="polaroid-caption">Juhi &amp; Jatin</span>
             </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="mumbai" aria-label="View Mumbai event story">
+              <img src="assets/destinations/Mumbai/0Z0A8551.JPG" alt="Wedding celebration in Mumbai">
+              <span class="polaroid-caption">ICWF'25</span>
+            </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="bangalore" aria-label="View Bangalore event story">
+              <img src="assets/destinations/bangalore/1.jpg" alt="Wedding celebration in Bangalore">
+            </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="indore" aria-label="View Indore event story">
+              <img src="assets/destinations/Indore.jpg" alt="Haldi celebration in Indore">
+            </button>
+            <button class="destination-polaroid is-left" type="button" data-destination="thailand" aria-label="View Thailand wedding story">
+              <img src="assets/hua-hin.jpeg" alt="Sparkler celebration in Thailand">
+            </button>
             <button class="destination-polaroid is-left" type="button" data-destination="istanbul" aria-label="View Istanbul event story">
               <img src="assets/destinations/Istanbul/1.jpg" alt="Wedding celebration in Istanbul">
               <span class="polaroid-caption">ICWF 2019</span>
             </button>
-            <button class="destination-polaroid is-right" type="button" data-destination="hua-hin" aria-label="View Hua Hin wedding story">
-              <img src="assets/hua-hin.jpeg" alt="Sparkler celebration with a couple in Hua Hin">
-            </button>
-            <button class="destination-polaroid is-right" type="button" data-destination="kolkata" aria-label="View Kolkata event story">
+            <button class="destination-polaroid is-left" type="button" data-destination="kolkata" aria-label="View Kolkata event story">
               <img src="assets/destinations/Kolkata/1.jpg" alt="Wedding celebration in Kolkata">
             </button>
           </div>
@@ -82,57 +85,13 @@
 
   </main>
 
-  <div class="work-gallery" id="work-gallery" aria-hidden="true">
-    <button class="work-gallery-close" id="work-gallery-close" type="button" aria-label="Close gallery">&times;</button>
-    <div class="work-gallery-stage" id="work-gallery-stage">
-      <div class="work-gallery-ring" id="work-gallery-ring">
-        <figure class="work-gallery-item" data-title="Delhi" data-badge="ICWF'24" data-desc="Reception celebration in Delhi">
-          <img src="assets/destinations/Delhi.jpg" alt="Reception celebration in Delhi" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Udaipur" data-desc="Wedding celebration in Udaipur">
-          <img src="assets/destinations/Udaipur.jpg" alt="Wedding celebration in Udaipur" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Mumbai" data-badge="ICWF'25" data-desc="Wedding celebration in Mumbai">
-          <img src="assets/destinations/Mumbai/0Z0A8551.JPG" alt="Wedding celebration in Mumbai" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Bangalore" data-desc="Wedding celebration in Bangalore">
-          <img src="assets/destinations/bangalore/1.jpg" alt="Wedding celebration in Bangalore" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Indore" data-desc="Haldi celebration in Indore">
-          <img src="assets/destinations/Indore.jpg" alt="Haldi celebration in Indore" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Goa" data-badge="Juhi &amp; Jatin" data-desc="Wedding celebration in Goa">
-          <img src="assets/destinations/Goa.jpg" alt="Wedding celebration in Goa" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Istanbul" data-badge="ICWF 2019" data-desc="Wedding celebration in Istanbul">
-          <img src="assets/destinations/Istanbul/1.jpg" alt="Wedding celebration in Istanbul" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Hua Hin" data-desc="Sparkler celebration with a couple in Hua Hin">
-          <img src="assets/hua-hin.jpeg" alt="Sparkler celebration with a couple in Hua Hin" loading="lazy">
-        </figure>
-        <figure class="work-gallery-item" data-title="Kolkata" data-desc="Wedding celebration in Kolkata">
-          <img src="assets/destinations/Kolkata/1.jpg" alt="Wedding celebration in Kolkata" loading="lazy">
-        </figure>
-      </div>
-      <button class="work-gallery-nav work-gallery-prev" id="work-gallery-prev" type="button" aria-label="Previous event">&larr;</button>
-      <button class="work-gallery-nav work-gallery-next" id="work-gallery-next" type="button" aria-label="Next event">&rarr;</button>
-    </div>
-    <div class="work-gallery-caption">
-      <p class="work-gallery-badge" id="work-gallery-badge"></p>
-      <h2 class="work-gallery-title" id="work-gallery-title"></h2>
-      <p class="work-gallery-desc" id="work-gallery-desc"></p>
-    </div>
-    <p class="work-gallery-hint">Scroll or drag to explore</p>
-  </div>
-
   <script type="importmap">
   { "imports": {
     "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
     "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
   } }
   </script>
-  <script type="module" src="js/story-scenes.js?v=94"></script>
-  <script type="module" src="js/destination-polaroids.js?v=9"></script>
-  <script type="module" src="js/work-gallery.js?v=1"></script>
+  <script type="module" src="js/story-scenes.js?v=106"></script>
+  <script type="module" src="js/destination-polaroids.js?v=11"></script>
 </body>
 </html>
