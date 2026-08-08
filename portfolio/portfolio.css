@@ -43,7 +43,12 @@ button { font: inherit; }
   padding: 28px clamp(22px, 4.5vw, 72px);
 }
 
-.brand img { width: 86px; height: auto; display: block; filter: brightness(0) invert(1); }
+.brand img {
+  width: clamp(58px, 5vw, 74px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 3px 12px rgba(18, 0, 1, .35));
+}
 
 .header-link {
   color: var(--ivory);
@@ -270,7 +275,7 @@ h1 {
 
 @media (max-width: 720px) {
   .site-header { padding-top: 20px; }
-  .brand img { width: 68px; }
+  .brand img { width: 58px; }
   .portfolio-hero { min-height: 82vh; }
   .destination-grid, .event-grid { grid-template-columns: 1fr; gap: 58px; }
   .destination-card:nth-child(3n + 2) { margin-top: 0; }

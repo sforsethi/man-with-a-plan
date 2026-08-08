@@ -9,7 +9,7 @@
 
   const header = `
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Man With A Plan home"><img src="/assets/logo.png" alt="Man With A Plan"></a>
+      <a class="brand" href="/" aria-label="Man With A Plan home"><img src="/assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan"></a>
       <a class="header-link" href="/portfolio/">All destinations</a>
     </header>`;
 
