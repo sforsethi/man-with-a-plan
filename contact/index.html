@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us — Man With A Plan</title>
+  <meta name="description" content="Drop an enquiry and speak with Man With A Plan about your wedding or celebration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Marcellus&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css?v=47">
+</head>
+<body class="contact-page" id="top">
+  <header class="nav" aria-label="Primary navigation">
+    <a class="nav-mark" href="/story.html" aria-label="Man With A Plan home">
+      <img src="/assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan">
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="/contact/" aria-current="page">Contact Us</a>
+      <a href="/story.html#pursuit">Our Process</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/mwp/">MWP</a>
+    </nav>
+  </header>
+
+  <main class="contact-main">
+    <section class="contact-hero">
+      <div class="contact-heading">
+        <p class="section-kicker">Let’s create something memorable</p>
+        <h1>Drop an<br><em>enquiry.</em></h1>
+        <p>Tell us a little about your celebration and our team will take it from there.</p>
+      </div>
+
+      <form class="enquiry-form" id="enquiry-form">
+        <div class="form-field">
+          <label for="enquiry-name">Your name</label>
+          <input id="enquiry-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="enquiry-email">Email address</label>
+          <input id="enquiry-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label for="enquiry-phone">Phone number</label>
+          <input id="enquiry-phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="form-field">
+          <label for="enquiry-event">Celebration type</label>
+          <input id="enquiry-event" name="event" type="text" placeholder="Wedding, anniversary, milestone…">
+        </div>
+        <div class="form-field form-field-wide">
+          <label for="enquiry-place">Location or destination</label>
+          <input id="enquiry-place" name="destination" type="text">
+        </div>
+        <div class="form-field form-field-wide">
+          <label for="enquiry-message">Tell us about your plans</label>
+          <textarea id="enquiry-message" name="message" rows="4" required></textarea>
+        </div>
+        <div class="form-submit form-field-wide">
+          <button type="submit">Send enquiry ↗</button>
+          <p>This will open your email app with your enquiry ready to send.</p>
+        </div>
+      </form>
+    </section>
+
+    <section class="contact-details" aria-label="Contact details">
+      <div class="contact-detail">
+        <span>Write to us</span>
+        <a href="mailto:hello@manwithaplan.in">hello@manwithaplan.in</a>
+      </div>
+      <div class="contact-detail">
+        <span>Call us</span>
+        <a href="tel:+918447639393">+91 84476 39393</a>
+      </div>
+      <address class="contact-detail contact-address">
+        <span>Visit us</span>
+        <p>2nd Floor, ThinkHaus Spaces<br>315/274, Westend Marg, Saidulajab<br>Butterfly Park, Saiyad Ul Ajaib Extension<br>Saket, New Delhi, Delhi 110030</p>
+        <a class="contact-map-link" href="https://maps.app.goo.gl/7RHmmmjMgB7zstZU7?g_st=ic" target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
+      </address>
+    </section>
+  </main>
+
+  <footer class="contact-footer">
+    <p>© 2026 Man With A Plan</p>
+    <a href="/story.html">Return to the journey</a>
+  </footer>
+
+  <script>
+    document.querySelector('#enquiry-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = `New MWP enquiry from ${data.get('name')}`;
+      const body = [
+        `Name: ${data.get('name')}`,
+        `Email: ${data.get('email')}`,
+        `Phone: ${data.get('phone') || 'Not shared'}`,
+        `Celebration: ${data.get('event') || 'Not shared'}`,
+        `Location: ${data.get('destination') || 'Not shared'}`,
+        '',
+        data.get('message'),
+      ].join('\n');
+      window.location.href = `mailto:hello@manwithaplan.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
