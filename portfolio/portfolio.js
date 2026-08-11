@@ -1,5 +1,27 @@
 (() => {
   const destinations = window.MWAP_PORTFOLIO || [];
+  const destinationSequence = [
+    'delhi',
+    'jaipur',
+    'udaipur',
+    'goa',
+    'mumbai',
+    'bangalore',
+    'indore',
+    'kolkata',
+    'thailand',
+    'venice',
+    'istanbul',
+  ];
+  const sequencePosition = new Map(destinationSequence.map((slug, index) => [slug, index]));
+  const orderedDestinations = destinations
+    .map((destination, originalIndex) => ({ destination, originalIndex }))
+    .sort((a, b) => {
+      const aPosition = sequencePosition.get(a.destination.slug) ?? destinationSequence.length + a.originalIndex;
+      const bPosition = sequencePosition.get(b.destination.slug) ?? destinationSequence.length + b.originalIndex;
+      return aPosition - bPosition;
+    })
+    .map(({ destination }) => destination);
   const root = document.querySelector('#portfolio-app');
   if (!root) return;
 
@@ -19,11 +41,18 @@
       <span>Celebrations across the world</span>
     </footer>`;
 
-  const card = (destination) => `
-    <a class="destination-card reveal" href="/portfolio/${destination.slug}/">
+  const card = (destination) => {
+    const tag = destination.comingSoon ? 'article' : 'a';
+    const href = destination.comingSoon ? '' : ` href="/portfolio/${destination.slug}/"`;
+    const storyCount = destination.comingSoon
+      ? 'Coming soon'
+      : `${String(destination.events.length).padStart(2, '0')} ${destination.events.length === 1 ? 'story' : 'stories'}`;
+    return `
+    <${tag} class="destination-card${destination.comingSoon ? ' destination-card-coming-soon' : ''} reveal"${href}>
       <div class="card-image"><img src="${destination.cover}" alt="Celebration in ${destination.name}" loading="lazy"></div>
-      <div class="card-meta"><h2>${destination.name}</h2><span>${String(destination.events.length).padStart(2, '0')} ${destination.events.length === 1 ? 'story' : 'stories'}</span></div>
-    </a>`;
+      <div class="card-meta"><h2>${destination.name}</h2><span>${storyCount}</span></div>
+    </${tag}>`;
+  };
 
   const renderPortfolio = () => {
     document.title = 'Our Work — Man With A Plan';
@@ -39,7 +68,7 @@
         </section>
         <section class="portfolio-section">
           <div class="section-heading reveal"><p class="eyebrow">The journey so far</p><h2>Destinations</h2></div>
-          <div class="destination-grid">${destinations.map(card).join('')}</div>
+          <div class="destination-grid">${orderedDestinations.map(card).join('')}</div>
         </section>
       </main>${footer}`;
   };

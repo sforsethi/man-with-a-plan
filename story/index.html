@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=38">
+<link rel="stylesheet" href="../css/style.css?v=45">
 </head>
 <body>
   <header class="nav" aria-label="Primary navigation">
@@ -16,8 +16,10 @@
       <img src="../assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan">
     </a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#about">The House</a>
-      <a href="#begin">Begin</a>
+      <a href="mailto:hello@manwithaplan.in">Contact Us</a>
+      <a href="#pursuit">Our Process</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/mwp/">MWP</a>
     </nav>
   </header>
 
@@ -29,10 +31,26 @@
           <div class="run-atmosphere" aria-hidden="true"></div>
           <div class="mwp-mask-backdrop" id="mwp-mask-backdrop" aria-hidden="true"></div>
           <div class="mwp-mask-overlay" id="mwp-mask-overlay" aria-hidden="true"></div>
-          <nav class="final-actions" id="final-actions" aria-label="Final navigation">
-            <a class="final-action final-action-work" href="/portfolio/">Work</a>
-            <a class="final-action final-action-contact" href="#begin">Contact</a>
-          </nav>
+          <section class="final-metrics" id="final-metrics" aria-label="Man With A Plan in numbers">
+            <div class="numbers-grid">
+              <article class="number-stat">
+                <strong><span class="count-up" data-count="10">10</span><span aria-hidden="true">+</span></strong>
+                <p>Events hosted</p>
+              </article>
+              <article class="number-stat">
+                <strong><span class="count-up" data-count="1">1</span><span aria-hidden="true">+</span></strong>
+                <p>Awards won</p>
+              </article>
+              <article class="number-stat">
+                <strong><span class="count-up" data-count="11">11</span><span aria-hidden="true">+</span></strong>
+                <p>Destinations</p>
+              </article>
+              <article class="number-stat">
+                <strong><span class="count-up" data-count="6">6</span><span aria-hidden="true">+</span></strong>
+                <p>Years of creating</p>
+              </article>
+            </div>
+          </section>
           <div class="scroll-to-continue" aria-hidden="true">Scroll to continue</div>
           <div class="experience-gate" id="experience-gate">
             <p class="experience-gate-kicker">Man With A Plan</p>
@@ -48,13 +66,13 @@
               <img src="../assets/destinations/Delhi.jpg" alt="Reception celebration in Delhi">
               <span class="polaroid-caption">ICWF'24</span>
             </button>
-            <button class="destination-polaroid is-left" type="button" data-destination="jaipur" aria-label="View Jaipur event story">
+            <button class="destination-polaroid is-right" type="button" data-destination="jaipur" aria-label="View Jaipur event story">
               <img src="../assets/jaipur-2024.jpg" alt="Wedding celebration in Jaipur">
             </button>
             <button class="destination-polaroid is-left" type="button" data-destination="udaipur" aria-label="View Udaipur event story">
               <img src="../assets/destinations/Udaipur.jpg" alt="Wedding celebration in Udaipur">
             </button>
-            <button class="destination-polaroid is-left" type="button" data-destination="goa" aria-label="View Goa event story">
+            <button class="destination-polaroid is-right" type="button" data-destination="goa" aria-label="View Goa event story">
               <img src="../assets/destinations/Goa.jpg" alt="Wedding celebration in Goa">
               <span class="polaroid-caption">Juhi &amp; Jatin</span>
             </button>
@@ -62,26 +80,88 @@
               <img src="../assets/destinations/Mumbai/0Z0A8551.JPG" alt="Wedding celebration in Mumbai">
               <span class="polaroid-caption">ICWF'25</span>
             </button>
-            <button class="destination-polaroid is-left" type="button" data-destination="bangalore" aria-label="View Bangalore event story">
+            <button class="destination-polaroid is-right" type="button" data-destination="bangalore" aria-label="View Bangalore event story">
               <img src="../assets/destinations/bangalore/1.jpg" alt="Wedding celebration in Bangalore">
             </button>
             <button class="destination-polaroid is-left" type="button" data-destination="indore" aria-label="View Indore event story">
               <img src="../assets/destinations/Indore.jpg" alt="Haldi celebration in Indore">
             </button>
+            <button class="destination-polaroid is-right" type="button" data-destination="kolkata" aria-label="View Kolkata event story">
+              <img src="../assets/destinations/Kolkata/1.jpg" alt="Wedding celebration in Kolkata">
+            </button>
             <button class="destination-polaroid is-left" type="button" data-destination="thailand" aria-label="View Thailand wedding story">
               <img src="../assets/hua-hin.jpeg" alt="Sparkler celebration in Thailand">
+            </button>
+            <button class="destination-polaroid is-right" type="button" data-destination="venice" aria-label="Venice story coming soon">
+              <img src="../assets/destinations/venice-placeholder.svg" alt="Venice story coming soon">
             </button>
             <button class="destination-polaroid is-left" type="button" data-destination="istanbul" aria-label="View Istanbul event story">
               <img src="../assets/destinations/Istanbul/1.jpg" alt="Wedding celebration in Istanbul">
               <span class="polaroid-caption">ICWF 2019</span>
             </button>
-            <button class="destination-polaroid is-left" type="button" data-destination="kolkata" aria-label="View Kolkata event story">
-              <img src="../assets/destinations/Kolkata/1.jpg" alt="Wedding celebration in Kolkata">
-            </button>
           </div>
         </section>
       </div>
     </section>
+
+    <div class="site-finale">
+      <section class="media-section" id="media" aria-label="Media and industry recognition">
+        <div class="media-marquee" aria-label="Media and industry recognition">
+          <div class="media-marquee-track">
+            <div class="media-logo-group" role="list">
+              <a class="media-logo media-logo-wow" role="listitem" href="https://asia.wowawards.com/wow-winners-page/" target="_blank" rel="noreferrer" aria-label="Read Man With A Plan coverage on WOW Awards Asia"><b>WOW</b><small>Awards Asia</small></a>
+              <span class="media-logo media-logo-panache" role="listitem"><small>The Economic Times</small><b>ET Panache</b></span>
+              <span class="media-logo media-logo-icwf" role="listitem"><b>ICWF</b></span>
+              <span class="media-logo media-logo-traveller" role="listitem"><b>Today's Traveller</b></span>
+              <a class="media-logo media-logo-eventfaqs" role="listitem" href="https://in.eventfaqs.com/2024/08/20/the-event-casa-wins-big-at-wow-awards-2024-with-6-metals-poojan-decor-wedding-factory-shine/" target="_blank" rel="noreferrer" aria-label="Read Man With A Plan coverage on EVENTFAQS"><b>EVENTFAQS</b><small>.com</small></a>
+              <a class="media-logo media-logo-weddingsutra" role="listitem" href="https://weddingsutra.com/blog/from-whimsical-charm-to-regal-splendour-this-destination-wedding-in-jaipur-had-it-all/" target="_blank" rel="noreferrer" aria-label="Read Man With A Plan coverage on WeddingSutra"><b>WeddingSutra</b></a>
+              <span class="media-logo media-logo-eemax" role="listitem"><b>EEMAX</b><small>Global</small></span>
+              <span class="media-logo media-logo-ht" role="listitem"><b>Hindustan Times</b></span>
+            </div>
+            <div class="media-logo-group" aria-hidden="true">
+              <a class="media-logo media-logo-wow" href="https://asia.wowawards.com/wow-winners-page/" target="_blank" rel="noreferrer" tabindex="-1"><b>WOW</b><small>Awards Asia</small></a>
+              <span class="media-logo media-logo-panache"><small>The Economic Times</small><b>ET Panache</b></span>
+              <span class="media-logo media-logo-icwf"><b>ICWF</b></span>
+              <span class="media-logo media-logo-traveller"><b>Today's Traveller</b></span>
+              <a class="media-logo media-logo-eventfaqs" href="https://in.eventfaqs.com/2024/08/20/the-event-casa-wins-big-at-wow-awards-2024-with-6-metals-poojan-decor-wedding-factory-shine/" target="_blank" rel="noreferrer" tabindex="-1"><b>EVENTFAQS</b><small>.com</small></a>
+              <a class="media-logo media-logo-weddingsutra" href="https://weddingsutra.com/blog/from-whimsical-charm-to-regal-splendour-this-destination-wedding-in-jaipur-had-it-all/" target="_blank" rel="noreferrer" tabindex="-1"><b>WeddingSutra</b></a>
+              <span class="media-logo media-logo-eemax"><b>EEMAX</b><small>Global</small></span>
+              <span class="media-logo media-logo-ht"><b>Hindustan Times</b></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-intro">
+          <img src="../assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan">
+          <p>Extraordinary celebrations,<br>made deeply personal.</p>
+        </div>
+        <div class="footer-column">
+          <h2>Quick links</h2>
+          <a href="#welcome">The journey</a>
+          <a href="/portfolio/">Selected work</a>
+          <a href="#final-metrics">Our numbers</a>
+          <a href="#media">In the media</a>
+          <a href="/mwp/">About MWP</a>
+          <a href="https://www.instagram.com/manwithaplan.jd/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://in.linkedin.com/in/jaideep-singh-6b0abb75" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+        <div class="footer-column">
+          <h2>Contact</h2>
+          <a href="mailto:hello@manwithaplan.in">hello@manwithaplan.in</a>
+          <a href="tel:+918447639393">+91 84476 39393</a>
+        </div>
+        <address class="footer-column">
+          <h2>Office</h2>
+          <p>Delhi NCR<br>India</p>
+        </address>
+        <div class="footer-bottom">
+          <p>© <span data-current-year>2026</span> Man With A Plan</p>
+          <a href="#welcome">Back to the beginning ↑</a>
+        </div>
+      </footer>
+    </div>
 
   </main>
 
@@ -91,7 +171,8 @@
     "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
   } }
   </script>
-  <script type="module" src="../js/story-scenes.js?v=106"></script>
-  <script type="module" src="../js/destination-polaroids.js?v=11"></script>
+  <script type="module" src="../js/story-scenes.js?v=112"></script>
+  <script type="module" src="../js/destination-polaroids.js?v=14"></script>
+  <script type="module" src="../js/finale-content.js?v=2"></script>
 </body>
 </html>

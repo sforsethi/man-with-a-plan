@@ -2,16 +2,17 @@ const story = document.querySelector('.destination-story');
 const polaroids = Array.from(document.querySelectorAll('.destination-polaroid'));
 // Fallback timing for browsers that cannot render the Three.js cards.
 const photoMoments = {
-  delhi: { show: 0.015, hide: 0.110 },
-  jaipur: { show: 0.105, hide: 0.200 },
-  udaipur: { show: 0.195, hide: 0.290 },
-  goa: { show: 0.285, hide: 0.380 },
-  mumbai: { show: 0.375, hide: 0.470 },
-  bangalore: { show: 0.465, hide: 0.560 },
-  indore: { show: 0.555, hide: 0.650 },
-  thailand: { show: 0.645, hide: 0.740 },
-  istanbul: { show: 0.735, hide: 0.830 },
-  kolkata: { show: 0.825, hide: 0.920 },
+  delhi: { show: 0.015, hide: 0.102 },
+  jaipur: { show: 0.097, hide: 0.184 },
+  udaipur: { show: 0.179, hide: 0.266 },
+  goa: { show: 0.261, hide: 0.348 },
+  mumbai: { show: 0.343, hide: 0.430 },
+  bangalore: { show: 0.425, hide: 0.512 },
+  indore: { show: 0.507, hide: 0.594 },
+  kolkata: { show: 0.589, hide: 0.676 },
+  thailand: { show: 0.671, hide: 0.758 },
+  venice: { show: 0.753, hide: 0.840 },
+  istanbul: { show: 0.835, hide: 0.922 },
 };
 // Beyond this point the scene closes down into the MWP mask reveal, so no
 // polaroid should still be mid-flight or lingering on screen.
@@ -36,7 +37,7 @@ if (story && polaroids.length) {
 
   polaroids.forEach((polaroid) => {
     polaroid.addEventListener('click', () => {
-      polaroids.forEach((item) => item.classList.toggle('is-selected', item === polaroid));
+      window.location.assign(`/portfolio/${polaroid.dataset.destination}/`);
     });
   });
 

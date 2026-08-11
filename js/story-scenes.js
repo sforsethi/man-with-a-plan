@@ -57,16 +57,17 @@ const RUN_SCROLL_KEYFRAMES = [
 ];
 
 const RUN_DESTINATIONS = [
-  { name: 'DELHI', start: 0.015, end: 0.110, cameraHeight: 0.72, lightAngle: -0.85, lightColor: 0xff68ad, accentColor: 0xd72573 },
-  { name: 'JAIPUR', start: 0.105, end: 0.200, cameraHeight: 0.66, lightAngle: -0.50, lightColor: 0xe7a35d, accentColor: 0xc86337 },
-  { name: 'UDAIPUR', start: 0.195, end: 0.290, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
-  { name: 'GOA', start: 0.285, end: 0.380, cameraHeight: 1.04, lightAngle: 0.92, lightColor: 0xd8c08d, accentColor: 0x8f4d38 },
-  { name: 'MUMBAI', start: 0.375, end: 0.470, cameraHeight: 0.68, lightAngle: 1.18, lightColor: 0x3d6eff, accentColor: 0x657bd8 },
-  { name: 'BANGALORE', start: 0.465, end: 0.560, cameraHeight: 0.90, lightAngle: 0.72, lightColor: 0xe43c32, accentColor: 0xff7956 },
-  { name: 'INDORE', start: 0.555, end: 0.650, cameraHeight: 0.52, lightAngle: -0.52, lightColor: 0xf0805f, accentColor: 0xe0b36a },
-  { name: 'THAILAND', start: 0.645, end: 0.740, cameraHeight: 1.02, lightAngle: 0.35, lightColor: 0xe0a340, accentColor: 0xa94d20 },
-  { name: 'ISTANBUL', start: 0.735, end: 0.830, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
-  { name: 'KOLKATA', start: 0.825, end: 0.920, cameraHeight: 0.58, lightAngle: 0.20, lightColor: 0x91a9c7, accentColor: 0xd9c394 },
+  { name: 'DELHI', start: 0.015, end: 0.102, cameraHeight: 0.72, lightAngle: -0.85, lightColor: 0xff68ad, accentColor: 0xd72573 },
+  { name: 'JAIPUR', start: 0.097, end: 0.184, cameraHeight: 0.66, lightAngle: -0.50, lightColor: 0xe7a35d, accentColor: 0xc86337 },
+  { name: 'UDAIPUR', start: 0.179, end: 0.266, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
+  { name: 'GOA', start: 0.261, end: 0.348, cameraHeight: 1.04, lightAngle: 0.92, lightColor: 0xd8c08d, accentColor: 0x8f4d38 },
+  { name: 'MUMBAI', start: 0.343, end: 0.430, cameraHeight: 0.68, lightAngle: 1.18, lightColor: 0x3d6eff, accentColor: 0x657bd8 },
+  { name: 'BANGALORE', start: 0.425, end: 0.512, cameraHeight: 0.90, lightAngle: 0.72, lightColor: 0xe43c32, accentColor: 0xff7956 },
+  { name: 'INDORE', start: 0.507, end: 0.594, cameraHeight: 0.52, lightAngle: -0.52, lightColor: 0xf0805f, accentColor: 0xe0b36a },
+  { name: 'KOLKATA', start: 0.589, end: 0.676, cameraHeight: 0.58, lightAngle: 0.20, lightColor: 0x91a9c7, accentColor: 0xd9c394 },
+  { name: 'THAILAND', start: 0.671, end: 0.758, cameraHeight: 1.02, lightAngle: 0.35, lightColor: 0xe0a340, accentColor: 0xa94d20 },
+  { name: 'VENICE', start: 0.753, end: 0.840, cameraHeight: 0.76, lightAngle: -0.28, lightColor: 0xe6b976, accentColor: 0x8f5b3f },
+  { name: 'ISTANBUL', start: 0.835, end: 0.922, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
 ];
 
 const DESTINATION_CAMERA = { angle: 0, radius: 4.8 };
@@ -686,7 +687,7 @@ function normalizeModel(model, targetHeight) {
   model.position.y -= scaledBox.min.y - center.y;
 }
 
-function createDestinationPolaroids(scene, heightAt) {
+function createDestinationPolaroids(scene, heightAt, canvas, camera) {
   const sourceCards = Array.from(document.querySelectorAll('.destination-polaroid'));
   const cards = [];
   const textureLoader = new THREE.TextureLoader();
@@ -695,17 +696,19 @@ function createDestinationPolaroids(scene, heightAt) {
   const photoWidth = 2.25;
   const photoHeight = 1.68;
   const cardScale = 0.82;
-  const cardOffsetX = -1.82;
+  const cardOffsetX = 2.12;
   const footprintTexture = textureLoader.load('/assets/cheetah-pawprints.png');
   footprintTexture.colorSpace = THREE.SRGBColorSpace;
 
-  sourceCards.forEach((sourceCard) => {
+  sourceCards.forEach((sourceCard, index) => {
     const destination = RUN_DESTINATIONS.find((item) => item.name.toLowerCase() === sourceCard.dataset.destination);
     const image = sourceCard.querySelector('img');
     if (!destination || !image) return;
 
+    const side = index % 2 === 0 ? -1 : 1;
     const group = new THREE.Group();
-    group.rotation.set(-0.025, 0.12, cards.length % 2 ? 0.025 : -0.035);
+    group.userData.destinationSlug = sourceCard.dataset.destination;
+    group.rotation.set(-0.025, side * -0.12, side * 0.035);
     group.scale.setScalar(cardScale);
     group.visible = false;
 
@@ -746,7 +749,7 @@ function createDestinationPolaroids(scene, heightAt) {
       const context = label.getContext('2d');
       context.clearRect(0, 0, label.width, label.height);
       context.fillStyle = '#3a2617';
-      context.font = '500 68px Marcellus, Georgia, serif';
+      context.font = '500 88px Marcellus, Georgia, serif';
       context.textAlign = 'center';
       context.textBaseline = 'middle';
       context.fillText(caption, label.width / 2, label.height / 2);
@@ -798,14 +801,40 @@ function createDestinationPolaroids(scene, heightAt) {
     shadow.visible = false;
     scene.add(shadow);
 
-    cards.push({ group, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination });
+    cards.push({ group, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side });
   });
 
   document.body.classList.add('three-destination-polaroids');
 
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+
+  function destinationAtPointer(event) {
+    const rect = canvas.getBoundingClientRect();
+    pointer.set(
+      ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      -((event.clientY - rect.top) / rect.height) * 2 + 1
+    );
+    raycaster.setFromCamera(pointer, camera);
+    const activeGroups = cards.filter(({ group }) => group.visible).map(({ group }) => group);
+    const hit = raycaster.intersectObjects(activeGroups, true)[0]?.object;
+    let target = hit;
+    while (target && !target.userData.destinationSlug) target = target.parent;
+    return target?.userData.destinationSlug || null;
+  }
+
+  canvas.addEventListener('click', (event) => {
+    const destinationSlug = destinationAtPointer(event);
+    if (destinationSlug) window.location.assign(`/portfolio/${destinationSlug}/`);
+  });
+  canvas.addEventListener('pointermove', (event) => {
+    canvas.style.cursor = destinationAtPointer(event) ? 'pointer' : 'default';
+  });
+  canvas.addEventListener('pointerleave', () => { canvas.style.cursor = 'default'; });
+
   return (progress, cheetahPosition) => {
     let activeOpacity = 0;
-    cards.forEach(({ group, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination }) => {
+    cards.forEach(({ group, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side }) => {
       const localProgress = THREE.MathUtils.clamp(
         (progress - destination.start) / (destination.end - destination.start),
         0,
@@ -819,7 +848,7 @@ function createDestinationPolaroids(scene, heightAt) {
       activeOpacity = Math.max(activeOpacity, opacity);
       const travel = THREE.MathUtils.smootherstep(localProgress, 0, 1);
       const cardZ = cheetahPosition.z + lerp(-3.0, 1.25, travel);
-      const cardX = cheetahPosition.x + cardOffsetX;
+      const cardX = cheetahPosition.x + cardOffsetX * side;
       const groundY = heightAt(cardX, cardZ);
 
       group.position.set(cardX, groundY + cardHeight * cardScale * 0.5 + 0.035, cardZ);
@@ -912,7 +941,7 @@ function createRunScene() {
   const section = document.querySelector('.run-hero');
   const maskBackdrop = document.getElementById('mwp-mask-backdrop');
   const logoMask = document.getElementById('mwp-mask-overlay');
-  const finalActions = document.getElementById('final-actions');
+  const finalMetrics = document.getElementById('final-metrics');
   if (!canvas || !section || reduceMotion) return null;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -952,7 +981,7 @@ function createRunScene() {
   scene.add(rim);
   const { contact, heightAt, setTravel } = createGround(scene);
   const updateFractures = createFractureField(scene);
-  const updateDestinationPolaroids = createDestinationPolaroids(scene, heightAt);
+  const updateDestinationPolaroids = createDestinationPolaroids(scene, heightAt, canvas, camera);
   const { update: updateStars } = createStarfield(scene);
 
   const composer = new EffectComposer(renderer);
@@ -1008,6 +1037,7 @@ function createRunScene() {
   let animationSpeed = 0;
   let locomotionDistance = 0;
   let distanceCameraAnchor = null;
+  let finalMetricsRevealed = false;
   renderer.setAnimationLoop((now) => {
     const delta = clock.getDelta();
     if (!visible || document.hidden) return;
@@ -1037,7 +1067,14 @@ function createRunScene() {
         // out as the journey closes.
         maskBackdrop.style.opacity = String(whiteLift * 0.06);
       }
-      if (finalActions) finalActions.classList.toggle('is-visible', runProgress >= 0.998);
+    }
+    if (finalMetrics) {
+      const metricsVisible = runProgress >= 0.996;
+      finalMetrics.classList.toggle('is-visible', metricsVisible);
+      if (metricsVisible && !finalMetricsRevealed) {
+        finalMetricsRevealed = true;
+        window.dispatchEvent(new CustomEvent('mwp:finale-visible'));
+      }
     }
     // Once the visitor enters, the animal barely moves when scrolling stops.
     // Scroll velocity adds urgency, with faster scrolling producing a faster run.

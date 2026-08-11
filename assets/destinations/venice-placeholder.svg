@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1395" role="img" aria-labelledby="title desc">
+  <title id="title">Venice story coming soon</title>
+  <desc id="desc">An abstract architectural placeholder in wine, ivory and gold.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#310608"/>
+      <stop offset="1" stop-color="#100102"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9a368" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#c9a368" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1395" fill="url(#bg)"/>
+  <circle cx="600" cy="430" r="300" fill="#7d2d24" opacity=".16"/>
+  <g fill="none" stroke="#c9a368" stroke-width="3" opacity=".68">
+    <path d="M175 865V490h210v375M815 865V405h210v460"/>
+    <path d="M145 490h270M785 405h270"/>
+    <path d="M470 865V575c0-100 58-180 130-180s130 80 130 180v290"/>
+    <path d="M120 865h960M90 910h1020"/>
+    <path d="M225 490v-90h110v90M860 405v-115h120v115"/>
+    <path d="M120 1040c160-55 320-55 480 0s320 55 480 0"/>
+    <path d="M120 1095c160-55 320-55 480 0s320 55 480 0" opacity=".48"/>
+  </g>
+  <rect x="90" y="910" width="1020" height="250" fill="url(#water)"/>
+  <text x="600" y="1235" fill="#f4eee3" font-family="Georgia, serif" font-size="92" text-anchor="middle" letter-spacing="3">VENICE</text>
+  <text x="600" y="1300" fill="#c9a368" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" letter-spacing="10">STORY COMING SOON</text>
+</svg>

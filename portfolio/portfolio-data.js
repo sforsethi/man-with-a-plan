@@ -123,6 +123,14 @@ window.MWAP_PORTFOLIO = [
     }]
   },
   {
+    slug: "venice",
+    name: "Venice",
+    cover: "/assets/destinations/venice-placeholder.svg",
+    intro: "A new destination story is on its way.",
+    comingSoon: true,
+    events: []
+  },
+  {
     slug: "istanbul",
     name: "Istanbul",
     cover: "/assets/destinations/Istanbul/1.jpg",
