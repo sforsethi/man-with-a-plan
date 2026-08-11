@@ -1233,6 +1233,15 @@ a.media-logo:focus-visible {
   text-decoration-color: var(--gold);
 }
 
+.footer-column .footer-map-link {
+  margin-top: 0.35rem;
+  color: var(--gold-pale);
+  font-family: var(--caps);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .footer-bottom {
   grid-column: 1 / -1;
   display: flex;
