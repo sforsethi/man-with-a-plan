@@ -9,7 +9,7 @@ function animateCount(counter) {
   const target = Number(counter.dataset.count);
   if (!Number.isFinite(target)) return;
 
-  const duration = 1600;
+  const duration = 3000;
   const startedAt = performance.now();
 
   function tick(now) {
