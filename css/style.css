@@ -1300,7 +1300,7 @@ a.media-logo:focus-visible {
   max-width: 30rem;
   margin-top: 2.6rem;
   color: rgba(255, 248, 237, 0.7);
-  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
   line-height: 1.45;
 }
 
@@ -1309,7 +1309,7 @@ a.media-logo:focus-visible {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem 1.6rem;
   padding: clamp(1.8rem, 4vw, 3.5rem);
-  border: 1px solid rgba(208, 161, 90, 0.28);
+  border: 2px solid rgba(208, 161, 90, 0.42);
   background: rgba(10, 1, 1, 0.35);
   backdrop-filter: blur(12px);
 }
@@ -1327,7 +1327,8 @@ a.media-logo:focus-visible {
 .form-field label {
   color: var(--gold);
   font-family: var(--caps);
-  font-size: 0.68rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -1336,12 +1337,12 @@ a.media-logo:focus-visible {
 .form-field textarea {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(255, 248, 237, 0.28);
+  border-bottom: 2px solid rgba(255, 248, 237, 0.38);
   border-radius: 0;
   padding: 0.6rem 0 0.85rem;
   background: transparent;
   color: var(--ivory);
-  font: 1.15rem/1.4 var(--serif);
+  font: 1.38rem/1.4 var(--serif);
   outline: none;
   resize: vertical;
   transition: border-color 0.2s ease;
@@ -1364,12 +1365,12 @@ a.media-logo:focus-visible {
 
 .form-submit button {
   flex: none;
-  border: 1px solid var(--gold);
+  border: 2px solid var(--gold);
   padding: 1rem 1.35rem;
   background: var(--gold);
   color: #210706;
   font-family: var(--caps);
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1385,7 +1386,7 @@ a.media-logo:focus-visible {
 
 .form-submit p {
   color: rgba(255, 248, 237, 0.46);
-  font-size: 0.84rem;
+  font-size: 1rem;
   line-height: 1.35;
 }
 
@@ -1394,8 +1395,8 @@ a.media-logo:focus-visible {
   grid-template-columns: 0.8fr 0.8fr 1.4fr;
   max-width: 88rem;
   margin: clamp(5rem, 10vw, 9rem) auto 0;
-  border-top: 1px solid rgba(208, 161, 90, 0.28);
-  border-bottom: 1px solid rgba(208, 161, 90, 0.28);
+  border-top: 2px solid rgba(208, 161, 90, 0.42);
+  border-bottom: 2px solid rgba(208, 161, 90, 0.42);
 }
 
 .contact-detail {
@@ -1409,7 +1410,7 @@ a.media-logo:focus-visible {
 }
 
 .contact-detail + .contact-detail {
-  border-left: 1px solid rgba(208, 161, 90, 0.2);
+  border-left: 2px solid rgba(208, 161, 90, 0.28);
 }
 
 .contact-detail > span {
@@ -1417,19 +1418,25 @@ a.media-logo:focus-visible {
   margin-bottom: 1.2rem;
   color: var(--gold);
   font-family: var(--caps);
-  font-size: 0.68rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .contact-detail > a:not(.contact-map-link) {
-  font-size: clamp(1.35rem, 2vw, 2rem);
+  display: block;
+  font-size: clamp(1.55rem, 2.25vw, 2.3rem);
   text-decoration: none;
+}
+
+.contact-detail > a:not(.contact-map-link) + a {
+  margin-top: 0.55rem;
 }
 
 .contact-address p {
   color: rgba(255, 248, 237, 0.7);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   line-height: 1.55;
 }
 
@@ -1438,7 +1445,8 @@ a.media-logo:focus-visible {
   margin-top: 1.2rem;
   color: var(--gold-pale);
   font-family: var(--caps);
-  font-size: 0.66rem;
+  font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-decoration-color: rgba(208, 161, 90, 0.5);
   text-underline-offset: 0.35em;
@@ -1452,7 +1460,7 @@ a.media-logo:focus-visible {
   padding: 2rem clamp(1.5rem, 6vw, 6.5rem);
   color: rgba(255, 248, 237, 0.46);
   font-family: var(--caps);
-  font-size: 0.66rem;
+  font-size: 0.76rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -1484,7 +1492,7 @@ a.media-logo:focus-visible {
   }
 
   .contact-detail + .contact-detail {
-    border-top: 1px solid rgba(208, 161, 90, 0.2);
+    border-top: 2px solid rgba(208, 161, 90, 0.28);
     border-left: 0;
   }
 
