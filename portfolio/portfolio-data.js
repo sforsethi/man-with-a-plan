@@ -125,10 +125,16 @@ window.MWAP_PORTFOLIO = [
   {
     slug: "venice",
     name: "Venice",
-    cover: "/assets/destinations/venice-placeholder.svg",
-    intro: "A new destination story is on its way.",
-    comingSoon: true,
-    events: []
+    cover: "/assets/destinations/Venice.webp",
+    intro: "An atmospheric, after-dark experience shaped through reflection, light and dramatic scale.",
+    events: [{
+      slug: "icwf-2019",
+      title: "ICWF2019",
+      label: "Experience · Venice",
+      cover: "/assets/destinations/Venice.webp",
+      writeup: "ICWF2019 unfolded as an immersive evening of light, reflection and architectural drama. The setting transformed after dark, creating a striking arrival and a memorable atmosphere for guests.",
+      images: ["/assets/destinations/Venice.webp"]
+    }]
   },
   {
     slug: "istanbul",

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Marcellus&family=Montserrat:wght@300;400;500&display=swap');
 
 :root {
   --wine: #3a0709;
@@ -34,34 +34,44 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 
 .site-header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px clamp(22px, 4.5vw, 72px);
+  padding: 1rem clamp(1.2rem, 4vw, 3rem);
+  background: linear-gradient(rgba(55, 8, 4, 0.86), rgba(55, 8, 4, 0));
 }
 
 .brand img {
-  width: clamp(58px, 5vw, 74px);
-  height: auto;
   display: block;
-  filter: drop-shadow(0 3px 12px rgba(18, 0, 1, .35));
+  width: clamp(3.84rem, 6vw, 5.52rem);
+  height: auto;
+  filter: drop-shadow(0 0.15rem 0.7rem rgba(66, 10, 4, 0.28));
 }
 
-.header-link {
-  color: var(--ivory);
-  font-size: clamp(12px, .9vw, 14px);
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
+.header-links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.header-links a {
   border-bottom: 1px solid transparent;
-  padding-bottom: 5px;
-  transition: border-color .25s ease;
+  padding-bottom: 2px;
+  color: #efd9b5;
+  font-family: "Marcellus", serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: border-color .25s ease, color .25s ease;
 }
 
-.header-link:hover { border-color: var(--gold); }
+.header-links a:hover,
+.header-links a[aria-current="page"] {
+  border-color: var(--gold);
+  color: var(--gold);
+}
 
 .portfolio-hero {
   min-height: min(50vh, 480px);
@@ -78,6 +88,39 @@ button { font: inherit; }
   animation: portfolio-hero-mood 16s ease-in-out infinite;
 }
 
+.portfolio-hero-slideshow {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+.portfolio-hero-slideshow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(24, 2, 2, .5), rgba(31, 3, 3, .46)),
+    radial-gradient(circle at 50% 40%, rgba(83, 18, 18, .08), rgba(20, 1, 2, .54) 72%);
+}
+
+.portfolio-hero-slideshow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: saturate(.78) brightness(.68);
+  transform: scale(1.025);
+  transition: opacity 1.5s ease, transform 7s ease;
+}
+
+.portfolio-hero-slideshow img.is-visible {
+  opacity: 1;
+  transform: scale(1.075);
+}
+
 @keyframes portfolio-hero-mood {
   0%, 100% { background-color: #210304; }
   25% { background-color: #38100b; }
@@ -90,6 +133,7 @@ button { font: inherit; }
   position: absolute;
   inset: auto 0 0;
   height: 35%;
+  z-index: 0;
   background: linear-gradient(transparent, #210304);
   pointer-events: none;
 }
@@ -220,7 +264,8 @@ h1 {
   display: inline-block;
   margin-top: 35px;
   color: var(--gold);
-  font-size: 9px;
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 500;
   letter-spacing: .25em;
   text-transform: uppercase;
 }
@@ -294,8 +339,9 @@ h1 {
 .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 720px) {
-  .site-header { padding-top: 20px; }
-  .brand img { width: 58px; }
+  .site-header { padding-inline: 1rem; }
+  .header-links { gap: clamp(0.55rem, 2.5vw, 0.9rem); }
+  .header-links a { font-size: clamp(0.52rem, 2.25vw, 0.66rem); letter-spacing: 0.12em; }
   .portfolio-hero { min-height: min(56vh, 480px); padding-block: 88px 58px; }
   .destination-grid, .event-grid { grid-template-columns: 1fr; gap: 58px; }
   .card-image { aspect-ratio: 4 / 4.65; }

@@ -31,8 +31,13 @@
 
   const header = `
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Man With A Plan home"><img src="/assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan"></a>
-      <a class="header-link" href="/portfolio/">All destinations</a>
+      <a class="brand" href="/story.html" aria-label="Man With A Plan home"><img src="/assets/mwp-recognition-logo.png?v=2" alt="Man With A Plan"></a>
+      <nav class="header-links" aria-label="Primary navigation">
+        <a href="/mwp/">MWP</a>
+        <a href="/portfolio/" aria-current="page">Portfolio</a>
+        <a href="/story.html#pursuit">Our Process</a>
+        <a href="/contact/">Contact Us</a>
+      </nav>
     </header>`;
 
   const footer = `
@@ -59,6 +64,10 @@
     root.innerHTML = `${header}
       <main>
         <section class="portfolio-hero">
+          <div class="portfolio-hero-slideshow" aria-hidden="true">
+            <img class="is-visible" alt="">
+            <img alt="">
+          </div>
           <div class="hero-copy">
             <p class="eyebrow">Man With A Plan presents</p>
             <h1>Our Work</h1>
@@ -71,6 +80,38 @@
           <div class="destination-grid">${orderedDestinations.map(card).join('')}</div>
         </section>
       </main>${footer}`;
+  };
+
+  const setupPortfolioHeroSlideshow = () => {
+    const slideshow = document.querySelector('.portfolio-hero-slideshow');
+    const frames = Array.from(slideshow?.querySelectorAll('img') || []);
+    const sources = orderedDestinations.map(destination => destination.cover).filter(Boolean);
+    if (!slideshow || frames.length !== 2 || !sources.length) return;
+
+    let currentIndex = 0;
+    let visibleFrame = 0;
+    frames[0].src = sources[0];
+
+    if (sources.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    window.setInterval(() => {
+      const nextIndex = (currentIndex + 1) % sources.length;
+      const incomingIndex = visibleFrame === 0 ? 1 : 0;
+      const incoming = frames[incomingIndex];
+      const outgoing = frames[visibleFrame];
+      let revealed = false;
+      const reveal = () => {
+        if (revealed) return;
+        revealed = true;
+        incoming.classList.add('is-visible');
+        outgoing.classList.remove('is-visible');
+        currentIndex = nextIndex;
+        visibleFrame = incomingIndex;
+      };
+      incoming.onload = reveal;
+      incoming.src = sources[nextIndex];
+      if (incoming.complete) reveal();
+    }, 4000);
   };
 
   const renderDestination = () => {
@@ -113,7 +154,7 @@
         </section>
         <section class="story-intro reveal">
           <div><p class="eyebrow">The story</p><h2>A moment,<br>made lasting.</h2></div>
-          <div class="story-intro-copy"><p>${event.writeup}</p><a class="back-link" href="/portfolio/${destination.slug}/">← More from ${destination.name}</a></div>
+          <div class="story-intro-copy"><p>${event.writeup}</p><a class="back-link" href="/portfolio/${destination.slug}/">← Back to ${destination.name}</a></div>
         </section>
         <section class="gallery" aria-label="Event gallery">${images}</section>
       </main>${footer}
@@ -144,7 +185,10 @@
 
   if (page === 'destination') renderDestination();
   else if (page === 'event') renderEvent();
-  else renderPortfolio();
+  else {
+    renderPortfolio();
+    setupPortfolioHeroSlideshow();
+  }
 
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }

@@ -851,7 +851,7 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera) {
       const cardX = cheetahPosition.x + cardOffsetX * side;
       const groundY = heightAt(cardX, cardZ);
 
-      group.position.set(cardX, groundY + cardHeight * cardScale * 0.5 + 0.035, cardZ);
+      group.position.set(cardX, groundY + cardHeight * cardScale * 0.5 + 0.355, cardZ);
       group.visible = opacity > 0.01;
       group.traverse((object) => {
         if (object.material?.transparent) object.material.opacity = opacity;
@@ -939,6 +939,7 @@ function createPortraitScene() {
 function createRunScene() {
   const canvas = document.getElementById('cheetah-run-canvas');
   const section = document.querySelector('.run-hero');
+  const finalAtmosphere = section?.querySelector('.run-atmosphere');
   const maskBackdrop = document.getElementById('mwp-mask-backdrop');
   const logoMask = document.getElementById('mwp-mask-overlay');
   const finalMetrics = document.getElementById('final-metrics');
@@ -949,7 +950,12 @@ function createRunScene() {
   // render target's alpha through to the canvas, so the "empty sky" area
   // always composites as fully opaque — paint it navy instead of relying on
   // the CSS backdrop showing through.
-  renderer.setClearColor(0x020509, 1);
+  const sceneClearStart = new THREE.Color(0x020509);
+  const sceneClearFinal = new THREE.Color(0x2d0201);
+  const sceneClearCurrent = new THREE.Color();
+  const sceneFogStart = new THREE.Color(0x081527);
+  const sceneFogFinal = new THREE.Color(0x210201);
+  renderer.setClearColor(sceneClearStart, 1);
 
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -979,6 +985,9 @@ function createRunScene() {
   const rim = new THREE.DirectionalLight(0x8a3324, 2.4);
   rim.position.set(3.6, 1.8, -3.5);
   scene.add(rim);
+  const finaleKey = new THREE.DirectionalLight(0xfff1df, 0);
+  finaleKey.position.set(-4.2, 3.6, 4.8);
+  scene.add(finaleKey);
   const { contact, heightAt, setTravel } = createGround(scene);
   const updateFractures = createFractureField(scene);
   const updateDestinationPolaroids = createDestinationPolaroids(scene, heightAt, canvas, camera);
@@ -992,6 +1001,8 @@ function createRunScene() {
   let mixer = null;
   let model = null;
   let modelBaseScale = null;
+  const finaleMaterials = new Set();
+  const finaleEmissiveStart = new THREE.Color(0x170702);
   loader.load('/assets/RUN.Fbx', (fbx) => {
     model = fbx;
     applyFurMaterial(model);
@@ -1007,6 +1018,7 @@ function createRunScene() {
         if (!('emissive' in material)) return;
         material.emissive.set(0x170702);
         material.emissiveIntensity = 0.16;
+        finaleMaterials.add(material);
         if ('roughness' in material) material.roughness = Math.max(material.roughness, 0.8);
       });
     });
@@ -1047,6 +1059,12 @@ function createRunScene() {
     const movingSpeed = lerp(0.72, 1.55, Math.min(scrollVelocity / 0.55, 1));
     // Keep the animal moving into the distance before the final reveal begins.
     const abyssRun = THREE.MathUtils.smoothstep(runProgress, 0.92, 0.985);
+    const finalPalette = THREE.MathUtils.smoothstep(runProgress, 0.945, 0.995);
+    const finalProfile = THREE.MathUtils.smoothstep(runProgress, 0.964, 0.998);
+    sceneClearCurrent.copy(sceneClearStart).lerp(sceneClearFinal, finalPalette);
+    renderer.setClearColor(sceneClearCurrent, 1);
+    scene.fog.color.copy(sceneFogStart).lerp(sceneFogFinal, finalPalette);
+    if (finalAtmosphere) finalAtmosphere.style.opacity = String(finalPalette * 0.3);
     const showAbyssMessage = abyssRun >= 0.62;
     section.classList.toggle('is-abyss-message-visible', showAbyssMessage);
     // As the cheetah recedes into the distance, the full-bleed scene closes
@@ -1078,9 +1096,10 @@ function createRunScene() {
     }
     // Once the visitor enters, the animal barely moves when scrolling stops.
     // Scroll velocity adds urgency, with faster scrolling producing a faster run.
-    const targetAnimationSpeed = experienceStarted
+    const journeyAnimationSpeed = experienceStarted
       ? (isScrolling ? movingSpeed : 0.12) * lerp(1, 0.72, abyssRun)
       : 0.10;
+    const targetAnimationSpeed = Math.max(journeyAnimationSpeed, finalProfile * 0.42);
     animationSpeed = THREE.MathUtils.damp(animationSpeed, targetAnimationSpeed, isScrolling ? 8 : 4.5, delta);
     if (mixer) mixer.update(delta * animationSpeed);
     locomotionDistance += delta * animationSpeed * 0.19;
@@ -1089,13 +1108,21 @@ function createRunScene() {
       ? applyRunScrollPose(model, runProgress)
       : getRunScrollPose(runProgress);
     pose.position.z -= abyssRun * 8;
+    pose.position.x = lerp(pose.position.x, 0, finalProfile);
+    pose.position.z = lerp(pose.position.z, -1.2, finalProfile);
+    finaleKey.intensity = finalProfile * 3.6;
+    finaleMaterials.forEach((material) => {
+      material.emissive.copy(finaleEmissiveStart);
+      material.emissiveIntensity = lerp(0.16, 0.06, finalProfile);
+    });
     pose.position.y = heightAt(pose.position.x, pose.position.z) + 0.008;
     if (model) {
       model.position.x = pose.position.x;
       model.position.y = pose.position.y;
       model.position.z = pose.position.z;
       const maskScale = THREE.MathUtils.smoothstep(runProgress, 0.945, 0.998);
-      model.scale.setScalar(modelBaseScale * lerp(1, 0.56, maskScale));
+      const recedingScale = lerp(1, 0.56, maskScale);
+      model.scale.setScalar(modelBaseScale * lerp(recedingScale, 0.4, finalProfile));
     }
     const groundTravel = setTravel(runProgress, locomotionDistance);
     const polaroidVisibility = updateDestinationPolaroids(runProgress, pose.position);
@@ -1150,10 +1177,13 @@ function createRunScene() {
         + Math.sin(openingProgress * Math.PI) * 4;
       camera.updateProjectionMatrix();
     } else {
-      camera.position.copy(chaseCamera);
-      camera.lookAt(lookTarget);
-      if (camera.fov !== 42) {
-        camera.fov = 42;
+      const profileCamera = new THREE.Vector3(4.25, pose.position.y + 1.05, pose.position.z + 0.08);
+      const profileLook = new THREE.Vector3(pose.position.x, pose.position.y + 0.24, pose.position.z);
+      camera.position.copy(chaseCamera).lerp(profileCamera, finalProfile);
+      camera.lookAt(lookTarget.clone().lerp(profileLook, finalProfile));
+      const finalFov = lerp(42, 36, finalProfile);
+      if (Math.abs(camera.fov - finalFov) > 0.001) {
+        camera.fov = finalFov;
         camera.updateProjectionMatrix();
       }
     }

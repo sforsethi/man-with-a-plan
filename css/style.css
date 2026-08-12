@@ -281,15 +281,35 @@ a {
 
 .run-atmosphere {
   position: absolute;
+  z-index: 2;
   inset: 0;
-  display: none;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(92, 18, 15, 0.38), transparent 44%),
+    url('../assets/maroon-noise.svg?v=2') center / 180px 180px repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .mwp-mask-overlay {
   position: absolute;
   z-index: 4;
   inset: 0;
-  background: url('../assets/mwp-mask-fullscreen-small-v2.png?v=1') center / cover no-repeat;
+  background: #000;
+  -webkit-mask-image:
+    linear-gradient(#fff, #fff),
+    url('../assets/mwp-mask-logo.png?v=1');
+  -webkit-mask-position: center, center;
+  -webkit-mask-size: 100% 100%, clamp(15rem, 25vw, 30rem) auto;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: xor;
+  mask-image:
+    linear-gradient(#fff, #fff),
+    url('../assets/mwp-mask-logo.png?v=1');
+  mask-position: center, center;
+  mask-size: 100% 100%, clamp(15rem, 25vw, 30rem) auto;
+  mask-repeat: no-repeat, no-repeat;
+  mask-composite: exclude;
   opacity: 0;
   pointer-events: none;
   transform-origin: center center;
@@ -647,7 +667,7 @@ body.experience-started .experience-gate {
 }
 
 .destination-polaroids .destination-polaroid {
-  top: 29%;
+  top: 26%;
   right: auto;
   width: min(24rem, 32vw);
   padding: 0.55rem 0.55rem 1.35rem;
@@ -1012,10 +1032,7 @@ body.experience-started .experience-gate {
 .number-stat {
   min-width: 0;
   padding: clamp(1rem, 2vw, 1.7rem) clamp(0.8rem, 2.2vw, 2.2rem);
-}
-
-.number-stat:first-child {
-  padding-left: 0;
+  text-align: center;
 }
 
 .number-stat + .number-stat {
@@ -1025,6 +1042,7 @@ body.experience-started .experience-gate {
 .number-stat strong {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   color: var(--gold-pale);
   font-family: var(--serif);
   font-size: clamp(2.6rem, 4.2vw, 4.8rem);
@@ -1033,7 +1051,7 @@ body.experience-started .experience-gate {
   line-height: 0.8;
 }
 
-.number-stat strong span:last-child {
+.number-stat strong span + span {
   margin-left: 0.12em;
   color: var(--gold);
   font-size: 0.44em;
@@ -1223,6 +1241,7 @@ a.media-logo:focus-visible {
 }
 
 .footer-column a {
+  font-size: clamp(1.05rem, 1.15vw, 1.2rem);
   text-decoration-color: transparent;
   text-underline-offset: 0.25em;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
@@ -1237,7 +1256,7 @@ a.media-logo:focus-visible {
   margin-top: 0.35rem;
   color: var(--gold-pale);
   font-family: var(--caps);
-  font-size: 0.66rem;
+  font-size: 0.8rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1252,7 +1271,7 @@ a.media-logo:focus-visible {
   border-top: 1px solid rgba(208, 161, 90, 0.2);
   color: rgba(255, 248, 237, 0.46);
   font-family: var(--caps);
-  font-size: 0.66rem;
+  font-size: 0.78rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -1302,6 +1321,42 @@ a.media-logo:focus-visible {
   color: rgba(255, 248, 237, 0.7);
   font-size: clamp(1.35rem, 2vw, 1.8rem);
   line-height: 1.45;
+}
+
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.contact-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 2px solid rgba(208, 161, 90, 0.38);
+  padding: 0.72rem 0.9rem;
+  color: var(--gold-pale);
+  font-family: var(--caps);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.contact-socials a:hover,
+.contact-socials a:focus-visible {
+  border-color: var(--gold);
+  background: rgba(208, 161, 90, 0.1);
+  color: var(--ivory);
+}
+
+.contact-socials svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
 }
 
 .enquiry-form {
@@ -1453,6 +1508,16 @@ a.media-logo:focus-visible {
   text-transform: uppercase;
 }
 
+.contact-map-frame {
+  display: block;
+  width: 100%;
+  height: clamp(14rem, 24vw, 21rem);
+  margin-top: 1.5rem;
+  border: 2px solid rgba(208, 161, 90, 0.42);
+  background: #210706;
+  filter: sepia(0.12) saturate(0.82) contrast(0.96);
+}
+
 .contact-footer {
   display: flex;
   justify-content: space-between;
@@ -1460,7 +1525,7 @@ a.media-logo:focus-visible {
   padding: 2rem clamp(1.5rem, 6vw, 6.5rem);
   color: rgba(255, 248, 237, 0.46);
   font-family: var(--caps);
-  font-size: 0.76rem;
+  font-size: 0.84rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -1500,6 +1565,13 @@ a.media-logo:focus-visible {
   .contact-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .mwp-mask-overlay {
+    -webkit-mask-size: 100% 100%, clamp(13rem, 62vw, 19rem) auto;
+    mask-size: 100% 100%, clamp(13rem, 62vw, 19rem) auto;
   }
 }
 
@@ -1570,15 +1642,6 @@ a.media-logo:focus-visible {
   align-self: start;
 }
 
-.mwp-chapter-number {
-  display: block;
-  margin-bottom: 1.4rem;
-  color: var(--gold);
-  font-family: var(--caps);
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
-}
-
 .mwp-chapter h2 {
   font-size: clamp(3rem, 6vw, 6.2rem);
   font-weight: 400;
@@ -1599,6 +1662,48 @@ a.media-logo:focus-visible {
 
 .mwp-chapter-copy p + p {
   margin-top: 1.8rem;
+}
+
+.mwp-founder-chapter {
+  grid-template-columns: minmax(10rem, 0.38fr) minmax(16rem, 0.62fr) minmax(20rem, 1fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: center;
+}
+
+.mwp-founder-portrait {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  min-height: 34rem;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(208, 161, 90, 0.48);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(208, 161, 90, 0.2), transparent 46%),
+    linear-gradient(180deg, transparent 56%, rgba(87, 15, 11, 0.34));
+}
+
+.mwp-founder-portrait img {
+  display: block;
+  width: min(100%, 28rem);
+  max-height: 42rem;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 1.4rem 2.2rem rgba(0, 0, 0, 0.34));
+}
+
+.mwp-founder-portrait figcaption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  color: var(--gold-pale);
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .mwp-principles {
@@ -1666,6 +1771,10 @@ a.media-logo:focus-visible {
   .mwp-about-hero-copy,
   .mwp-chapter {
     grid-template-columns: 1fr;
+  }
+
+  .mwp-founder-portrait {
+    min-height: 28rem;
   }
 
   .mwp-about-hero-copy {
