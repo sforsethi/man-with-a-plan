@@ -687,7 +687,7 @@ function normalizeModel(model, targetHeight) {
   model.position.y -= scaledBox.min.y - center.y;
 }
 
-function createDestinationPolaroids(scene, heightAt, canvas, camera) {
+function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
   const sourceCards = Array.from(document.querySelectorAll('.destination-polaroid'));
   const cards = [];
   const textureLoader = new THREE.TextureLoader();
@@ -697,6 +697,7 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera) {
   const photoHeight = 1.68;
   const cardScale = 0.82;
   const cardOffsetX = 2.12;
+  const maxAnisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
   const footprintTexture = textureLoader.load('/assets/cheetah-pawprints.png');
   footprintTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -728,6 +729,9 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera) {
 
     const photoTexture = textureLoader.load(image.currentSrc || image.src);
     photoTexture.colorSpace = THREE.SRGBColorSpace;
+    photoTexture.minFilter = THREE.LinearMipmapLinearFilter;
+    photoTexture.magFilter = THREE.LinearFilter;
+    photoTexture.anisotropy = maxAnisotropy;
     const photo = new THREE.Mesh(
       new THREE.PlaneGeometry(photoWidth, photoHeight),
       new THREE.MeshBasicMaterial({
@@ -801,7 +805,11 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera) {
     shadow.visible = false;
     scene.add(shadow);
 
-    cards.push({ group, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side });
+    const fadeMaterials = [];
+    group.traverse((object) => {
+      if (object.material?.transparent) fadeMaterials.push(object.material);
+    });
+    cards.push({ group, fadeMaterials, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side });
   });
 
   document.body.classList.add('three-destination-polaroids');
@@ -834,7 +842,7 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera) {
 
   return (progress, cheetahPosition) => {
     let activeOpacity = 0;
-    cards.forEach(({ group, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side }) => {
+    cards.forEach(({ group, fadeMaterials, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side }) => {
       const localProgress = THREE.MathUtils.clamp(
         (progress - destination.start) / (destination.end - destination.start),
         0,
@@ -853,9 +861,7 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera) {
 
       group.position.set(cardX, groundY + cardHeight * cardScale * 0.5 + 0.355, cardZ);
       group.visible = opacity > 0.01;
-      group.traverse((object) => {
-        if (object.material?.transparent) object.material.opacity = opacity;
-      });
+      fadeMaterials.forEach((material) => { material.opacity = opacity; });
 
       const footprintZ = cardZ + 0.56;
       footprintGroup.position.set(cardX, heightAt(cardX, footprintZ) + 0.014, footprintZ);
@@ -990,10 +996,16 @@ function createRunScene() {
   scene.add(finaleKey);
   const { contact, heightAt, setTravel } = createGround(scene);
   const updateFractures = createFractureField(scene);
-  const updateDestinationPolaroids = createDestinationPolaroids(scene, heightAt, canvas, camera);
+  const updateDestinationPolaroids = createDestinationPolaroids(scene, heightAt, canvas, camera, renderer);
   const { update: updateStars } = createStarfield(scene);
 
-  const composer = new EffectComposer(renderer);
+  // EffectComposer renders through an offscreen target, so the canvas-level
+  // antialias flag alone cannot smooth diagonal polaroid and model edges.
+  // A multisampled target restores edge antialiasing through the bloom pass.
+  const composerTarget = new THREE.WebGLRenderTarget(1, 1, {
+    samples: renderer.capabilities.isWebGL2 ? 4 : 0,
+  });
+  const composer = new EffectComposer(renderer, composerTarget);
   composer.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.72, 0.7, 0.72);
   composer.addPass(bloom);
@@ -1034,9 +1046,11 @@ function createRunScene() {
 
   function resizeRunScene() {
     fitRenderer(renderer, canvas, camera);
+    const runPixelRatio = Math.min(window.devicePixelRatio, 1.75);
+    renderer.setPixelRatio(runPixelRatio);
     const rect = canvas.getBoundingClientRect();
     composer.setSize(Math.max(1, rect.width), Math.max(1, rect.height));
-    composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    composer.setPixelRatio(runPixelRatio);
   }
   resizeRunScene();
   window.addEventListener('resize', resizeRunScene);
@@ -1045,7 +1059,8 @@ function createRunScene() {
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(section);
 
   const clock = new THREE.Clock();
-  let previousRunProgress = getRunScrollProgress();
+  let smoothedRunProgress = getRunScrollProgress();
+  let previousRunProgress = smoothedRunProgress;
   let animationSpeed = 0;
   let locomotionDistance = 0;
   let distanceCameraAnchor = null;
@@ -1053,7 +1068,19 @@ function createRunScene() {
   renderer.setAnimationLoop((now) => {
     const delta = clock.getDelta();
     if (!visible || document.hidden) return;
-    const runProgress = getRunScrollProgress();
+    const targetRunProgress = getRunScrollProgress();
+    // Wheel and trackpad events arrive in uneven increments. Damping the
+    // rendered value removes those micro-jumps without making the scene lag.
+    smoothedRunProgress = THREE.MathUtils.damp(
+      smoothedRunProgress,
+      targetRunProgress,
+      14,
+      Math.min(delta, 0.05)
+    );
+    if (Math.abs(targetRunProgress - smoothedRunProgress) < 0.00001) {
+      smoothedRunProgress = targetRunProgress;
+    }
+    const runProgress = smoothedRunProgress;
     const scrollVelocity = Math.abs(runProgress - previousRunProgress) / Math.max(delta, 0.001);
     const isScrolling = now - lastStoryScrollAt < 180;
     const movingSpeed = lerp(0.72, 1.55, Math.min(scrollVelocity / 0.55, 1));
@@ -1108,7 +1135,8 @@ function createRunScene() {
       ? applyRunScrollPose(model, runProgress)
       : getRunScrollPose(runProgress);
     pose.position.z -= abyssRun * 8;
-    pose.position.x = lerp(pose.position.x, 0, finalProfile);
+    // Keep the cheetah's face comfortably inside the right edge of the MWP mark.
+    pose.position.x = lerp(pose.position.x, -0.32, finalProfile);
     pose.position.z = lerp(pose.position.z, -1.2, finalProfile);
     finaleKey.intensity = finalProfile * 3.6;
     finaleMaterials.forEach((material) => {
@@ -1130,8 +1158,10 @@ function createRunScene() {
     scene.fog.density = 0.026 + runProgress * 0.012 + abyssRun * 0.024;
     const gaitPhase = locomotionDistance * 15.5;
     const gaitEnergy = THREE.MathUtils.smoothstep(animationSpeed, 0.08, 0.68);
-    const bobX = Math.sin(gaitPhase) * 0.014 * gaitEnergy;
-    const bobY = Math.abs(Math.sin(gaitPhase * 2)) * 0.026 * gaitEnergy;
+    // Keep only a trace of handheld energy. The cheetah supplies the motion;
+    // larger camera bob made the entire scene and polaroid edges shimmer.
+    const bobX = Math.sin(gaitPhase) * 0.0035 * gaitEnergy;
+    const bobY = Math.abs(Math.sin(gaitPhase * 2)) * 0.0065 * gaitEnergy;
     const target = new THREE.Vector3(
       pose.position.x,
       pose.position.y + 0.92,

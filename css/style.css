@@ -7,6 +7,8 @@
   --ivory: #fff8ed;
   --serif: "Cormorant Garamond", Georgia, serif;
   --caps: "Marcellus", "Cormorant Garamond", serif;
+  --heading-page: clamp(3rem, 6.4vw, 6.4rem);
+  --heading-section: clamp(2.4rem, 4.3vw, 4.6rem);
 }
 
 * {
@@ -405,7 +407,7 @@ body.experience-started .run-hero > canvas {
 }
 
 .experience-gate h1 {
-  font-size: clamp(3rem, 7vw, 6.7rem);
+  font-size: var(--heading-page);
   font-weight: 400;
   line-height: 0.84;
   text-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.55);
@@ -907,7 +909,7 @@ body.experience-started .experience-gate {
   }
 
   .experience-gate h1 {
-    font-size: clamp(2.9rem, 14vw, 4.6rem);
+    font-size: var(--heading-page);
   }
 
   .destination-copy {
@@ -968,6 +970,7 @@ body.experience-started .experience-gate {
 .site-finale {
   position: relative;
   z-index: 7;
+  padding-top: clamp(3rem, 6vw, 6rem);
   background: #160302;
   color: var(--ivory);
 }
@@ -1014,7 +1017,7 @@ body.experience-started .experience-gate {
 
 .media-heading h2 {
   max-width: 52rem;
-  font-size: clamp(3rem, 7vw, 7.2rem);
+  font-size: var(--heading-section);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 0.9;
@@ -1045,7 +1048,7 @@ body.experience-started .experience-gate {
   justify-content: center;
   color: var(--gold-pale);
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 4.2vw, 4.8rem);
+  font-size: clamp(3.4rem, 5.4vw, 6.3rem);
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 0.8;
@@ -1078,7 +1081,7 @@ body.experience-started .experience-gate {
 }
 
 .media-heading h2 {
-  font-size: clamp(3.2rem, 6vw, 6rem);
+  font-size: var(--heading-section);
 }
 
 .media-marquee {
@@ -1120,18 +1123,6 @@ body.experience-started .experience-gate {
   line-height: 1;
   white-space: nowrap;
   text-decoration: none;
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-a.media-logo:hover,
-a.media-logo:focus-visible {
-  opacity: 0.68;
-  transform: translateY(-0.16rem);
-}
-
-a.media-logo:focus-visible {
-  outline: 1px solid currentColor;
-  outline-offset: 0.55rem;
 }
 
 .media-logo b {
@@ -1252,6 +1243,36 @@ a.media-logo:focus-visible {
   text-decoration-color: var(--gold);
 }
 
+.footer-socials {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.footer-column .footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border: 1px solid rgba(208, 161, 90, 0.4);
+  color: var(--gold-pale);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.footer-column .footer-socials a:hover,
+.footer-column .footer-socials a:focus-visible {
+  border-color: var(--gold);
+  background: rgba(208, 161, 90, 0.1);
+  color: var(--ivory);
+}
+
+.footer-socials svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
 .footer-column .footer-map-link {
   margin-top: 0.35rem;
   color: var(--gold-pale);
@@ -1304,7 +1325,7 @@ a.media-logo:focus-visible {
 }
 
 .contact-heading h1 {
-  font-size: clamp(4.5rem, 9vw, 9rem);
+  font-size: var(--heading-page);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.76;
@@ -1333,16 +1354,12 @@ a.media-logo:focus-visible {
 .contact-socials a {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
   border: 2px solid rgba(208, 161, 90, 0.38);
-  padding: 0.72rem 0.9rem;
   color: var(--gold-pale);
-  font-family: var(--caps);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
   text-decoration: none;
-  text-transform: uppercase;
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
@@ -1363,8 +1380,11 @@ a.media-logo:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem 1.6rem;
-  padding: clamp(1.8rem, 4vw, 3.5rem);
-  border: 2px solid rgba(208, 161, 90, 0.42);
+  width: 100%;
+  max-width: 44rem;
+  justify-self: end;
+  padding: clamp(1.6rem, 3vw, 2.8rem);
+  border: 3px solid rgba(208, 161, 90, 0.58);
   background: rgba(10, 1, 1, 0.35);
   backdrop-filter: blur(12px);
 }
@@ -1496,26 +1516,26 @@ a.media-logo:focus-visible {
 }
 
 .contact-map-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-top: 1.2rem;
+  border: 1px solid rgba(208, 161, 90, 0.48);
+  padding: 0.8rem 1rem;
   color: var(--gold-pale);
   font-family: var(--caps);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.16em;
-  text-decoration-color: rgba(208, 161, 90, 0.5);
-  text-underline-offset: 0.35em;
+  text-decoration: none;
   text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.contact-map-frame {
-  display: block;
-  width: 100%;
-  height: clamp(14rem, 24vw, 21rem);
-  margin-top: 1.5rem;
-  border: 2px solid rgba(208, 161, 90, 0.42);
-  background: #210706;
-  filter: sepia(0.12) saturate(0.82) contrast(0.96);
+.contact-map-link:hover,
+.contact-map-link:focus-visible {
+  border-color: var(--gold);
+  background: rgba(208, 161, 90, 0.1);
+  color: var(--ivory);
 }
 
 .contact-footer {
@@ -1602,10 +1622,11 @@ a.media-logo:focus-visible {
 .mwp-about-hero h1 {
   max-width: 70rem;
   color: var(--ivory);
-  font-size: clamp(4rem, 10vw, 10rem);
+  font-size: var(--heading-page);
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.78;
+  text-transform: uppercase;
 }
 
 .mwp-about-hero-copy {
@@ -1643,10 +1664,11 @@ a.media-logo:focus-visible {
 }
 
 .mwp-chapter h2 {
-  font-size: clamp(3rem, 6vw, 6.2rem);
+  font-size: var(--heading-section);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 0.88;
+  text-transform: uppercase;
 }
 
 .mwp-chapter-copy {
@@ -1664,15 +1686,76 @@ a.media-logo:focus-visible {
   margin-top: 1.8rem;
 }
 
+.mwp-team-roster {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 2rem;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  border-top: 1px solid rgba(208, 161, 90, 0.35);
+}
+
+.mwp-team-member {
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba(208, 161, 90, 0.24);
+}
+
+.mwp-team-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(208, 161, 90, 0.2), transparent 48%),
+    linear-gradient(155deg, #3b0b07, #170302);
+}
+
+.mwp-team-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.mwp-team-member h3 {
+  color: var(--gold-pale);
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.mwp-team-member p,
+.mwp-team-member p + p {
+  margin-top: 0.45rem;
+  color: rgba(255, 248, 237, 0.56);
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.mwp-chapter:nth-child(even) .mwp-team-member h3 {
+  color: #5b2418;
+}
+
+.mwp-chapter:nth-child(even) .mwp-team-member p {
+  color: rgba(45, 11, 7, 0.62);
+}
+
 .mwp-founder-chapter {
-  grid-template-columns: minmax(10rem, 0.38fr) minmax(16rem, 0.62fr) minmax(20rem, 1fr);
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(20rem, 1fr);
   gap: clamp(2rem, 5vw, 5.5rem);
   align-items: center;
 }
 
 .mwp-founder-portrait {
-  position: relative;
   align-self: stretch;
+  min-width: 0;
+}
+
+.mwp-founder-portrait-frame {
   display: flex;
   min-height: 34rem;
   align-items: flex-end;
@@ -1694,15 +1777,13 @@ a.media-logo:focus-visible {
 }
 
 .mwp-founder-portrait figcaption {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  left: 1rem;
+  margin-top: clamp(1.2rem, 2.2vw, 2rem);
   color: var(--gold-pale);
-  font-family: var(--caps);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 4.8vw, 5.4rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 
@@ -1752,7 +1833,7 @@ a.media-logo:focus-visible {
   }
 
   .number-stat strong {
-    font-size: clamp(2.15rem, 10vw, 3.4rem);
+    font-size: clamp(2.6rem, 12vw, 4.1rem);
   }
 
   .number-stat p {
@@ -1787,6 +1868,10 @@ a.media-logo:focus-visible {
 }
 
 @media (max-width: 540px) {
+  .mwp-team-roster {
+    grid-template-columns: 1fr;
+  }
+
   .media-logo-group {
     gap: 3.25rem;
     padding-right: 3.25rem;
