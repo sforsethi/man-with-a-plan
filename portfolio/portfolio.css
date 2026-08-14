@@ -43,7 +43,22 @@ button { font: inherit; }
   align-items: center;
   justify-content: space-between;
   padding: 1rem clamp(1.2rem, 4vw, 3rem);
-  background: linear-gradient(rgba(55, 8, 4, 0.86), rgba(55, 8, 4, 0));
+  isolation: isolate;
+  background: transparent;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 -5.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(55, 8, 4, 0.9) 0%,
+    rgba(55, 8, 4, 0.58) 46%,
+    rgba(55, 8, 4, 0) 100%
+  );
+  pointer-events: none;
 }
 
 .brand img {
@@ -239,11 +254,17 @@ h1 {
   border-top: 1px solid var(--line);
 }
 
-.card-meta h2, .card-meta h3 { margin: 0; font-size: clamp(35px, 4vw, 57px); line-height: .95; }
-.event-card .card-meta h3 {
-  font-size: clamp(26px, 2.4vw, 42px);
+.card-meta h2,
+.card-meta h3 {
+  margin: 0;
+  font-size: clamp(24px, 2.6vw, 36px);
+  letter-spacing: .035em;
   line-height: 1;
-  white-space: nowrap;
+  text-transform: uppercase;
+}
+.event-card .card-meta h3 {
+  font-size: clamp(20px, 1.8vw, 29px);
+  line-height: 1;
 }
 .card-meta span { padding-bottom: 5px; color: var(--gold); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 

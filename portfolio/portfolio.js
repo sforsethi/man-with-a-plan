@@ -9,9 +9,10 @@
     'bangalore',
     'indore',
     'kolkata',
+    'kochi',
     'thailand',
-    'venice',
     'istanbul',
+    'venice',
   ];
   const sequencePosition = new Map(destinationSequence.map((slug, index) => [slug, index]));
   const orderedDestinations = destinations
