@@ -1136,7 +1136,7 @@ function createRunScene() {
       : getRunScrollPose(runProgress);
     pose.position.z -= abyssRun * 8;
     // Settle the cheetah slightly left of centre within the final MWP mark.
-    pose.position.x = lerp(pose.position.x, -0.46, finalProfile);
+    pose.position.x = lerp(pose.position.x, -0.86, finalProfile);
     pose.position.z = lerp(pose.position.z, -1.2, finalProfile);
     finaleKey.intensity = finalProfile * 3.6;
     finaleMaterials.forEach((material) => {

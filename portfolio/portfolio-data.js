@@ -9,56 +9,116 @@ window.MWAP_PORTFOLIO = [
         slug: "mithali-arjun",
         title: "Mithali & Arjun",
         label: "Wedding · Delhi",
-        cover: "/assets/portfolio/delhi/mithali-arjun/03.jpg",
-        writeup: "A Delhi wedding shaped through lush gardens, sculptural florals and intimate family moments. Each celebration carried its own mood while remaining part of one beautifully connected story.",
-        images: ["/assets/portfolio/delhi/mithali-arjun/03.jpg", "/assets/portfolio/delhi/mithali-arjun/01.jpg", "/assets/portfolio/delhi/mithali-arjun/02.jpg", "/assets/portfolio/delhi/mithali-arjun/04.jpg", "/assets/portfolio/delhi/mithali-arjun/05.jpg"]
+        cover: "/assets/portfolio/delhi/mithali-arjun/01.jpg",
+        writeup: "",
+        author: "",
+        images: [
+          "/assets/portfolio/delhi/mithali-arjun/01.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/02.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/05.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/06.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/07.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/03.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/04.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/08.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/09.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/10.jpg"
+        ]
       },
       {
         slug: "bindya-shiven",
         title: "Bindya & Shiven",
         label: "Wedding · Delhi",
         cover: "/assets/portfolio/delhi/bindya-shiven/01.jpg",
-        writeup: "An expressive celebration layered with deep colour, candlelit warmth and abundant florals. From the first toast to the final portrait, every frame felt vivid, personal and full of energy.",
-        images: ["/assets/portfolio/delhi/bindya-shiven/01.jpg", "/assets/portfolio/delhi/bindya-shiven/02.jpg", "/assets/portfolio/delhi/bindya-shiven/03.jpg", "/assets/portfolio/delhi/bindya-shiven/04.jpg", "/assets/portfolio/delhi/bindya-shiven/05.jpg"]
+        writeup: "Our experience with MWP was nothing short of spectacular.\n\nJD and his team completely flipped the script on wedding stress. They were always a step ahead with multiple options and seamless backup plans—even handling unexpected wedding-day rain so beautifully that our guests didn't feel a thing.\n\nMost importantly, they shielded our family from all the chaos, allowing us to fully immerse ourselves in the joy of the day. If you want a relaxed journey and a wedding you can actually enjoy, we whole-heartedly recommend MWP!",
+        author: "Bindya & Shiven",
+        images: [
+          "/assets/portfolio/delhi/bindya-shiven/01.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/02.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/04.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/08.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/09.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/03.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/05.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/06.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/07.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/10.jpg"
+        ]
       },
       {
         slug: "tanvi-uday",
         title: "Tanvi & Uday",
         label: "Wedding · Delhi",
         cover: "/assets/portfolio/delhi/tanvi-uday/01.jpg",
-        writeup: "A warm, contemporary wedding built around family, generosity and joyful detail. Soft daytime colour moved into richer evening tones as the celebration unfolded.",
-        images: ["/assets/portfolio/delhi/tanvi-uday/01.jpg", "/assets/portfolio/delhi/tanvi-uday/02.jpg", "/assets/portfolio/delhi/tanvi-uday/03.jpg", "/assets/portfolio/delhi/tanvi-uday/04.jpg", "/assets/portfolio/delhi/tanvi-uday/05.jpg"]
+        writeup: "",
+        author: "",
+        images: [
+          "/assets/portfolio/delhi/tanvi-uday/01.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/02.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/03.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/05.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/07.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/04.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/06.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/08.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/09.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/10.jpg"
+        ]
       }
     ]
   },
   {
     slug: "jaipur",
     name: "Jaipur",
-    cover: "/assets/portfolio/jaipur/meher-aman/04.jpg",
+    cover: "/assets/portfolio/jaipur/meher-aman/01.jpg",
     intro: "Palace silhouettes, warm stone and celebrations that carry the romance of Rajasthan.",
     events: [
       {
         slug: "meher-aman",
         title: "Meher & Aman",
         label: "Wedding · Jaipur",
-        cover: "/assets/portfolio/jaipur/meher-aman/04.jpg",
-        writeup: "A many-layered Jaipur celebration moving from palace courtyards to dramatic after-dark settings. Heritage architecture and modern production came together with an effortless sense of occasion.",
-        images: ["/assets/portfolio/jaipur/meher-aman/04.jpg", "/assets/portfolio/jaipur/meher-aman/01.jpg", "/assets/portfolio/jaipur/meher-aman/02.jpg", "/assets/portfolio/jaipur/meher-aman/03.jpg", "/assets/portfolio/jaipur/meher-aman/05.jpg"]
+        cover: "/assets/portfolio/jaipur/meher-aman/01.jpg",
+        writeup: "",
+        author: "",
+        images: [
+          "/assets/portfolio/jaipur/meher-aman/01.jpg",
+          "/assets/portfolio/jaipur/meher-aman/02.jpg",
+          "/assets/portfolio/jaipur/meher-aman/03.jpg",
+          "/assets/portfolio/jaipur/meher-aman/05.jpg",
+          "/assets/portfolio/jaipur/meher-aman/08.jpg",
+          "/assets/portfolio/jaipur/meher-aman/04.jpg",
+          "/assets/portfolio/jaipur/meher-aman/06.jpg",
+          "/assets/portfolio/jaipur/meher-aman/07.jpg",
+          "/assets/portfolio/jaipur/meher-aman/09.jpg",
+          "/assets/portfolio/jaipur/meher-aman/10.jpg"
+        ]
       },
       {
         slug: "manat-samrath",
         title: "Manat & Samrath",
         label: "Wedding · Jaipur",
         cover: "/assets/portfolio/jaipur/manat-samrath/01.jpg",
-        writeup: "A joyful destination wedding filled with sunlit yellow, garden textures and elegant evening details. Each event was distinctive, yet tied together through a fresh and generous visual language.",
-        images: ["/assets/portfolio/jaipur/manat-samrath/01.jpg", "/assets/portfolio/jaipur/manat-samrath/02.jpg", "/assets/portfolio/jaipur/manat-samrath/03.jpg", "/assets/portfolio/jaipur/manat-samrath/04.jpg", "/assets/portfolio/jaipur/manat-samrath/05.jpg"]
+        writeup: "",
+        author: "",
+        images: [
+          "/assets/portfolio/jaipur/manat-samrath/01.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/03.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/05.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/07.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/08.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/02.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/04.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/06.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/09.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/10.jpg"
+        ]
       }
     ]
   },
   {
     slug: "udaipur",
     name: "Udaipur",
-    cover: "/assets/portfolio/udaipur/jigyasa-samar/04.jpg",
+    cover: "/assets/portfolio/udaipur/jigyasa-samar/01.jpg",
     intro: "Lakeside light, royal settings and stories designed to unfold with quiet grandeur.",
     events: [
       {
@@ -66,31 +126,67 @@ window.MWAP_PORTFOLIO = [
         title: "Sehaj & Harsimar",
         label: "Wedding · Udaipur",
         cover: "/assets/portfolio/udaipur/sehaj-harsimar/01.jpg",
-        writeup: "A romantic Udaipur wedding shaped by soft light, palace architecture and deeply personal moments. The experience moved between ceremony and celebration with an elegant, unhurried rhythm.",
-        images: ["/assets/portfolio/udaipur/sehaj-harsimar/01.jpg", "/assets/portfolio/udaipur/sehaj-harsimar/02.jpg", "/assets/portfolio/udaipur/sehaj-harsimar/03.jpg", "/assets/portfolio/udaipur/sehaj-harsimar/04.jpg", "/assets/portfolio/udaipur/sehaj-harsimar/05.jpg"]
+        writeup: "I needed was best wedding planner whom I could trust with everything, and I had the best person as Jaideep who is not just a friend but also like my family now.\n\nDue to his creative vision each and everything was catered with lots of love and care.\n\nIt was not wedding but a festival of celebrations and that wouldn’t have been possible without Jaideep and his MWP Army",
+        author: "Sehaj & Harsimar",
+        images: [
+          "/assets/portfolio/udaipur/sehaj-harsimar/01.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/02.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/03.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/04.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/05.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/06.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/07.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/08.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/09.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/10.jpg"
+        ]
       },
       {
         slug: "jigyasa-samar",
         title: "Jigyasa & Samar",
         label: "Wedding · Udaipur",
-        cover: "/assets/portfolio/udaipur/jigyasa-samar/04.jpg",
-        writeup: "A celebration of colour and scale set against Udaipur’s cinematic architecture. Playful daytime details gave way to candlelit grandeur and a wedding filled with movement.",
-        images: ["/assets/portfolio/udaipur/jigyasa-samar/04.jpg", "/assets/portfolio/udaipur/jigyasa-samar/01.jpg", "/assets/portfolio/udaipur/jigyasa-samar/02.jpg", "/assets/portfolio/udaipur/jigyasa-samar/03.jpg", "/assets/portfolio/udaipur/jigyasa-samar/05.jpg"]
+        cover: "/assets/portfolio/udaipur/jigyasa-samar/01.jpg",
+        writeup: "Everything was simply perfect.\n\nWe connected with JD through Instagram, and we never imagined it would turn into such an incredible experience.\n\nJD has a charm, and together with his amazing team, he created absolute magic.\n\nThe hospitality was appreciated by every single guest, and both our families were beyond happy with how everything was managed.\n\nThe three days flew by so quickly—we truly wish we could relive every moment. Thank you for making our celebration so unforgettable!",
+        author: "Jigyasa & Samar",
+        images: [
+          "/assets/portfolio/udaipur/jigyasa-samar/01.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/02.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/03.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/04.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/08.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/05.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/06.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/07.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/09.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/10.jpg"
+        ]
       }
     ]
   },
   {
     slug: "goa",
     name: "Goa",
-    cover: "/assets/portfolio/goa/juhi-jatin/02.jpg",
+    cover: "/assets/portfolio/goa/juhi-jatin/01.jpg",
     intro: "Sunlit revelry, tropical colour and celebrations made to feel beautifully unbuttoned.",
     events: [{
       slug: "juhi-jatin",
       title: "Juhi & Jatin",
       label: "Wedding · Goa",
-      cover: "/assets/portfolio/goa/juhi-jatin/02.jpg",
-      writeup: "A joyful Goa wedding with a relaxed rhythm and a vivid visual language. The design embraced colour, movement and the easy spirit of a celebration by the coast.",
-      images: ["/assets/portfolio/goa/juhi-jatin/02.jpg", "/assets/portfolio/goa/juhi-jatin/01.jpg", "/assets/portfolio/goa/juhi-jatin/03.jpg", "/assets/portfolio/goa/juhi-jatin/04.jpg", "/assets/portfolio/goa/juhi-jatin/05.jpg"]
+      cover: "/assets/portfolio/goa/juhi-jatin/01.jpg",
+      writeup: "",
+      author: "",
+      images: [
+          "/assets/portfolio/goa/juhi-jatin/01.jpg",
+          "/assets/portfolio/goa/juhi-jatin/02.jpg",
+          "/assets/portfolio/goa/juhi-jatin/03.jpg",
+          "/assets/portfolio/goa/juhi-jatin/04.jpg",
+          "/assets/portfolio/goa/juhi-jatin/06.jpg",
+          "/assets/portfolio/goa/juhi-jatin/05.jpg",
+          "/assets/portfolio/goa/juhi-jatin/07.jpg",
+          "/assets/portfolio/goa/juhi-jatin/08.jpg",
+          "/assets/portfolio/goa/juhi-jatin/09.jpg",
+          "/assets/portfolio/goa/juhi-jatin/10.jpg"
+        ]
     }]
   },
   {
@@ -103,7 +199,8 @@ window.MWAP_PORTFOLIO = [
       title: "ICWF",
       label: "Experience · Mumbai",
       cover: "/assets/destinations/Mumbai/0Z0A8551.JPG",
-      writeup: "An atmospheric ICWF experience built through dramatic scale, sculptural detail and a precise choreography of light. Every room revealed another layer of the evening.",
+      writeup: "",
+      author: "",
       images: ["/assets/destinations/Mumbai/0Z0A8551.JPG", "/assets/destinations/Mumbai/0Z0A8175.JPG", "/assets/destinations/Mumbai/SPMO9881.JPG", "/assets/destinations/Mumbai/0Z0A8549.JPG"]
     }]
   },
@@ -117,7 +214,8 @@ window.MWAP_PORTFOLIO = [
       title: "ICWF",
       label: "Experience · Bangalore",
       cover: "/assets/destinations/bangalore/1.jpg",
-      writeup: "A contemporary ICWF gathering guided by scale, texture and an expressive sense of arrival. Each setting was designed as a distinct chapter within one cohesive experience.",
+      writeup: "",
+      author: "",
       images: ["/assets/destinations/bangalore/1.jpg", "/assets/destinations/bangalore/2.jpg", "/assets/destinations/bangalore/3.png", "/assets/destinations/bangalore/4.png", "/assets/destinations/bangalore/5.png"]
     }]
   },
@@ -131,8 +229,20 @@ window.MWAP_PORTFOLIO = [
       title: "Juhi & Jatin",
       label: "Wedding · Indore",
       cover: "/assets/destinations/Indore.jpg",
-      writeup: "A spirited celebration designed around saturated colour, playful details and the warmth of family. The setting became a bright, tactile backdrop for moments full of movement.",
-      images: ["/assets/destinations/Indore.jpg", "/assets/portfolio/goa/juhi-jatin/03.jpg", "/assets/portfolio/goa/juhi-jatin/01.jpg", "/assets/portfolio/goa/juhi-jatin/04.jpg", "/assets/portfolio/goa/juhi-jatin/05.jpg"]
+      writeup: "",
+      author: "",
+      images: [
+          "/assets/portfolio/indore/juhi-jatin/01.jpg",
+          "/assets/portfolio/indore/juhi-jatin/02.jpg",
+          "/assets/portfolio/indore/juhi-jatin/03.jpg",
+          "/assets/portfolio/indore/juhi-jatin/04.jpg",
+          "/assets/portfolio/indore/juhi-jatin/06.jpg",
+          "/assets/portfolio/indore/juhi-jatin/05.jpg",
+          "/assets/portfolio/indore/juhi-jatin/07.jpg",
+          "/assets/portfolio/indore/juhi-jatin/08.jpg",
+          "/assets/portfolio/indore/juhi-jatin/09.jpg",
+          "/assets/portfolio/indore/juhi-jatin/10.jpg"
+        ]
     }]
   },
   {
@@ -145,7 +255,8 @@ window.MWAP_PORTFOLIO = [
       title: "ICWF",
       label: "Experience · Kolkata",
       cover: "/assets/destinations/Kolkata/1.jpg",
-      writeup: "An ICWF experience rich with craft, atmosphere and a distinctly Kolkata sense of beauty. Heritage references were balanced with a clean contemporary point of view.",
+      writeup: "",
+      author: "",
       images: ["/assets/destinations/Kolkata/1.jpg", "/assets/destinations/Kolkata/2.jpg", "/assets/destinations/Kolkata/3.jpg", "/assets/destinations/Kolkata/4.jpg", "/assets/destinations/Kolkata/5.jpg"]
     }]
   },
@@ -159,7 +270,8 @@ window.MWAP_PORTFOLIO = [
       title: "ICWF",
       label: "Experience · Kochi",
       cover: "/assets/portfolio/maroon-embossed-paw-trail.png",
-      writeup: "An ICWF chapter in Kochi, shaped around exchange, discovery and a strong sense of place. Photography from this experience will be added as soon as the gallery is available.",
+      writeup: "",
+      author: "",
       images: ["/assets/portfolio/maroon-embossed-paw-trail.png"]
     }]
   },
@@ -173,7 +285,8 @@ window.MWAP_PORTFOLIO = [
       title: "Ritika & Manav",
       label: "Wedding · Thailand",
       cover: "/assets/hua-hin.jpeg",
-      writeup: "A destination wedding that shifted from sun-washed ease into a sparkling night celebration. The design followed that transformation with atmosphere, intimacy and surprise.",
+      writeup: "",
+      author: "",
       images: ["/assets/hua-hin.jpeg"]
     }]
   },
@@ -187,7 +300,8 @@ window.MWAP_PORTFOLIO = [
       title: "ICWF",
       label: "Experience · Istanbul",
       cover: "/assets/destinations/Istanbul/1.jpg",
-      writeup: "A dramatic Istanbul experience layered with jewel tones, reflective surfaces and a sense of theatrical discovery. The city’s history and energy informed every frame.",
+      writeup: "",
+      author: "",
       images: ["/assets/destinations/Istanbul/1.jpg", "/assets/destinations/Istanbul/2.jpg", "/assets/destinations/Istanbul/3.jpg", "/assets/destinations/Istanbul/4.jpg", "/assets/destinations/Istanbul/5.jpg"]
     }]
   },
@@ -201,7 +315,8 @@ window.MWAP_PORTFOLIO = [
       title: "ICWF",
       label: "Experience · Venice",
       cover: "/assets/destinations/Venice.webp",
-      writeup: "ICWF unfolded as an immersive evening of light, reflection and architectural drama. The setting transformed after dark, creating a memorable atmosphere for guests.",
+      writeup: "",
+      author: "",
       images: ["/assets/destinations/Venice.webp"]
     }]
   }

@@ -23,6 +23,122 @@
       return aPosition - bPosition;
     })
     .map(({ destination }) => destination);
+const IMAGE_RATIOS = {
+  "/assets/destinations/Indore.jpg": 1.5,
+  "/assets/destinations/Istanbul/1.jpg": 1.0,
+  "/assets/destinations/Istanbul/2.jpg": 1.0,
+  "/assets/destinations/Istanbul/3.jpg": 1.221,
+  "/assets/destinations/Istanbul/4.jpg": 1.5,
+  "/assets/destinations/Istanbul/5.jpg": 1.5,
+  "/assets/destinations/Kolkata/1.jpg": 1.0,
+  "/assets/destinations/Kolkata/2.jpg": 1.0,
+  "/assets/destinations/Kolkata/3.jpg": 1.0,
+  "/assets/destinations/Kolkata/4.jpg": 1.0,
+  "/assets/destinations/Kolkata/5.jpg": 1.0,
+  "/assets/destinations/Mumbai/0Z0A8175.JPG": 1.5,
+  "/assets/destinations/Mumbai/0Z0A8549.JPG": 1.5,
+  "/assets/destinations/Mumbai/0Z0A8551.JPG": 1.5,
+  "/assets/destinations/Mumbai/SPMO9881.JPG": 1.5,
+  "/assets/destinations/Venice.webp": 1.5,
+  "/assets/destinations/bangalore/1.jpg": 1.501,
+  "/assets/destinations/bangalore/2.jpg": 1.459,
+  "/assets/destinations/bangalore/3.png": 1.499,
+  "/assets/destinations/bangalore/4.png": 1.495,
+  "/assets/destinations/bangalore/5.png": 1.494,
+  "/assets/hua-hin.jpeg": 1.501,
+  "/assets/portfolio/delhi/bindya-shiven/01.jpg": 1.501,
+  "/assets/portfolio/delhi/bindya-shiven/02.jpg": 1.501,
+  "/assets/portfolio/delhi/bindya-shiven/03.jpg": 1.501,
+  "/assets/portfolio/delhi/bindya-shiven/04.jpg": 1.4,
+  "/assets/portfolio/delhi/bindya-shiven/05.jpg": 1.295,
+  "/assets/portfolio/delhi/bindya-shiven/06.jpg": 1.501,
+  "/assets/portfolio/delhi/bindya-shiven/07.jpg": 0.714,
+  "/assets/portfolio/delhi/bindya-shiven/08.jpg": 0.667,
+  "/assets/portfolio/delhi/bindya-shiven/09.jpg": 0.667,
+  "/assets/portfolio/delhi/bindya-shiven/10.jpg": 0.667,
+  "/assets/portfolio/delhi/mithali-arjun/01.jpg": 1.491,
+  "/assets/portfolio/delhi/mithali-arjun/02.jpg": 1.501,
+  "/assets/portfolio/delhi/mithali-arjun/03.jpg": 0.698,
+  "/assets/portfolio/delhi/mithali-arjun/04.jpg": 0.667,
+  "/assets/portfolio/delhi/mithali-arjun/05.jpg": 1.501,
+  "/assets/portfolio/delhi/mithali-arjun/06.jpg": 0.667,
+  "/assets/portfolio/delhi/mithali-arjun/07.jpg": 0.667,
+  "/assets/portfolio/delhi/mithali-arjun/08.jpg": 1.501,
+  "/assets/portfolio/delhi/mithali-arjun/09.jpg": 1.501,
+  "/assets/portfolio/delhi/mithali-arjun/10.jpg": 0.667,
+  "/assets/portfolio/delhi/tanvi-uday/01.jpg": 1.501,
+  "/assets/portfolio/delhi/tanvi-uday/02.jpg": 0.667,
+  "/assets/portfolio/delhi/tanvi-uday/03.jpg": 0.667,
+  "/assets/portfolio/delhi/tanvi-uday/04.jpg": 0.65,
+  "/assets/portfolio/delhi/tanvi-uday/05.jpg": 1.398,
+  "/assets/portfolio/delhi/tanvi-uday/06.jpg": 0.65,
+  "/assets/portfolio/delhi/tanvi-uday/07.jpg": 0.667,
+  "/assets/portfolio/delhi/tanvi-uday/08.jpg": 1.501,
+  "/assets/portfolio/delhi/tanvi-uday/09.jpg": 1.501,
+  "/assets/portfolio/delhi/tanvi-uday/10.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/01.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/02.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/03.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/04.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/05.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/06.jpg": 1.501,
+  "/assets/portfolio/goa/juhi-jatin/07.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/08.jpg": 0.667,
+  "/assets/portfolio/goa/juhi-jatin/09.jpg": 1.501,
+  "/assets/portfolio/goa/juhi-jatin/10.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/01.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/02.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/03.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/04.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/05.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/06.jpg": 1.501,
+  "/assets/portfolio/indore/juhi-jatin/07.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/08.jpg": 0.667,
+  "/assets/portfolio/indore/juhi-jatin/09.jpg": 1.501,
+  "/assets/portfolio/indore/juhi-jatin/10.jpg": 0.667,
+  "/assets/portfolio/jaipur/manat-samrath/01.jpg": 1.0,
+  "/assets/portfolio/jaipur/manat-samrath/02.jpg": 0.667,
+  "/assets/portfolio/jaipur/manat-samrath/03.jpg": 1.501,
+  "/assets/portfolio/jaipur/manat-samrath/04.jpg": 1.334,
+  "/assets/portfolio/jaipur/manat-samrath/05.jpg": 1.0,
+  "/assets/portfolio/jaipur/manat-samrath/06.jpg": 1.501,
+  "/assets/portfolio/jaipur/manat-samrath/07.jpg": 1.0,
+  "/assets/portfolio/jaipur/manat-samrath/08.jpg": 0.667,
+  "/assets/portfolio/jaipur/manat-samrath/09.jpg": 1.501,
+  "/assets/portfolio/jaipur/manat-samrath/10.jpg": 0.667,
+  "/assets/portfolio/jaipur/meher-aman/01.jpg": 1.501,
+  "/assets/portfolio/jaipur/meher-aman/02.jpg": 0.667,
+  "/assets/portfolio/jaipur/meher-aman/03.jpg": 0.665,
+  "/assets/portfolio/jaipur/meher-aman/04.jpg": 0.671,
+  "/assets/portfolio/jaipur/meher-aman/05.jpg": 0.667,
+  "/assets/portfolio/jaipur/meher-aman/06.jpg": 0.714,
+  "/assets/portfolio/jaipur/meher-aman/07.jpg": 0.667,
+  "/assets/portfolio/jaipur/meher-aman/08.jpg": 0.667,
+  "/assets/portfolio/jaipur/meher-aman/09.jpg": 0.667,
+  "/assets/portfolio/jaipur/meher-aman/10.jpg": 0.667,
+  "/assets/portfolio/maroon-embossed-paw-trail.png": 1.777,
+  "/assets/portfolio/udaipur/jigyasa-samar/01.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/02.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/03.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/04.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/05.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/06.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/07.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/08.jpg": 1.499,
+  "/assets/portfolio/udaipur/jigyasa-samar/09.jpg": 0.667,
+  "/assets/portfolio/udaipur/jigyasa-samar/10.jpg": 1.5,
+  "/assets/portfolio/udaipur/sehaj-harsimar/01.jpg": 1.499,
+  "/assets/portfolio/udaipur/sehaj-harsimar/02.jpg": 1.5,
+  "/assets/portfolio/udaipur/sehaj-harsimar/03.jpg": 1.5,
+  "/assets/portfolio/udaipur/sehaj-harsimar/04.jpg": 1.5,
+  "/assets/portfolio/udaipur/sehaj-harsimar/05.jpg": 0.667,
+  "/assets/portfolio/udaipur/sehaj-harsimar/06.jpg": 1.5,
+  "/assets/portfolio/udaipur/sehaj-harsimar/07.jpg": 0.667,
+  "/assets/portfolio/udaipur/sehaj-harsimar/08.jpg": 1.5,
+  "/assets/portfolio/udaipur/sehaj-harsimar/09.jpg": 0.667,
+  "/assets/portfolio/udaipur/sehaj-harsimar/10.jpg": 1.5
+};
+
   const root = document.querySelector('#portfolio-app');
   if (!root) return;
 
@@ -71,13 +187,13 @@
           </div>
           <div class="hero-copy">
             <p class="eyebrow">Man With A Plan presents</p>
-            <h1>Our Work</h1>
+            <h1>OUR WORK</h1>
             <p class="hero-intro">Stories of celebration, shaped by place and remembered through feeling.</p>
           </div>
           <span class="scroll-cue">Explore destinations</span>
         </section>
         <section class="portfolio-section">
-          <div class="section-heading reveal"><p class="eyebrow">The journey so far</p><h2>Destinations</h2></div>
+          <div class="section-heading reveal"><p class="eyebrow">The journey so far</p><h2>DESTINATIONS</h2></div>
           <div class="destination-grid">${orderedDestinations.map(card).join('')}</div>
         </section>
       </main>${footer}`;
@@ -138,30 +254,133 @@
       </main>${footer}`;
   };
 
+
+
   const renderEvent = () => {
     const destination = destinations.find(item => item.slug === destinationSlug);
     const event = destination?.events.find(item => item.slug === eventSlug);
     if (!destination || !event) return renderNotFound();
     document.title = `${event.title} — Man With A Plan`;
-    const images = event.images.map((src, index) => `
-      <button class="gallery-button reveal" type="button" data-image="${src}" aria-label="Open image ${index + 1} of ${event.images.length}">
-        <img src="${src}" alt="${event.title}, photograph ${index + 1}" loading="${index < 2 ? 'eager' : 'lazy'}">
-      </button>`).join('');
+
+    const images = event.images || [];
+
+    const createButton = (src, index, customRatio, isFeatured = false) => {
+      const ratio = customRatio || IMAGE_RATIOS[src] || 1.5;
+      const style = isFeatured ? '' : ` style="aspect-ratio: ${Number(ratio).toFixed(3)};"`;
+      return `
+        <button class="gallery-button${isFeatured ? ' is-featured' : ''} reveal" type="button" data-image="${src}"${style} aria-label="Open image ${index + 1} of ${images.length}">
+          <img src="${src}" alt="${event.title}, photograph ${index + 1}" loading="${index < 2 ? 'eager' : 'lazy'}">
+        </button>`;
+    };
+
+    let galleryMarkup = '';
+    if (images.length === 1) {
+      galleryMarkup = `
+        <section class="gallery gallery-single" aria-label="Event gallery">
+          ${createButton(images[0], 0, 16 / 9, true)}
+        </section>`;
+    } else if (images.length === 5) {
+      const featured = images[0];
+      const col1 = [images[1], images[2]];
+      const col2 = [images[3], images[4]];
+
+      const getH = src => 1 / (IMAGE_RATIOS[src] || 1.5);
+      const h1 = col1.reduce((sum, src) => sum + getH(src), 0);
+      const h2 = col2.reduce((sum, src) => sum + getH(src), 0);
+      const diff = h2 - h1;
+
+      let col1Ratios = col1.map(src => IMAGE_RATIOS[src] || 1.5);
+      let col2Ratios = col2.map(src => IMAGE_RATIOS[src] || 1.5);
+      if (diff > 0.01) {
+        const lastH = getH(col1[col1.length - 1]);
+        col1Ratios[col1Ratios.length - 1] = 1 / (lastH + diff);
+      } else if (diff < -0.01) {
+        const lastH = getH(col2[col2.length - 1]);
+        col2Ratios[col2Ratios.length - 1] = 1 / (lastH + Math.abs(diff));
+      }
+
+      galleryMarkup = `
+        <section class="gallery gallery-editorial" aria-label="Event gallery">
+          <div class="gallery-featured">
+            ${createButton(featured, 0, 16 / 9, true)}
+          </div>
+          <div class="gallery-columns">
+            <div class="gallery-col">
+              ${col1.map((src, i) => createButton(src, i + 1, col1Ratios[i])).join('')}
+            </div>
+            <div class="gallery-col">
+              ${col2.map((src, i) => createButton(src, i + 3, col2Ratios[i])).join('')}
+            </div>
+          </div>
+        </section>`;
+    } else {
+      const half = Math.ceil(images.length / 2);
+      const col1 = images.slice(0, half);
+      const col2 = images.slice(half);
+
+      const getH = src => 1 / (IMAGE_RATIOS[src] || 1.5);
+      const h1 = col1.reduce((sum, src) => sum + getH(src), 0);
+      const h2 = col2.reduce((sum, src) => sum + getH(src), 0);
+      const diff = h2 - h1;
+
+      let col1Ratios = col1.map(src => IMAGE_RATIOS[src] || 1.5);
+      let col2Ratios = col2.map(src => IMAGE_RATIOS[src] || 1.5);
+      if (diff > 0.01) {
+        const lastH = getH(col1[col1.length - 1]);
+        col1Ratios[col1Ratios.length - 1] = 1 / (lastH + diff);
+      } else if (diff < -0.01) {
+        const lastH = getH(col2[col2.length - 1]);
+        col2Ratios[col2Ratios.length - 1] = 1 / (lastH + Math.abs(diff));
+      }
+
+      galleryMarkup = `
+        <section class="gallery gallery-editorial" aria-label="Event gallery">
+          <div class="gallery-columns">
+            <div class="gallery-col">
+              ${col1.map((src, i) => createButton(src, i, col1Ratios[i])).join('')}
+            </div>
+            <div class="gallery-col">
+              ${col2.map((src, i) => createButton(src, i + half, col2Ratios[i])).join('')}
+            </div>
+          </div>
+        </section>`;
+    }
+
+    const writeupParagraphs = event.writeup
+      ? event.writeup
+          .split(/\n\n+|\n/)
+          .map(p => p.trim())
+          .filter(Boolean)
+          .map(p => `<p>${p}</p>`)
+          .join('')
+      : '';
+
     root.innerHTML = `${header}
       <main>
         <section class="detail-hero">
           <div class="detail-hero-media"><img src="${event.cover}" alt=""></div>
           <div class="hero-copy"><p class="eyebrow">${event.label}</p><h1>${event.title}</h1></div>
         </section>
-        <section class="story-intro reveal">
-          <div><p class="eyebrow">The story</p><h2>A moment,<br>made lasting.</h2></div>
-          <div class="story-intro-copy"><p>${event.writeup}</p><a class="back-link" href="/portfolio/${destination.slug}/">← Back to ${destination.name}</a></div>
-        </section>
-        <section class="gallery" aria-label="Event gallery">${images}</section>
+        ${galleryMarkup}
+        ${event.writeup ? `
+        <section class="story-words-section reveal">
+          <div class="story-words-inner">
+            <p class="story-words-kicker">In their words</p>
+            <blockquote class="story-words-quote">
+              ${writeupParagraphs}
+              ${event.author ? `<cite>— ${event.author}</cite>` : ''}
+            </blockquote>
+          </div>
+        </section>` : ''}
+        <div class="story-back-section reveal">
+          <a class="back-link" href="/portfolio/${destination.slug}/">← Back to ${destination.name}</a>
+        </div>
       </main>${footer}
       <div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button class="lightbox-close" type="button" aria-label="Close">×</button><img src="" alt=""></div>`;
     setupLightbox();
   };
+
+
 
   const renderNotFound = () => {
     document.title = 'Not found — Man With A Plan';

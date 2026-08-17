@@ -296,40 +296,154 @@ h1 {
 .event-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .event-card .card-image { aspect-ratio: 16 / 11; }
 
-.story-intro {
-  display: grid;
-  grid-template-columns: minmax(0, .8fr) minmax(300px, 1.2fr);
-  gap: 60px;
-  max-width: 1200px;
+.story-words-section {
+  max-width: 960px;
   margin: 0 auto;
-  padding: 110px clamp(22px, 5vw, 74px);
+  padding: clamp(54px, 8vw, 96px) clamp(22px, 5vw, 60px) clamp(24px, 4vw, 48px);
+  text-align: center;
 }
 
-.story-intro h2 { margin: 0; font-size: var(--heading-section); line-height: .9; }
-.story-intro-copy { color: #d5c9bd; font-family: "Cormorant Garamond", serif; font-size: clamp(21px, 2vw, 28px); line-height: 1.6; }
-.story-intro-copy p { margin-top: 0; }
+.story-words-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.story-words-kicker {
+  margin: 0 0 24px;
+  color: var(--gold);
+  font-family: "Marcellus", serif;
+  font-size: clamp(12px, 0.9vw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.story-words-quote {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.story-words-quote::before {
+  content: "“";
+  display: block;
+  margin-bottom: -0.25em;
+  color: rgba(200, 164, 107, 0.32);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: 1;
+}
+
+.story-words-quote p {
+  margin: 0;
+  color: #ede2d5;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(21px, 2.2vw, 29px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.story-words-quote p + p {
+  margin-top: 1.15em;
+}
+
+.story-words-quote cite {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--gold);
+  font-family: "Marcellus", serif;
+  font-size: clamp(12px, 0.95vw, 14px);
+  font-style: normal;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
 
 .gallery {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 0 clamp(12px, 3vw, 48px) 120px;
-  columns: 2;
-  column-gap: clamp(12px, 2vw, 28px);
+  padding: clamp(40px, 6vw, 80px) clamp(12px, 3vw, 48px) 40px;
+}
+
+.gallery-single {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.gallery-featured {
+  margin-bottom: clamp(14px, 2vw, 28px);
+}
+
+.gallery-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+  align-items: start;
+}
+
+.gallery-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 28px);
+  min-width: 0;
+}
+
+.story-back-section {
+  max-width: 1500px;
+  margin: 0 auto clamp(60px, 8vw, 110px);
+  padding: 0 clamp(12px, 3vw, 48px);
+  text-align: center;
+}
+
+.story-back-section .back-link {
+  margin-top: 0;
+  display: inline-block;
+  border: 1px solid rgba(200, 164, 107, 0.45);
+  padding: 14px 28px;
+  border-radius: 999px;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.story-back-section .back-link:hover {
+  border-color: var(--gold);
+  background: rgba(200, 164, 107, 0.12);
+  color: var(--ivory);
 }
 
 .gallery-button {
   display: block;
   width: 100%;
-  margin: 0 0 clamp(12px, 2vw, 28px);
+  margin: 0;
   padding: 0;
   border: 0;
-  background: none;
+  background: #140404;
   cursor: zoom-in;
-  break-inside: avoid;
+  overflow: hidden;
+  border-radius: 2px;
 }
 
-.gallery-button img { width: 100%; height: auto; display: block; transition: opacity .25s ease; }
-.gallery-button:hover img { opacity: .84; }
+.gallery-featured .gallery-button,
+.gallery-single .gallery-button,
+.gallery-button.is-featured {
+  aspect-ratio: 16 / 9;
+}
+
+.gallery-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: opacity .3s ease, transform .45s ease;
+}
+
+.gallery-button:hover img {
+  opacity: .88;
+  transform: scale(1.025);
+}
 
 .lightbox {
   position: fixed;
@@ -369,8 +483,8 @@ h1 {
   .destination-grid, .event-grid { grid-template-columns: 1fr; gap: 58px; }
   .card-image { aspect-ratio: 4 / 4.65; }
   .detail-hero { min-height: 66vh; padding-bottom: 50px; }
-  .story-intro { grid-template-columns: 1fr; gap: 30px; padding-top: 78px; }
-  .gallery { columns: 1; }
+  .gallery-columns { grid-template-columns: 1fr; gap: 18px; }
+  .gallery-col { gap: 18px; }
   .site-footer { flex-direction: column; }
 }
 
