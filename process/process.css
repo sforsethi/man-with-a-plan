@@ -13,6 +13,7 @@
   --content-gutter: clamp(1.5rem, 6vw, 6.5rem);
   --step-number-column: 2.5rem;
   --step-column-gap: clamp(2rem, 4vw, 4.5rem);
+  --step-heading-gap: clamp(1.75rem, 2.2vw, 2.4rem);
 }
 
 * { box-sizing: border-box; }
@@ -118,6 +119,11 @@ a { color: inherit; }
   background: var(--maroon);
 }
 .process-step h2 { font-size: var(--heading-section); }
+.step-heading > .eyebrow,
+.step-content > .eyebrow,
+.process-finale-copy > .eyebrow {
+  margin: 0 0 var(--step-heading-gap);
+}
 .step-body, .step-content { max-width: 39rem; font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; }
 .step-body p, .step-content p { margin: 0; }
 .step-body p + p, .step-content p + p { margin-top: 1.4rem; }
