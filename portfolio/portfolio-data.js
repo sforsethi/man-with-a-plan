@@ -265,13 +265,13 @@ window.MWAP_PORTFOLIO = [
   {
     slug: "thailand",
     name: "Thailand",
-    cover: "/assets/portfolio/thailand/ritika-manav/01.jpg",
+    cover: "/assets/hua-hin.jpeg",
     intro: "Destination celebrations framed by tropical landscapes and an unmistakable sense of escape.",
     events: [{
       slug: "ritika-manav",
       title: "Ritika & Manav",
       label: "Wedding · Thailand",
-      cover: "/assets/portfolio/thailand/ritika-manav/01.jpg",
+      cover: "/assets/hua-hin.jpeg",
       writeup: "",
       author: "",
       images: [
