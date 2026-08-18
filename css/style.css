@@ -1815,7 +1815,7 @@ body.experience-started .experience-gate {
   height: 100%;
   object-fit: cover;
   transform: scale(1.02);
-  filter: saturate(0.8) brightness(0.55);
+  filter: saturate(0.95) brightness(0.84) contrast(1.03);
   pointer-events: none;
 }
 
@@ -1823,25 +1823,34 @@ body.experience-started .experience-gate {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(16, 2, 2, 0.94) 0%, rgba(16, 2, 2, 0.68) 52%, rgba(16, 2, 2, 0.38) 100%),
-    linear-gradient(0deg, rgba(22, 3, 2, 0.96) 0%, transparent 65%),
-    radial-gradient(circle at 75% 28%, rgba(186, 126, 62, 0.2), transparent 42%);
+    linear-gradient(90deg, rgba(16, 2, 2, 0.76) 0%, rgba(16, 2, 2, 0.38) 48%, rgba(16, 2, 2, 0.12) 100%),
+    linear-gradient(0deg, rgba(22, 3, 2, 0.82) 0%, rgba(22, 3, 2, 0.2) 48%, transparent 72%),
+    radial-gradient(circle at 75% 28%, rgba(186, 126, 62, 0.12), transparent 42%);
   pointer-events: none;
 }
 
 .mwp-about-hero-content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   width: 100%;
+  padding: clamp(9rem, 18vh, 13rem) clamp(1.5rem, 7vw, 7rem) clamp(5rem, 10vh, 8rem);
 }
 
 .mwp-about-hero h1 {
+  position: absolute;
+  top: clamp(7.5rem, 15vh, 10rem);
+  right: clamp(1.5rem, 7vw, 7rem);
   max-width: 70rem;
   color: var(--ivory);
   font-size: var(--heading-page);
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.78;
+  text-align: right;
   text-transform: uppercase;
 }
 
@@ -1906,17 +1915,41 @@ body.experience-started .experience-gate {
 
 .mwp-team-roster {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 2.5rem 1.5rem;
-  margin-top: clamp(2.5rem, 5vw, 4.5rem);
-  padding-top: clamp(2.5rem, 5vw, 4.5rem);
-  border-top: 1px solid rgba(208, 161, 90, 0.35);
+  align-self: start;
+}
+
+.mwp-team-chapter {
+  grid-template-columns: minmax(17rem, 0.58fr) minmax(36rem, 1.42fr);
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.mwp-team-intro .mwp-chapter-heading {
+  position: static;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+
+.mwp-team-intro .mwp-chapter-copy {
+  max-width: 34rem;
+  font-size: clamp(1.08rem, 1.35vw, 1.4rem);
+  line-height: 1.55;
+}
+
+.mwp-team-intro .mwp-chapter-copy p + p {
+  margin-top: 1.35rem;
 }
 
 .mwp-team-member {
+  grid-column: span 2;
   padding: 0;
   border-bottom: none;
   text-align: center;
+}
+
+.mwp-team-member:nth-child(5):nth-last-child(3) {
+  grid-column: 2 / span 2;
 }
 
 .mwp-team-photo {
@@ -2147,6 +2180,10 @@ body.experience-started .experience-gate {
     grid-template-columns: 1fr;
   }
 
+  .mwp-team-intro .mwp-chapter-copy {
+    max-width: 47rem;
+  }
+
   .mwp-founder-portrait {
     min-height: 28rem;
   }
@@ -2163,6 +2200,11 @@ body.experience-started .experience-gate {
 @media (max-width: 540px) {
   .mwp-team-roster {
     grid-template-columns: 1fr;
+  }
+
+  .mwp-team-member,
+  .mwp-team-member:nth-child(5):nth-last-child(3) {
+    grid-column: auto;
   }
 
   .media-logo-group {
