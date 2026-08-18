@@ -15,14 +15,12 @@ window.MWAP_PORTFOLIO = [
         images: [
           "/assets/portfolio/delhi/mithali-arjun/01.jpg",
           "/assets/portfolio/delhi/mithali-arjun/02.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/03.jpg",
+          "/assets/portfolio/delhi/mithali-arjun/04.jpg",
           "/assets/portfolio/delhi/mithali-arjun/05.jpg",
           "/assets/portfolio/delhi/mithali-arjun/06.jpg",
           "/assets/portfolio/delhi/mithali-arjun/07.jpg",
-          "/assets/portfolio/delhi/mithali-arjun/03.jpg",
-          "/assets/portfolio/delhi/mithali-arjun/04.jpg",
-          "/assets/portfolio/delhi/mithali-arjun/08.jpg",
-          "/assets/portfolio/delhi/mithali-arjun/09.jpg",
-          "/assets/portfolio/delhi/mithali-arjun/10.jpg"
+          "/assets/portfolio/delhi/mithali-arjun/08.jpg"
         ]
       },
       {
@@ -35,34 +33,31 @@ window.MWAP_PORTFOLIO = [
         images: [
           "/assets/portfolio/delhi/bindya-shiven/01.jpg",
           "/assets/portfolio/delhi/bindya-shiven/02.jpg",
-          "/assets/portfolio/delhi/bindya-shiven/04.jpg",
-          "/assets/portfolio/delhi/bindya-shiven/08.jpg",
-          "/assets/portfolio/delhi/bindya-shiven/09.jpg",
           "/assets/portfolio/delhi/bindya-shiven/03.jpg",
+          "/assets/portfolio/delhi/bindya-shiven/04.jpg",
           "/assets/portfolio/delhi/bindya-shiven/05.jpg",
           "/assets/portfolio/delhi/bindya-shiven/06.jpg",
           "/assets/portfolio/delhi/bindya-shiven/07.jpg",
-          "/assets/portfolio/delhi/bindya-shiven/10.jpg"
+          "/assets/portfolio/delhi/bindya-shiven/08.jpg"
         ]
       },
       {
         slug: "tanvi-uday",
         title: "Tanvi & Uday",
         label: "Wedding · Delhi",
-        cover: "/assets/portfolio/delhi/tanvi-uday/01.jpg",
+        cover: "/assets/portfolio/delhi/tanvi-uday/featured.jpg",
         writeup: "",
         author: "",
         images: [
-          "/assets/portfolio/delhi/tanvi-uday/01.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/featured.jpg",
           "/assets/portfolio/delhi/tanvi-uday/02.jpg",
           "/assets/portfolio/delhi/tanvi-uday/03.jpg",
-          "/assets/portfolio/delhi/tanvi-uday/05.jpg",
-          "/assets/portfolio/delhi/tanvi-uday/07.jpg",
           "/assets/portfolio/delhi/tanvi-uday/04.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/05.jpg",
           "/assets/portfolio/delhi/tanvi-uday/06.jpg",
+          "/assets/portfolio/delhi/tanvi-uday/07.jpg",
           "/assets/portfolio/delhi/tanvi-uday/08.jpg",
-          "/assets/portfolio/delhi/tanvi-uday/09.jpg",
-          "/assets/portfolio/delhi/tanvi-uday/10.jpg"
+          "/assets/portfolio/delhi/tanvi-uday/09.jpg"
         ]
       }
     ]
@@ -84,31 +79,30 @@ window.MWAP_PORTFOLIO = [
           "/assets/portfolio/jaipur/meher-aman/01.jpg",
           "/assets/portfolio/jaipur/meher-aman/02.jpg",
           "/assets/portfolio/jaipur/meher-aman/03.jpg",
-          "/assets/portfolio/jaipur/meher-aman/05.jpg",
-          "/assets/portfolio/jaipur/meher-aman/08.jpg",
           "/assets/portfolio/jaipur/meher-aman/04.jpg",
+          "/assets/portfolio/jaipur/meher-aman/05.jpg",
           "/assets/portfolio/jaipur/meher-aman/06.jpg",
           "/assets/portfolio/jaipur/meher-aman/07.jpg",
-          "/assets/portfolio/jaipur/meher-aman/09.jpg",
-          "/assets/portfolio/jaipur/meher-aman/10.jpg"
+          "/assets/portfolio/jaipur/meher-aman/08.jpg",
+          "/assets/portfolio/jaipur/meher-aman/09.jpg"
         ]
       },
       {
         slug: "manat-samrath",
-        title: "Manat & Samrath",
+        title: "Mannat & Samrat",
         label: "Wedding · Jaipur",
         cover: "/assets/portfolio/jaipur/manat-samrath/01.jpg",
         writeup: "",
         author: "",
         images: [
           "/assets/portfolio/jaipur/manat-samrath/01.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/02.jpg",
           "/assets/portfolio/jaipur/manat-samrath/03.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/04.jpg",
           "/assets/portfolio/jaipur/manat-samrath/05.jpg",
+          "/assets/portfolio/jaipur/manat-samrath/06.jpg",
           "/assets/portfolio/jaipur/manat-samrath/07.jpg",
           "/assets/portfolio/jaipur/manat-samrath/08.jpg",
-          "/assets/portfolio/jaipur/manat-samrath/02.jpg",
-          "/assets/portfolio/jaipur/manat-samrath/04.jpg",
-          "/assets/portfolio/jaipur/manat-samrath/06.jpg",
           "/assets/portfolio/jaipur/manat-samrath/09.jpg",
           "/assets/portfolio/jaipur/manat-samrath/10.jpg"
         ]
@@ -125,20 +119,18 @@ window.MWAP_PORTFOLIO = [
         slug: "sehaj-harsimar",
         title: "Sehaj & Harsimar",
         label: "Wedding · Udaipur",
-        cover: "/assets/portfolio/udaipur/sehaj-harsimar/01.jpg",
+        cover: "/assets/portfolio/udaipur/sehaj-harsimar/featured.jpg",
         writeup: "I needed was best wedding planner whom I could trust with everything, and I had the best person as Jaideep who is not just a friend but also like my family now.\n\nDue to his creative vision each and everything was catered with lots of love and care.\n\nIt was not wedding but a festival of celebrations and that wouldn’t have been possible without Jaideep and his MWP Army",
         author: "Sehaj & Harsimar",
         images: [
-          "/assets/portfolio/udaipur/sehaj-harsimar/01.jpg",
+          "/assets/portfolio/udaipur/sehaj-harsimar/featured.jpg",
           "/assets/portfolio/udaipur/sehaj-harsimar/02.jpg",
           "/assets/portfolio/udaipur/sehaj-harsimar/03.jpg",
           "/assets/portfolio/udaipur/sehaj-harsimar/04.jpg",
           "/assets/portfolio/udaipur/sehaj-harsimar/05.jpg",
           "/assets/portfolio/udaipur/sehaj-harsimar/06.jpg",
           "/assets/portfolio/udaipur/sehaj-harsimar/07.jpg",
-          "/assets/portfolio/udaipur/sehaj-harsimar/08.jpg",
-          "/assets/portfolio/udaipur/sehaj-harsimar/09.jpg",
-          "/assets/portfolio/udaipur/sehaj-harsimar/10.jpg"
+          "/assets/portfolio/udaipur/sehaj-harsimar/08.jpg"
         ]
       },
       {
@@ -153,12 +145,11 @@ window.MWAP_PORTFOLIO = [
           "/assets/portfolio/udaipur/jigyasa-samar/02.jpg",
           "/assets/portfolio/udaipur/jigyasa-samar/03.jpg",
           "/assets/portfolio/udaipur/jigyasa-samar/04.jpg",
-          "/assets/portfolio/udaipur/jigyasa-samar/08.jpg",
           "/assets/portfolio/udaipur/jigyasa-samar/05.jpg",
           "/assets/portfolio/udaipur/jigyasa-samar/06.jpg",
           "/assets/portfolio/udaipur/jigyasa-samar/07.jpg",
-          "/assets/portfolio/udaipur/jigyasa-samar/09.jpg",
-          "/assets/portfolio/udaipur/jigyasa-samar/10.jpg"
+          "/assets/portfolio/udaipur/jigyasa-samar/08.jpg",
+          "/assets/portfolio/udaipur/jigyasa-samar/09.jpg"
         ]
       }
     ]
@@ -180,12 +171,10 @@ window.MWAP_PORTFOLIO = [
           "/assets/portfolio/goa/juhi-jatin/02.jpg",
           "/assets/portfolio/goa/juhi-jatin/03.jpg",
           "/assets/portfolio/goa/juhi-jatin/04.jpg",
-          "/assets/portfolio/goa/juhi-jatin/06.jpg",
           "/assets/portfolio/goa/juhi-jatin/05.jpg",
+          "/assets/portfolio/goa/juhi-jatin/06.jpg",
           "/assets/portfolio/goa/juhi-jatin/07.jpg",
-          "/assets/portfolio/goa/juhi-jatin/08.jpg",
-          "/assets/portfolio/goa/juhi-jatin/09.jpg",
-          "/assets/portfolio/goa/juhi-jatin/10.jpg"
+          "/assets/portfolio/goa/juhi-jatin/08.jpg"
         ]
     }]
   },
@@ -222,13 +211,13 @@ window.MWAP_PORTFOLIO = [
   {
     slug: "indore",
     name: "Indore",
-    cover: "/assets/destinations/Indore.jpg",
+    cover: "/assets/portfolio/indore/juhi-jatin/01.jpg",
     intro: "A vivid celebration of ritual, family and the colour of coming together.",
     events: [{
       slug: "juhi-jatin",
       title: "Juhi & Jatin",
       label: "Wedding · Indore",
-      cover: "/assets/destinations/Indore.jpg",
+      cover: "/assets/portfolio/indore/juhi-jatin/01.jpg",
       writeup: "",
       author: "",
       images: [
@@ -236,12 +225,10 @@ window.MWAP_PORTFOLIO = [
           "/assets/portfolio/indore/juhi-jatin/02.jpg",
           "/assets/portfolio/indore/juhi-jatin/03.jpg",
           "/assets/portfolio/indore/juhi-jatin/04.jpg",
-          "/assets/portfolio/indore/juhi-jatin/06.jpg",
           "/assets/portfolio/indore/juhi-jatin/05.jpg",
+          "/assets/portfolio/indore/juhi-jatin/06.jpg",
           "/assets/portfolio/indore/juhi-jatin/07.jpg",
-          "/assets/portfolio/indore/juhi-jatin/08.jpg",
-          "/assets/portfolio/indore/juhi-jatin/09.jpg",
-          "/assets/portfolio/indore/juhi-jatin/10.jpg"
+          "/assets/portfolio/indore/juhi-jatin/08.jpg"
         ]
     }]
   },
