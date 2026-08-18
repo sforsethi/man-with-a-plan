@@ -138,7 +138,16 @@ const IMAGE_RATIOS = {
   "/assets/portfolio/udaipur/sehaj-harsimar/08.jpg": 1.5,
   "/assets/portfolio/udaipur/sehaj-harsimar/09.jpg": 0.667,
   "/assets/portfolio/udaipur/sehaj-harsimar/10.jpg": 1.5,
-  "/assets/portfolio/udaipur/sehaj-harsimar/featured.jpg": 0.667
+  "/assets/portfolio/udaipur/sehaj-harsimar/featured.jpg": 0.667,
+  "/assets/portfolio/thailand/ritika-manav/01.jpg": 0.665,
+  "/assets/portfolio/thailand/ritika-manav/02.jpg": 1.502,
+  "/assets/portfolio/thailand/ritika-manav/03.jpg": 0.665,
+  "/assets/portfolio/thailand/ritika-manav/04.jpg": 0.665,
+  "/assets/portfolio/thailand/ritika-manav/05.jpg": 1.502,
+  "/assets/portfolio/thailand/ritika-manav/06.jpg": 1.502,
+  "/assets/portfolio/thailand/ritika-manav/07.jpg": 0.666,
+  "/assets/portfolio/thailand/ritika-manav/08.jpg": 1.502,
+  "/assets/portfolio/thailand/ritika-manav/09.jpg": 0.666
 };
 
   const root = document.querySelector('#portfolio-app');

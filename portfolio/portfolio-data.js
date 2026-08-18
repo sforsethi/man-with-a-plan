@@ -265,16 +265,26 @@ window.MWAP_PORTFOLIO = [
   {
     slug: "thailand",
     name: "Thailand",
-    cover: "/assets/hua-hin.jpeg",
+    cover: "/assets/portfolio/thailand/ritika-manav/01.jpg",
     intro: "Destination celebrations framed by tropical landscapes and an unmistakable sense of escape.",
     events: [{
       slug: "ritika-manav",
       title: "Ritika & Manav",
       label: "Wedding · Thailand",
-      cover: "/assets/hua-hin.jpeg",
+      cover: "/assets/portfolio/thailand/ritika-manav/01.jpg",
       writeup: "",
       author: "",
-      images: ["/assets/hua-hin.jpeg"]
+      images: [
+        "/assets/portfolio/thailand/ritika-manav/01.jpg",
+        "/assets/portfolio/thailand/ritika-manav/02.jpg",
+        "/assets/portfolio/thailand/ritika-manav/03.jpg",
+        "/assets/portfolio/thailand/ritika-manav/04.jpg",
+        "/assets/portfolio/thailand/ritika-manav/05.jpg",
+        "/assets/portfolio/thailand/ritika-manav/06.jpg",
+        "/assets/portfolio/thailand/ritika-manav/07.jpg",
+        "/assets/portfolio/thailand/ritika-manav/08.jpg",
+        "/assets/portfolio/thailand/ritika-manav/09.jpg"
+      ]
     }]
   },
   {
