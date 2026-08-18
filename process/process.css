@@ -204,7 +204,18 @@ a { color: inherit; }
     linear-gradient(180deg, rgba(77, 13, 9, .98) 0, rgba(40, 6, 5, .52) 8rem, transparent 18rem),
     linear-gradient(90deg, rgba(11,1,1,.92), rgba(11,1,1,.52) 62%, rgba(11,1,1,.2));
 }
-.process-finale-copy { position: relative; z-index: 1; max-width: 54rem; padding: clamp(6rem, 9vw, 9rem) var(--content-gutter); }
+.process-finale-copy {
+  position: relative;
+  z-index: 1;
+  max-width: calc(54rem + var(--step-number-column) + var(--step-column-gap));
+  padding: clamp(6rem, 9vw, 9rem) var(--content-gutter);
+  padding-left: calc(var(--content-gutter) + var(--step-number-column) + var(--step-column-gap));
+}
+.process-finale-copy > .step-number {
+  position: absolute;
+  top: clamp(6rem, 9vw, 9rem);
+  left: var(--content-gutter);
+}
 .process-finale h2 { margin: 0 0 2.4rem; font-size: var(--heading-section); }
 .process-finale-copy > p:not(.eyebrow):not(.step-number):not(.step-lead) { max-width: 40rem; font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.55; }
 .process-jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(227,194,143,.38); }
@@ -386,6 +397,8 @@ body.questionnaire-open { overflow: hidden; }
   .process-step-image, .process-step-reverse { grid-template-columns: 1fr; }
   .process-step-reverse .step-visual { order: 0; }
   .process-step-reverse .step-content { padding-inline: var(--content-gutter); }
+  .process-finale-copy { padding-inline: var(--content-gutter); }
+  .process-finale-copy > .step-number { position: static; }
   .step-visual { min-height: 52svh; }
   .process-jobs { grid-template-columns: 1fr; }
   .question-block, .question-split { grid-template-columns: 1fr; gap: 1.3rem; padding-block: 2.2rem; }

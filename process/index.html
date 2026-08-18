@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Marcellus&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/process/process.css?v=20">
+  <link rel="stylesheet" href="/process/process.css?v=21">
 </head>
 <body id="top">
   <header class="process-nav" aria-label="Primary navigation">
@@ -134,7 +134,7 @@
         <fieldset class="question-block">
           <legend><span>01</span> What should we call you?</legend>
           <label class="text-field">Your name / names
-            <input name="names" type="text" autocomplete="name" required>
+            <input name="names" type="text" autocomplete="name" maxlength="120" required>
           </label>
         </fieldset>
 
@@ -153,17 +153,17 @@
         <fieldset class="question-block question-split">
           <legend><span>03</span> How can we reach you?</legend>
           <label class="text-field">Phone number
-            <input name="phone" type="tel" autocomplete="tel" required>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="40" required>
           </label>
           <label class="text-field">Email address
-            <input name="email" type="email" autocomplete="email" required>
+            <input name="email" type="email" autocomplete="email" maxlength="160" required>
           </label>
         </fieldset>
 
         <fieldset class="question-block">
           <legend><span>04</span> Where are you based?</legend>
           <label class="text-field">City / Country
-            <input name="based_in" type="text" autocomplete="country-name" required>
+            <input name="based_in" type="text" autocomplete="country-name" maxlength="160" required>
           </label>
         </fieldset>
 
@@ -227,14 +227,14 @@
             <label><input type="radio" name="venue_status" value="Venue is the least of our concerns right now"><span>Venue is the least of our concerns right now</span></label>
           </div>
           <label class="text-field text-field-followup">If yes, tell us where.
-            <input name="venue_name" type="text">
+            <input name="venue_name" type="text" maxlength="240">
           </label>
         </fieldset>
 
         <fieldset class="question-block">
           <legend><span>10</span> What is one thing you definitely don’t want?</legend>
           <label class="text-field">Tell us the cliché, colour, idea, trend or experience you never want to see.
-            <textarea name="definitely_not" rows="4" required></textarea>
+            <textarea name="definitely_not" rows="4" maxlength="1200" required></textarea>
           </label>
         </fieldset>
 
@@ -296,16 +296,16 @@
             <label><input type="radio" name="found_us" value="Other"><span>Other</span></label>
           </div>
           <label class="text-field text-field-followup">If other, tell us how.
-            <input name="found_us_other" type="text">
+            <input name="found_us_other" type="text" maxlength="240">
           </label>
         </fieldset>
 
         <div class="questionnaire-submit">
           <div>
             <p>Ready to begin?</p>
-            <span>Your answers will open in your email app, ready to send to MWP.</span>
+            <span>Your completed answers will open in WhatsApp, ready to send to +91 70119 14397.</span>
           </div>
-          <button type="submit">Send questionnaire <span aria-hidden="true">↗</span></button>
+          <button type="submit">Send via WhatsApp <span aria-hidden="true">↗</span></button>
         </div>
       </form>
     </div>
@@ -317,6 +317,6 @@
     <a href="#top">Back to top ↑</a>
   </footer>
 
-  <script src="/process/process.js?v=4"></script>
+  <script src="/process/process.js?v=5"></script>
 </body>
 </html>
