@@ -147,7 +147,16 @@ const IMAGE_RATIOS = {
   "/assets/portfolio/thailand/ritika-manav/06.jpg": 1.502,
   "/assets/portfolio/thailand/ritika-manav/07.jpg": 0.666,
   "/assets/portfolio/thailand/ritika-manav/08.jpg": 1.502,
-  "/assets/portfolio/thailand/ritika-manav/09.jpg": 0.666
+  "/assets/portfolio/thailand/ritika-manav/09.jpg": 0.666,
+  "/assets/portfolio/goa/juhi-jatin/featured.jpg": 1.501,
+  "/assets/portfolio/goa/juhi-jatin/haldi-stage.jpg": 1.501,
+  "/assets/portfolio/goa/juhi-jatin/haldi-tables.jpg": 0.666,
+  "/assets/portfolio/goa/juhi-jatin/wedding-pavilion.jpg": 1.501,
+  "/assets/portfolio/indore/juhi-jatin/featured.jpg": 1.5,
+  "/assets/portfolio/indore/juhi-jatin/floral-stage.jpg": 1.501,
+  "/assets/portfolio/indore/juhi-jatin/day-celebration.jpg": 1.501,
+  "/assets/portfolio/indore/juhi-jatin/day-games.jpg": 1.501,
+  "/assets/portfolio/indore/juhi-jatin/bride-entry.jpg": 1.501
 };
 
   const root = document.querySelector('#portfolio-app');

@@ -157,24 +157,20 @@ window.MWAP_PORTFOLIO = [
   {
     slug: "goa",
     name: "Goa",
-    cover: "/assets/portfolio/goa/juhi-jatin/01.jpg",
+    cover: "/assets/portfolio/goa/juhi-jatin/featured.jpg",
     intro: "Sunlit revelry, tropical colour and celebrations made to feel beautifully unbuttoned.",
     events: [{
       slug: "juhi-jatin",
       title: "Juhi & Jatin",
       label: "Wedding · Goa",
-      cover: "/assets/portfolio/goa/juhi-jatin/01.jpg",
+      cover: "/assets/portfolio/goa/juhi-jatin/featured.jpg",
       writeup: "",
       author: "",
       images: [
-          "/assets/portfolio/goa/juhi-jatin/01.jpg",
-          "/assets/portfolio/goa/juhi-jatin/02.jpg",
-          "/assets/portfolio/goa/juhi-jatin/03.jpg",
-          "/assets/portfolio/goa/juhi-jatin/04.jpg",
-          "/assets/portfolio/goa/juhi-jatin/05.jpg",
-          "/assets/portfolio/goa/juhi-jatin/06.jpg",
-          "/assets/portfolio/goa/juhi-jatin/07.jpg",
-          "/assets/portfolio/goa/juhi-jatin/08.jpg"
+          "/assets/portfolio/goa/juhi-jatin/featured.jpg",
+          "/assets/portfolio/goa/juhi-jatin/haldi-stage.jpg",
+          "/assets/portfolio/goa/juhi-jatin/haldi-tables.jpg",
+          "/assets/portfolio/goa/juhi-jatin/wedding-pavilion.jpg"
         ]
     }]
   },
@@ -211,24 +207,21 @@ window.MWAP_PORTFOLIO = [
   {
     slug: "indore",
     name: "Indore",
-    cover: "/assets/portfolio/indore/juhi-jatin/01.jpg",
+    cover: "/assets/portfolio/indore/juhi-jatin/featured.jpg",
     intro: "A vivid celebration of ritual, family and the colour of coming together.",
     events: [{
       slug: "juhi-jatin",
       title: "Juhi & Jatin",
       label: "Wedding · Indore",
-      cover: "/assets/portfolio/indore/juhi-jatin/01.jpg",
+      cover: "/assets/portfolio/indore/juhi-jatin/featured.jpg",
       writeup: "",
       author: "",
       images: [
-          "/assets/portfolio/indore/juhi-jatin/01.jpg",
-          "/assets/portfolio/indore/juhi-jatin/02.jpg",
-          "/assets/portfolio/indore/juhi-jatin/03.jpg",
-          "/assets/portfolio/indore/juhi-jatin/04.jpg",
-          "/assets/portfolio/indore/juhi-jatin/05.jpg",
-          "/assets/portfolio/indore/juhi-jatin/06.jpg",
-          "/assets/portfolio/indore/juhi-jatin/07.jpg",
-          "/assets/portfolio/indore/juhi-jatin/08.jpg"
+          "/assets/portfolio/indore/juhi-jatin/featured.jpg",
+          "/assets/portfolio/indore/juhi-jatin/floral-stage.jpg",
+          "/assets/portfolio/indore/juhi-jatin/day-celebration.jpg",
+          "/assets/portfolio/indore/juhi-jatin/day-games.jpg",
+          "/assets/portfolio/indore/juhi-jatin/bride-entry.jpg"
         ]
     }]
   },
