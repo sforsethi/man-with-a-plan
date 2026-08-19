@@ -159,6 +159,8 @@ const IMAGE_RATIOS = {
   "/assets/portfolio/indore/juhi-jatin/bride-entry.jpg": 1.501
 };
 
+Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {});
+
   const root = document.querySelector('#portfolio-app');
   if (!root) return;
 
