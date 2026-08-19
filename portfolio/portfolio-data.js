@@ -627,33 +627,6 @@ window.MWAP_PORTFOLIO = [
         writeup: "",
         author: "",
         images: window.MWAP_CURATED_GALLERIES["tanvi-uday"]
-      },
-      {
-        slug: "ria-pranav",
-        title: "Ria & Pranav",
-        label: "Wedding · Delhi",
-        cover: "/assets/portfolio/curated/ria-pranav/wedding1.jpg",
-        writeup: "",
-        author: "",
-        images: window.MWAP_CURATED_GALLERIES["ria-pranav"]
-      },
-      {
-        slug: "sana-sahas",
-        title: "Sana & Sahas",
-        label: "Wedding · Delhi",
-        cover: "/assets/portfolio/curated/sana-sahas/engagement1.jpg",
-        writeup: "",
-        author: "",
-        images: window.MWAP_CURATED_GALLERIES["sana-sahas"]
-      },
-      {
-        slug: "sudeep-ashween",
-        title: "Sudeep & Ashween",
-        label: "Wedding · Delhi",
-        cover: "/assets/portfolio/curated/sudeep-ashween/hinduwedding1.jpg",
-        writeup: "",
-        author: "",
-        images: window.MWAP_CURATED_GALLERIES["sudeep-ashween"]
       }
     ]
   },
@@ -677,7 +650,7 @@ window.MWAP_PORTFOLIO = [
       },
       {
         slug: "manat-samrath",
-        title: "Mannat & Samrat",
+        title: "Manat & Samrath",
         label: "Wedding · Jaipur",
         cover: "/assets/portfolio/jaipur/manat-samrath/01.jpg",
         writeup: "",
