@@ -1515,7 +1515,7 @@ body.experience-started .experience-gate {
   font-size: var(--heading-page);
   font-weight: 400;
   letter-spacing: -0.055em;
-  line-height: 0.76;
+  line-height: 0.9;
 }
 
 .contact-heading h1 em {
