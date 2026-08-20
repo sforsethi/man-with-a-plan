@@ -1654,7 +1654,7 @@ body.experience-started .experience-gate {
 
 .contact-details {
   display: grid;
-  grid-template-columns: 0.8fr 0.8fr 1.4fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 88rem;
   margin: clamp(5rem, 10vw, 9rem) auto 0;
   border-top: 1px solid rgba(208, 161, 90, 0.35);
@@ -1662,13 +1662,13 @@ body.experience-started .experience-gate {
 }
 
 .contact-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: 0;
   padding: clamp(1.8rem, 4vw, 3.5rem) clamp(1rem, 3vw, 3rem);
   font-style: normal;
-}
-
-.contact-detail:first-child {
-  padding-left: 0;
+  text-align: center;
 }
 
 .contact-detail + .contact-detail {
