@@ -1830,7 +1830,7 @@ body.experience-started .experience-gate {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 57%;
+  object-position: center 65%;
   transform: scale(1.02);
   filter: saturate(0.95) brightness(0.84) contrast(1.03);
   pointer-events: none;
