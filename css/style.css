@@ -1523,9 +1523,9 @@ body.experience-started .experience-gate {
   font-weight: 400;
 }
 
-.contact-heading > p:last-child {
+.contact-heading > .contact-intro {
   max-width: 30rem;
-  margin-top: 3.6rem;
+  margin-top: 4rem;
   color: rgba(255, 248, 237, 0.7);
   font-size: clamp(1.35rem, 2vw, 1.8rem);
   line-height: 1.45;
@@ -1739,7 +1739,8 @@ body.experience-started .experience-gate {
 
 .contact-footer {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
   padding: 2.2rem clamp(1.5rem, 6vw, 6.5rem);
   border-top: 1px solid rgba(208, 161, 90, 0.25);
@@ -1747,6 +1748,7 @@ body.experience-started .experience-gate {
   font-family: var(--caps);
   font-size: 0.84rem;
   letter-spacing: 0.13em;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -1781,9 +1783,13 @@ body.experience-started .experience-gate {
     border-left: 0;
   }
 
-  .form-submit,
-  .contact-footer {
+  .form-submit {
     align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact-footer {
+    align-items: center;
     flex-direction: column;
   }
 }
