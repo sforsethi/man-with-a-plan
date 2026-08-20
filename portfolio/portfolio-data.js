@@ -641,8 +641,8 @@ window.MWAP_PORTFOLIO = [
         title: "Meher & Aman",
         label: "Wedding · Jaipur",
         cover: "/assets/portfolio/jaipur/meher-aman/featured.jpg",
-        writeup: "",
-        author: "",
+        writeup: "I have known Jaideep for the longest time. When it came to my wedding, JD was just a call away and always ready with solutions.\n\nI will be eternally grateful to him for making my dream wedding come true. Thank you, JD, for everything! You are nothing but a bride’s best friend and a fairy godfather when it comes to making things happen! Lots of love...",
+        author: "Meher & Aman",
         images: [
           "/assets/portfolio/jaipur/meher-aman/featured.jpg",
           ...window.MWAP_CURATED_GALLERIES["meher-aman"]
