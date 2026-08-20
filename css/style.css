@@ -2029,6 +2029,15 @@ body.experience-started .experience-gate {
   align-items: center;
 }
 
+.mwp-founder-copy {
+  align-self: center;
+}
+
+.mwp-founder-copy .mwp-founder-heading,
+.mwp-founder-copy .mwp-founder-heading h2 {
+  text-align: left;
+}
+
 .mwp-founder-heading {
   margin-bottom: 1.5rem;
   text-align: center;
