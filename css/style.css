@@ -1525,7 +1525,7 @@ body.experience-started .experience-gate {
 
 .contact-heading > p:last-child {
   max-width: 30rem;
-  margin-top: 2.6rem;
+  margin-top: 3.6rem;
   color: rgba(255, 248, 237, 0.7);
   font-size: clamp(1.35rem, 2vw, 1.8rem);
   line-height: 1.45;
