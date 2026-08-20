@@ -279,6 +279,8 @@ h1 {
 
 .detail-hero-media { position: absolute; inset: 0; }
 .detail-hero-media img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) saturate(.8); }
+/* Preserve the couple in the frame: crop this portrait-led header from its lower edge only. */
+body[data-destination="delhi"][data-event="bindya-shiven"] .detail-hero-media img { object-position: center top; }
 .detail-hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,1,2,.35), rgba(21,1,2,.2) 45%, #210304); }
 .detail-hero .hero-copy { text-align: left; max-width: 1000px; }
 .detail-hero h1 { font-size: var(--heading-page); }
