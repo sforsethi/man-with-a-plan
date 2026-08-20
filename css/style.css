@@ -2040,7 +2040,7 @@ body.experience-started .experience-gate {
 }
 
 .mwp-founder-heading {
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
   text-align: center;
 }
 
