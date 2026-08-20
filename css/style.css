@@ -1688,7 +1688,7 @@ body.experience-started .experience-gate {
 
 .contact-detail > a:not(.contact-map-link) {
   display: block;
-  font-size: clamp(1.325rem, calc(2.1vw - 2px), 1.925rem);
+  font-size: clamp(1.2rem, 1.38vw, 1.45rem);
   font-weight: 400;
   letter-spacing: 0.01em;
   text-decoration: none;
@@ -1696,7 +1696,7 @@ body.experience-started .experience-gate {
 
 .contact-detail > a[href^="tel:"] {
   font-family: var(--numbers);
-  font-size: clamp(1.075rem, calc(1.75vw - 2px), 1.575rem);
+  font-size: clamp(0.875rem, 1.01vw, 1.075rem);
   font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: 0.025em;
 }
@@ -1708,10 +1708,10 @@ body.experience-started .experience-gate {
 .contact-address p {
   color: var(--ivory);
   font-family: var(--serif);
-  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  font-size: clamp(1.18rem, 1.35vw, 1.4rem);
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1.35;
+  line-height: 1.5;
 }
 
 .contact-map-link {
