@@ -284,7 +284,12 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
     if (!destination || !event) return renderNotFound();
     document.title = `${event.title} — Man With A Plan`;
 
-    const images = event.images || [];
+    const sourceImages = event.images || [];
+    // The nine-image Thailand story balances cleanly in two editorial columns
+    // when the portrait frames are distributed between them.
+    const images = destination.slug === 'thailand' && event.slug === 'ritika-manav'
+      ? [sourceImages[0], sourceImages[1], sourceImages[2], sourceImages[5], sourceImages[7], sourceImages[3], sourceImages[4], sourceImages[6], sourceImages[8]].filter(Boolean)
+      : sourceImages;
 
     const createButton = (src, index, customRatio, isFeatured = false) => {
       const ratio = customRatio || IMAGE_RATIOS[src] || 1.5;
@@ -313,10 +318,13 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
 
       let col1Ratios = col1.map(src => IMAGE_RATIOS[src] || 1.5);
       let col2Ratios = col2.map(src => IMAGE_RATIOS[src] || 1.5);
-      if (diff > 0.01) {
+      const preserveNaturalGalleryRatios =
+        (destination.slug === 'indore' && event.slug === 'juhi-jatin') ||
+        (destination.slug === 'thailand' && event.slug === 'ritika-manav');
+      if (!preserveNaturalGalleryRatios && diff > 0.01) {
         const lastH = getH(col1[col1.length - 1]);
         col1Ratios[col1Ratios.length - 1] = 1 / (lastH + diff);
-      } else if (diff < -0.01) {
+      } else if (!preserveNaturalGalleryRatios && diff < -0.01) {
         const lastH = getH(col2[col2.length - 1]);
         col2Ratios[col2Ratios.length - 1] = 1 / (lastH + Math.abs(diff));
       }
