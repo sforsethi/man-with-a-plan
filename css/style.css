@@ -1419,7 +1419,7 @@ body.experience-started .experience-gate {
 
 .site-footer a[href^="tel:"] {
   font-family: var(--numbers);
-  font-size: clamp(1rem, 1.15vw, 1.2rem);
+  font-size: clamp(0.875rem, 1.01vw, 1.075rem);
   font-variant-numeric: lining-nums tabular-nums;
   font-weight: 400;
   letter-spacing: 0.025em;
