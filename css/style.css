@@ -1905,6 +1905,12 @@ body.experience-started .experience-gate {
   text-align: center;
 }
 
+/* Keep the opening chapter title centred against its full supporting copy. */
+#about-mwp .mwp-chapter-heading {
+  position: static;
+  align-self: center;
+}
+
 .mwp-chapter h2 {
   font-size: var(--heading-section);
   font-weight: 400;
