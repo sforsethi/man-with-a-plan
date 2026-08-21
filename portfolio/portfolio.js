@@ -14,8 +14,10 @@
     'istanbul',
     'venice',
   ];
+  const hiddenDestinationSlugs = new Set(['kolkata', 'kochi']);
   const sequencePosition = new Map(destinationSequence.map((slug, index) => [slug, index]));
   const orderedDestinations = destinations
+    .filter(destination => !hiddenDestinationSlugs.has(destination.slug))
     .map((destination, originalIndex) => ({ destination, originalIndex }))
     .sort((a, b) => {
       const aPosition = sequencePosition.get(a.destination.slug) ?? destinationSequence.length + a.originalIndex;
