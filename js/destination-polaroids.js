@@ -9,7 +9,6 @@ const photoMoments = {
   mumbai: { show: 0.343, hide: 0.430 },
   bangalore: { show: 0.425, hide: 0.512 },
   indore: { show: 0.507, hide: 0.594 },
-  kolkata: { show: 0.589, hide: 0.676 },
   thailand: { show: 0.671, hide: 0.758 },
   venice: { show: 0.753, hide: 0.840 },
   istanbul: { show: 0.835, hide: 0.922 },

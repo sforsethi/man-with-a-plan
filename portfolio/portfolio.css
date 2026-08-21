@@ -279,17 +279,27 @@ h1 {
 
 .detail-hero-media { position: absolute; inset: 0; }
 .detail-hero-media img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.55) saturate(.8); }
-/* Preserve the couple in the frame: crop this portrait-led header from its lower edge only. */
-body[data-destination="delhi"][data-event="bindya-shiven"] .detail-hero-media img { object-position: center top; }
-body[data-destination="jaipur"] .detail-hero-media img { object-position: center top; }
+/* Tight cover crop: include both faces while keeping the hero full-bleed. */
+body[data-destination="delhi"][data-event="bindya-shiven"] .detail-hero-media img {
+  object-fit: cover;
+  object-position: center 23%;
+  transform: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+body[data-destination="jaipur"] .detail-hero-media img { object-position: center 20%; }
+body[data-destination="jaipur"][data-event="manat-samrath"] .detail-hero-media img { object-position: center 35%; }
+body[data-destination="jaipur"][data-event="meher-aman"] .detail-hero-media img { object-position: center 20%; }
 /* Portrait covers need a face-led crop in the landscape story cards. */
 body[data-destination="delhi"] .event-card-bindya-shiven .card-image img { object-position: center 30%; }
 body[data-destination="jaipur"] .event-card .card-image img { object-position: center 35%; }
 body[data-destination="udaipur"] .event-card-jigyasa-samar .card-image img { object-position: center 72%; }
 /* The portrait has generous sky above the couple; bias the crop lower to keep their faces in frame. */
 body[data-destination="udaipur"][data-event="jigyasa-samar"] .detail-hero-media img { object-position: center 72%; }
+body[data-destination="goa"] .detail-hero-media img { object-position: center 30%; }
 body[data-destination="goa"][data-event="juhi-jatin"] .detail-hero-media img { object-position: center 30%; }
 body[data-destination="indore"][data-event="juhi-jatin"] .detail-hero-media img { object-position: center 60%; }
+body[data-destination="thailand"] .detail-hero-media img { object-position: center 65%; }
 body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media img { object-position: center 65%; }
 .detail-hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,1,2,.35), rgba(21,1,2,.2) 45%, #210304); }
 .detail-hero .hero-copy { text-align: left; max-width: 1000px; }
@@ -402,6 +412,27 @@ body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media 
   gap: clamp(14px, 2vw, 28px);
 }
 
+.gallery-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.gallery-row {
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+  min-width: 0;
+}
+
+.gallery-row .gallery-button {
+  flex: var(--image-ratio) 1 0;
+  min-width: 0;
+}
+
+.gallery-row.is-incomplete .gallery-button {
+  max-width: 50%;
+}
+
 .gallery-col {
   display: flex;
   flex-direction: column;
@@ -502,6 +533,9 @@ body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media 
   .card-image { aspect-ratio: 4 / 4.65; }
   .detail-hero { min-height: 66vh; padding-bottom: 50px; }
   .gallery-columns, .gallery-grid { grid-template-columns: 1fr; gap: 18px; }
+  .gallery-sequence, .gallery-row { gap: 18px; }
+  .gallery-row { flex-direction: column; }
+  .gallery-row.is-incomplete .gallery-button { max-width: none; }
   .gallery-col { gap: 18px; }
   .site-footer { flex-direction: column; }
 }

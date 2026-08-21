@@ -70,6 +70,21 @@ const RUN_DESTINATIONS = [
   { name: 'ISTANBUL', start: 0.835, end: 0.922, cameraHeight: 0.54, lightAngle: -1.15, lightColor: 0x28c8c1, accentColor: 0x397fd6 },
 ];
 
+// Keep the animated homepage polaroids in lockstep with the featured images
+// used for the same destinations in the portfolio.
+const PORTFOLIO_DESTINATION_COVERS = {
+  delhi: '/assets/portfolio/delhi/mithali-arjun/cover.jpg',
+  jaipur: '/assets/portfolio/jaipur/meher-aman/cover.jpg',
+  udaipur: '/assets/portfolio/udaipur/sehaj-harsimar/cover.jpg',
+  goa: '/assets/portfolio/goa/juhi-jatin/cover.jpg',
+  mumbai: '/assets/destinations/Mumbai/0Z0A8551.JPG',
+  bangalore: '/assets/portfolio/bangalore/icwf/01.jpg',
+  indore: '/assets/portfolio/indore/juhi-jatin/cover.jpg',
+  thailand: '/assets/portfolio/thailand/ritika-manav/01.jpg',
+  venice: '/assets/destinations/Venice.webp',
+  istanbul: '/assets/destinations/Istanbul/1.jpg',
+};
+
 const DESTINATION_CAMERA = { angle: 0, radius: 4.8 };
 
 function cloneTuning(value) {
@@ -727,7 +742,24 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
     backing.receiveShadow = true;
     group.add(backing);
 
-    const photoTexture = textureLoader.load(image.currentSrc || image.src);
+    const photoTexture = textureLoader.load(
+      PORTFOLIO_DESTINATION_COVERS[sourceCard.dataset.destination] || image.currentSrc || image.src,
+      texture => {
+        const frameAspect = photoWidth / photoHeight;
+        const imageAspect = texture.image.width / texture.image.height;
+
+        // Match CSS object-fit: cover: preserve the photo's proportions and
+        // crop toward the centre of the couple instead of stretching it to the card.
+        if (imageAspect > frameAspect) {
+          texture.repeat.x = frameAspect / imageAspect;
+          texture.offset.x = (1 - texture.repeat.x) / 2;
+        } else {
+          texture.repeat.y = imageAspect / frameAspect;
+          texture.offset.y = (1 - texture.repeat.y) / 2;
+        }
+        texture.needsUpdate = true;
+      }
+    );
     photoTexture.colorSpace = THREE.SRGBColorSpace;
     photoTexture.minFilter = THREE.LinearMipmapLinearFilter;
     photoTexture.magFilter = THREE.LinearFilter;

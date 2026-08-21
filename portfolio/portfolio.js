@@ -292,7 +292,7 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
 
     const createButton = (src, index, customRatio, isFeatured = false) => {
       const ratio = customRatio || IMAGE_RATIOS[src] || 1.5;
-      const style = isFeatured ? '' : ` style="aspect-ratio: ${Number(ratio).toFixed(3)};"`;
+      const style = isFeatured ? '' : ` style="--image-ratio: ${Number(ratio).toFixed(3)}; aspect-ratio: ${Number(ratio).toFixed(3)};"`;
       return `
         <button class="gallery-button${isFeatured ? ' is-featured' : ''} reveal" type="button" data-image="${src}"${style} aria-label="Open image ${index + 1} of ${images.length}">
           <img src="${src}" alt="${event.title}, photograph ${index + 1}" loading="${index < 2 ? 'eager' : 'lazy'}">
@@ -305,78 +305,16 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
         <section class="gallery gallery-single" aria-label="Event gallery">
           ${createButton(images[0], 0, 16 / 9, true)}
         </section>`;
-    } else if (destination.slug === 'indore' && event.slug === 'juhi-jatin') {
-      galleryMarkup = `
-        <section class="gallery gallery-grid" aria-label="Event gallery">
-          ${images.map((src, index) => createButton(src, index, 4 / 3)).join('')}
-        </section>`;
-    } else if (images.length === 5) {
-      const featured = images[0];
-      const col1 = [images[1], images[2]];
-      const col2 = [images[3], images[4]];
-
-      const getH = src => 1 / (IMAGE_RATIOS[src] || 1.5);
-      const h1 = col1.reduce((sum, src) => sum + getH(src), 0);
-      const h2 = col2.reduce((sum, src) => sum + getH(src), 0);
-      const diff = h2 - h1;
-
-      let col1Ratios = col1.map(src => IMAGE_RATIOS[src] || 1.5);
-      let col2Ratios = col2.map(src => IMAGE_RATIOS[src] || 1.5);
-      const preserveNaturalGalleryRatios =
-        (destination.slug === 'indore' && event.slug === 'juhi-jatin') ||
-        (destination.slug === 'thailand' && event.slug === 'ritika-manav');
-      if (!preserveNaturalGalleryRatios && diff > 0.01) {
-        const lastH = getH(col1[col1.length - 1]);
-        col1Ratios[col1Ratios.length - 1] = 1 / (lastH + diff);
-      } else if (!preserveNaturalGalleryRatios && diff < -0.01) {
-        const lastH = getH(col2[col2.length - 1]);
-        col2Ratios[col2Ratios.length - 1] = 1 / (lastH + Math.abs(diff));
-      }
-
-      galleryMarkup = `
-        <section class="gallery gallery-editorial" aria-label="Event gallery">
-          <div class="gallery-featured">
-            ${createButton(featured, 0, 16 / 9, true)}
-          </div>
-          <div class="gallery-columns">
-            <div class="gallery-col">
-              ${col1.map((src, i) => createButton(src, i + 1, col1Ratios[i])).join('')}
-            </div>
-            <div class="gallery-col">
-              ${col2.map((src, i) => createButton(src, i + 3, col2Ratios[i])).join('')}
-            </div>
-          </div>
-        </section>`;
     } else {
-      const half = Math.ceil(images.length / 2);
-      const col1 = images.slice(0, half);
-      const col2 = images.slice(half);
-
-      const getH = src => 1 / (IMAGE_RATIOS[src] || 1.5);
-      const h1 = col1.reduce((sum, src) => sum + getH(src), 0);
-      const h2 = col2.reduce((sum, src) => sum + getH(src), 0);
-      const diff = h2 - h1;
-
-      let col1Ratios = col1.map(src => IMAGE_RATIOS[src] || 1.5);
-      let col2Ratios = col2.map(src => IMAGE_RATIOS[src] || 1.5);
-      if (diff > 0.01) {
-        const lastH = getH(col1[col1.length - 1]);
-        col1Ratios[col1Ratios.length - 1] = 1 / (lastH + diff);
-      } else if (diff < -0.01) {
-        const lastH = getH(col2[col2.length - 1]);
-        col2Ratios[col2Ratios.length - 1] = 1 / (lastH + Math.abs(diff));
-      }
-
+      const rows = Array.from({ length: Math.ceil(images.length / 2) }, (_, rowIndex) =>
+        images.slice(rowIndex * 2, rowIndex * 2 + 2)
+      );
       galleryMarkup = `
-        <section class="gallery gallery-editorial" aria-label="Event gallery">
-          <div class="gallery-columns">
-            <div class="gallery-col">
-              ${col1.map((src, i) => createButton(src, i, col1Ratios[i])).join('')}
-            </div>
-            <div class="gallery-col">
-              ${col2.map((src, i) => createButton(src, i + half, col2Ratios[i])).join('')}
-            </div>
-          </div>
+        <section class="gallery gallery-sequence" aria-label="Event gallery">
+          ${rows.map((row, rowIndex) => `
+            <div class="gallery-row${row.length === 1 ? ' is-incomplete' : ''}">
+              ${row.map((src, index) => createButton(src, rowIndex * 2 + index)).join('')}
+            </div>`).join('')}
         </section>`;
     }
 
