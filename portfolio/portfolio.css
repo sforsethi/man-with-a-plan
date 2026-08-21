@@ -282,7 +282,10 @@ h1 {
 /* Preserve the couple in the frame: crop this portrait-led header from its lower edge only. */
 body[data-destination="delhi"][data-event="bindya-shiven"] .detail-hero-media img { object-position: center top; }
 body[data-destination="jaipur"] .detail-hero-media img { object-position: center top; }
-body[data-destination="jaipur"] .event-card .card-image img { object-position: center top; }
+/* Portrait covers need a face-led crop in the landscape story cards. */
+body[data-destination="delhi"] .event-card-bindya-shiven .card-image img { object-position: center 30%; }
+body[data-destination="jaipur"] .event-card .card-image img { object-position: center 35%; }
+body[data-destination="udaipur"] .event-card-jigyasa-samar .card-image img { object-position: center 72%; }
 /* The portrait has generous sky above the couple; bias the crop lower to keep their faces in frame. */
 body[data-destination="udaipur"][data-event="jigyasa-samar"] .detail-hero-media img { object-position: center 72%; }
 body[data-destination="goa"][data-event="juhi-jatin"] .detail-hero-media img { object-position: center 30%; }
@@ -393,6 +396,12 @@ body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media 
   align-items: start;
 }
 
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+}
+
 .gallery-col {
   display: flex;
   flex-direction: column;
@@ -492,7 +501,7 @@ body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media 
   .destination-grid, .event-grid { grid-template-columns: 1fr; gap: 58px; }
   .card-image { aspect-ratio: 4 / 4.65; }
   .detail-hero { min-height: 66vh; padding-bottom: 50px; }
-  .gallery-columns { grid-template-columns: 1fr; gap: 18px; }
+  .gallery-columns, .gallery-grid { grid-template-columns: 1fr; gap: 18px; }
   .gallery-col { gap: 18px; }
   .site-footer { flex-direction: column; }
 }

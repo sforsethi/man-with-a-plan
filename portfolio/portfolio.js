@@ -258,7 +258,7 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
     if (!destination) return renderNotFound();
     document.title = `${destination.name} — Man With A Plan`;
     const events = destination.events.map(event => `
-      <a class="event-card reveal" href="/portfolio/${destination.slug}/${event.slug}/">
+      <a class="event-card event-card-${event.slug} reveal" href="/portfolio/${destination.slug}/${event.slug}/">
         <div class="card-image"><img src="${event.cover}" alt="${event.title}" loading="lazy"></div>
         <div class="card-meta"><h3>${event.title}</h3><span>View story</span></div>
       </a>`).join('');
@@ -285,11 +285,8 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
     document.title = `${event.title} — Man With A Plan`;
 
     const sourceImages = event.images || [];
-    // The nine-image Thailand story balances cleanly in two editorial columns
-    // when the portrait frames are distributed between them.
-    const images = destination.slug === 'thailand' && event.slug === 'ritika-manav'
-      ? [sourceImages[0], sourceImages[1], sourceImages[2], sourceImages[5], sourceImages[7], sourceImages[3], sourceImages[4], sourceImages[6], sourceImages[8]].filter(Boolean)
-      : sourceImages;
+    // The data source is ordered exactly as the numbered images appear in Drive.
+    const images = sourceImages;
 
     const createButton = (src, index, customRatio, isFeatured = false) => {
       const ratio = customRatio || IMAGE_RATIOS[src] || 1.5;
@@ -305,6 +302,11 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
       galleryMarkup = `
         <section class="gallery gallery-single" aria-label="Event gallery">
           ${createButton(images[0], 0, 16 / 9, true)}
+        </section>`;
+    } else if (destination.slug === 'indore' && event.slug === 'juhi-jatin') {
+      galleryMarkup = `
+        <section class="gallery gallery-grid" aria-label="Event gallery">
+          ${images.map((src, index) => createButton(src, index, 4 / 3)).join('')}
         </section>`;
     } else if (images.length === 5) {
       const featured = images[0];
