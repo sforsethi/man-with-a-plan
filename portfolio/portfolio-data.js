@@ -697,7 +697,7 @@ window.MWAP_PORTFOLIO = [
       cover: "/assets/portfolio/goa/juhi-jatin/featured.jpg",
       writeup: "",
       author: "",
-      images: window.MWAP_CURATED_GALLERIES["juhi-jatin"].filter((_, index) => index % 2 === 0)
+      images: window.MWAP_CURATED_GALLERIES["goa/juhi-jatin"]
     }]
   },
   {
@@ -1038,7 +1038,13 @@ window.MWAP_DRIVE_PORTFOLIO_ASSETS = {
     "/assets/portfolio/goa/juhi-jatin/07.jpg",
     "/assets/portfolio/goa/juhi-jatin/08.jpg",
     "/assets/portfolio/goa/juhi-jatin/09.jpg",
-    "/assets/portfolio/goa/juhi-jatin/10.jpg"
+    "/assets/portfolio/goa/juhi-jatin/10.jpg",
+    "/assets/portfolio/goa/juhi-jatin/11.jpg",
+    "/assets/portfolio/goa/juhi-jatin/12.jpg",
+    "/assets/portfolio/goa/juhi-jatin/13.jpg",
+    "/assets/portfolio/goa/juhi-jatin/14.jpg",
+    "/assets/portfolio/goa/juhi-jatin/15.jpg",
+    "/assets/portfolio/goa/juhi-jatin/16.jpg"
   ],
   "bangalore/icwf": [
     "/assets/portfolio/bangalore/icwf/01.jpg",
@@ -1247,6 +1253,12 @@ window.MWAP_DRIVE_RATIOS = {
   "/assets/portfolio/udaipur/jigyasa-samar/01.jpg": 0.667,
   "/assets/portfolio/udaipur/jigyasa-samar/cover.jpg": 0.667,
   "/assets/portfolio/goa/juhi-jatin/10.jpg": 1.5,
+  "/assets/portfolio/goa/juhi-jatin/11.jpg": 1.498,
+  "/assets/portfolio/goa/juhi-jatin/12.jpg": 1.5,
+  "/assets/portfolio/goa/juhi-jatin/13.jpg": 1.5,
+  "/assets/portfolio/goa/juhi-jatin/14.jpg": 1.498,
+  "/assets/portfolio/goa/juhi-jatin/15.jpg": 1.495,
+  "/assets/portfolio/goa/juhi-jatin/16.jpg": 1.495,
   "/assets/portfolio/goa/juhi-jatin/09.jpg": 0.667,
   "/assets/portfolio/goa/juhi-jatin/08.jpg": 1.5,
   "/assets/portfolio/goa/juhi-jatin/07.jpg": 1.5,
