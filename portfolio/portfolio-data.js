@@ -743,7 +743,25 @@ window.MWAP_PORTFOLIO = [
       cover: "/assets/destinations/bangalore/1.jpg",
       writeup: "",
       author: "",
-      images: ["/assets/destinations/bangalore/1.jpg", "/assets/destinations/bangalore/2.jpg", "/assets/destinations/bangalore/3.png", "/assets/destinations/bangalore/4.png", "/assets/destinations/bangalore/5.png"]
+      images: [
+        "/assets/destinations/bangalore/1.jpg",
+        "/assets/destinations/bangalore/2.jpg",
+        "/assets/destinations/bangalore/3.png",
+        "/assets/destinations/bangalore/4.png",
+        "/assets/destinations/bangalore/5.png",
+        "/assets/portfolio/bangalore/icwf-2022/1.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/2.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/3.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/4.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/5.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/6.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/7.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/8.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/9.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/10.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/11.jpg",
+        "/assets/portfolio/bangalore/icwf-2022/12.jpg"
+      ]
     }]
   },
   {
