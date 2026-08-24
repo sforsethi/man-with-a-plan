@@ -758,9 +758,7 @@ window.MWAP_PORTFOLIO = [
         "/assets/portfolio/bangalore/icwf-2022/7.jpg",
         "/assets/portfolio/bangalore/icwf-2022/8.jpg",
         "/assets/portfolio/bangalore/icwf-2022/9.jpg",
-        "/assets/portfolio/bangalore/icwf-2022/10.jpg",
-        "/assets/portfolio/bangalore/icwf-2022/11.jpg",
-        "/assets/portfolio/bangalore/icwf-2022/12.jpg"
+        "/assets/portfolio/bangalore/icwf-2022/10.jpg"
       ]
     }]
   },
@@ -1061,9 +1059,7 @@ window.MWAP_DRIVE_PORTFOLIO_ASSETS = {
     "/assets/portfolio/bangalore/icwf-2022/7.jpg",
     "/assets/portfolio/bangalore/icwf-2022/8.jpg",
     "/assets/portfolio/bangalore/icwf-2022/9.jpg",
-    "/assets/portfolio/bangalore/icwf-2022/10.jpg",
-    "/assets/portfolio/bangalore/icwf-2022/11.jpg",
-    "/assets/portfolio/bangalore/icwf-2022/12.jpg"
+    "/assets/portfolio/bangalore/icwf-2022/10.jpg"
   ],
   "indore/juhi-jatin": [
     "/assets/portfolio/indore/juhi-jatin/cover.jpg",
@@ -1292,8 +1288,6 @@ window.MWAP_DRIVE_RATIOS = {
   "/assets/portfolio/bangalore/icwf-2022/8.jpg": 1.5,
   "/assets/portfolio/bangalore/icwf-2022/9.jpg": 1.5,
   "/assets/portfolio/bangalore/icwf-2022/10.jpg": 1.5,
-  "/assets/portfolio/bangalore/icwf-2022/11.jpg": 1.5,
-  "/assets/portfolio/bangalore/icwf-2022/12.jpg": 1.5,
   "/assets/portfolio/bangalore/icwf/04.png": 1.495,
   "/assets/portfolio/bangalore/icwf/02.jpg": 1.459,
   "/assets/portfolio/bangalore/icwf/03.png": 1.499,
