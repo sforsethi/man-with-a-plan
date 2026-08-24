@@ -298,6 +298,8 @@ body[data-destination="udaipur"] .event-card-jigyasa-samar .card-image img { obj
 body[data-destination="udaipur"][data-event="jigyasa-samar"] .detail-hero-media img { object-position: center 72%; }
 body[data-destination="goa"] .detail-hero-media img { object-position: center 30%; }
 body[data-destination="goa"][data-event="juhi-jatin"] .detail-hero-media img { object-position: center 30%; }
+/* Lift Bangalore's header composition slightly within its full-bleed crop. */
+body[data-destination="bangalore"] .detail-hero-media img { object-position: center 55%; }
 body[data-destination="indore"][data-event="juhi-jatin"] .detail-hero-media img { object-position: center 60%; }
 body[data-destination="thailand"] .detail-hero-media img { object-position: center 65%; }
 body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media img { object-position: center 65%; }
