@@ -712,7 +712,23 @@ window.MWAP_PORTFOLIO = [
       cover: "/assets/destinations/Mumbai/0Z0A8551.JPG",
       writeup: "",
       author: "",
-      images: ["/assets/destinations/Mumbai/0Z0A8551.JPG", "/assets/destinations/Mumbai/0Z0A8175.JPG", "/assets/destinations/Mumbai/SPMO9881.JPG", "/assets/destinations/Mumbai/0Z0A8549.JPG"]
+      images: [
+        "/assets/destinations/Mumbai/0Z0A8551.JPG",
+        "/assets/destinations/Mumbai/0Z0A8175.JPG",
+        "/assets/destinations/Mumbai/SPMO9881.JPG",
+        "/assets/destinations/Mumbai/0Z0A8549.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A6256.JPG",
+        "/assets/portfolio/mumbai/icwf-25/SPMO4982.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A6331.JPG",
+        "/assets/portfolio/mumbai/icwf-25/SPMO4371.JPG",
+        "/assets/portfolio/mumbai/icwf-25/_E1A3416.JPG",
+        "/assets/portfolio/mumbai/icwf-25/_E1A4027.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A0119.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A6225.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A7050.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A7734.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A9027.JPG"
+      ]
     }]
   },
   {
