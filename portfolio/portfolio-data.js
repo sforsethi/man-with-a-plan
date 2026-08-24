@@ -723,7 +723,7 @@ window.MWAP_PORTFOLIO = [
         "/assets/portfolio/mumbai/icwf-25/SPMO4371.JPG",
         "/assets/portfolio/mumbai/icwf-25/_E1A3416.JPG",
         "/assets/portfolio/mumbai/icwf-25/_E1A4027.JPG",
-        "/assets/portfolio/mumbai/icwf-25/0Z0A0119.JPG",
+        "/assets/portfolio/mumbai/icwf-25/0Z0A0119.JPG?v=2",
         "/assets/portfolio/mumbai/icwf-25/0Z0A6225.JPG",
         "/assets/portfolio/mumbai/icwf-25/0Z0A7050.JPG",
         "/assets/portfolio/mumbai/icwf-25/0Z0A7734.JPG",
