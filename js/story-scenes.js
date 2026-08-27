@@ -250,6 +250,8 @@ function applyRunScrollPose(model, progress) {
 
 function createDragTuner({ canvas, modelRef, sceneName }) {
   const target = canvas.closest('.story-screen') || canvas;
+  const pawCursor = "url('/assets/cheetah-paw-cursor.png') 32 28, grab";
+  const pawCursorActive = "url('/assets/cheetah-paw-cursor.png') 32 28, grabbing";
   const drag = {
     active: false,
     pointerId: null,
@@ -262,9 +264,9 @@ function createDragTuner({ canvas, modelRef, sceneName }) {
     basePositionZ: 0,
   };
 
-  canvas.style.cursor = 'grab';
+  canvas.style.cursor = pawCursor;
   canvas.style.touchAction = 'none';
-  target.style.cursor = 'grab';
+  target.style.cursor = pawCursor;
   target.style.touchAction = 'none';
 
   target.addEventListener('pointerdown', (event) => {
@@ -280,8 +282,8 @@ function createDragTuner({ canvas, modelRef, sceneName }) {
     drag.basePositionY = tuning[sceneName].position.y;
     drag.basePositionZ = tuning[sceneName].position.z;
     target.setPointerCapture(event.pointerId);
-    canvas.style.cursor = 'grabbing';
-    target.style.cursor = 'grabbing';
+    canvas.style.cursor = pawCursorActive;
+    target.style.cursor = pawCursorActive;
     updateTuningOverlay(sceneName);
     event.preventDefault();
   });
@@ -308,8 +310,8 @@ function createDragTuner({ canvas, modelRef, sceneName }) {
     if (!drag.active || event.pointerId !== drag.pointerId) return;
     drag.active = false;
     drag.pointerId = null;
-    canvas.style.cursor = 'grab';
-    target.style.cursor = 'grab';
+    canvas.style.cursor = pawCursor;
+    target.style.cursor = pawCursor;
     saveTuning();
     updateTuningOverlay(sceneName);
   }
@@ -340,7 +342,43 @@ function fitRenderer(renderer, canvas, camera) {
   camera.updateProjectionMatrix();
 }
 
-function applyFurMaterial(model) {
+function createFurDetailTexture() {
+  const textureSize = 256;
+  const data = new Uint8Array(textureSize * textureSize);
+  let seed = 7403;
+  const random = () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+
+  for (let y = 0; y < textureSize; y++) {
+    for (let x = 0; x < textureSize; x++) {
+      // Several slightly bent, broken frequencies create short fur fibres
+      // instead of the regular ridges of a fabric or brushed-metal texture.
+      const bend = Math.sin(y * 0.047) * 2.4 + Math.sin(y * 0.013) * 4.8;
+      const shortFibre = Math.sin((x + bend) * 0.72 + y * 3.9);
+      const fineFibre = Math.sin((x - bend * 0.6) * 1.34 + y * 7.1);
+      const broken = random() > 0.56 ? 1 : 0.34;
+      const grain = (random() - 0.5) * 22;
+      data[y * textureSize + x] = THREE.MathUtils.clamp(
+        128 + shortFibre * 19 * broken + fineFibre * 8 + grain,
+        72,
+        184
+      );
+    }
+  }
+
+  const texture = new THREE.DataTexture(data, textureSize, textureSize, THREE.RedFormat);
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(28, 34);
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+  texture.generateMipmaps = true;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function applyFurMaterial(model, detailTexture = null) {
   model.traverse((o) => {
     if (!o.isMesh || !o.material) return;
     const materials = Array.isArray(o.material) ? o.material : [o.material];
@@ -352,8 +390,63 @@ function applyFurMaterial(model) {
         material.emissive.set(0x1b0b02);
         material.emissiveIntensity = 0.28;
       }
+      if (detailTexture && 'bumpMap' in material && !material.bumpMap) {
+        material.bumpMap = detailTexture;
+        material.bumpScale = 0.022;
+        material.needsUpdate = true;
+      }
     });
   });
+}
+
+function applyVerticalCoatLighting(material, uniforms) {
+  const previousCompile = material.onBeforeCompile;
+  material.onBeforeCompile = (shader, renderer) => {
+    if (previousCompile) previousCompile.call(material, shader, renderer);
+    Object.assign(shader.uniforms, uniforms);
+    shader.vertexShader = shader.vertexShader
+      .replace(
+        '#include <common>',
+        '#include <common>\nvarying float vMwapWorldY;'
+      )
+      .replace(
+        '#include <project_vertex>',
+        `vec4 mwapWorldPosition = modelMatrix * vec4(transformed, 1.0);
+        vMwapWorldY = mwapWorldPosition.y;
+        #include <project_vertex>`
+      );
+    shader.fragmentShader = shader.fragmentShader
+      .replace(
+        '#include <common>',
+        `#include <common>
+        varying float vMwapWorldY;
+        uniform float uMwapFloorY;
+        uniform float uMwapHeight;
+        uniform float uMwapGlowStrength;
+        uniform float uMwapTopShade;
+        uniform vec3 uMwapGlowColor;`
+      )
+      .replace(
+        '#include <tonemapping_fragment>',
+        `float mwapHeight = clamp(
+          (vMwapWorldY - uMwapFloorY) / max(uMwapHeight, 0.001),
+          0.0,
+          1.0
+        );
+        // Keep the paws almost black, then let the wine-maroon glow rise from
+        // just above them through the lower torso rather than lighting the feet.
+        float mwapFootShadow = 1.0 - smoothstep(0.04, 0.2, mwapHeight);
+        float mwapBottomGlow = smoothstep(0.12, 0.27, mwapHeight)
+          * (1.0 - smoothstep(0.45, 0.66, mwapHeight));
+        float mwapTopDarkening = smoothstep(0.48, 1.0, mwapHeight);
+        gl_FragColor.rgb *= 1.0 - mwapFootShadow * 0.82;
+        gl_FragColor.rgb *= 1.0 - mwapTopDarkening * uMwapTopShade;
+        gl_FragColor.rgb += uMwapGlowColor * mwapBottomGlow * uMwapGlowStrength;
+        #include <tonemapping_fragment>`
+      );
+  };
+  material.customProgramCacheKey = () => `mwap-vertical-coat-light-v1-${material.type}`;
+  material.needsUpdate = true;
 }
 
 function createFractureField(scene) {
@@ -583,15 +676,17 @@ function createGround(scene) {
   edgeFadeTexture.needsUpdate = true;
 
   const ground = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
-    color: 0x74716c,
+    // A warm maroon base keeps the textured floor rich even in the deeper
+    // shadow treatment of the running scene.
+    color: 0x280707,
     map: texture,
     bumpMap: texture,
     alphaMap: edgeFadeTexture,
     bumpScale: 0.14,
     roughness: 1,
     metalness: 0,
-    emissive: 0x380504,
-    emissiveIntensity: 0.1,
+    emissive: 0x140102,
+    emissiveIntensity: 0.045,
     transparent: true,
     alphaTest: 0.015,
   }));
@@ -997,7 +1092,9 @@ function createRunScene() {
 
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.22;
+  // Keep the night scene rich while letting the coat's directional highlights
+  // reach a natural, filmic white instead of lifting the whole animal evenly.
+  renderer.toneMappingExposure = 1.32;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -1008,10 +1105,13 @@ function createRunScene() {
   camera.position.set(0, 1.15, 5.8);
   camera.lookAt(0, 0.95, 0);
 
-  scene.add(new THREE.AmbientLight(0x633024, 1.12));
-  scene.add(new THREE.HemisphereLight(0x7f7770, 0x32120b, 0.72));
-  const sun = new THREE.DirectionalLight(0xffc071, 4.2);
-  sun.position.set(-3.8, 4.8, 3.4);
+  // A restrained fill preserves detail in the dark markings; the stronger,
+  // warm key and opposing cool fill do the shaping so the coat does not read
+  // as self-illuminated or uniformly flat.
+  scene.add(new THREE.AmbientLight(0x2b120f, 0.3));
+  scene.add(new THREE.HemisphereLight(0x65717f, 0x120303, 0.28));
+  const sun = new THREE.DirectionalLight(0xe9b47f, 3.9);
+  sun.position.set(-4.6, 5.8, 4.0);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.camera.left = -7;
@@ -1019,10 +1119,24 @@ function createRunScene() {
   sun.shadow.camera.top = 7;
   sun.shadow.camera.bottom = -7;
   sun.shadow.bias = -0.0004;
+  sun.shadow.radius = 1.35;
   scene.add(sun);
-  const rim = new THREE.DirectionalLight(0x8a3324, 2.4);
-  rim.position.set(3.6, 1.8, -3.5);
+
+  const fill = new THREE.DirectionalLight(0x9eb8d0, 0.92);
+  fill.position.set(4.4, 2.8, 3.6);
+  scene.add(fill);
+
+  const rim = new THREE.DirectionalLight(0xffad68, 3.4);
+  rim.position.set(4.2, 2.7, -4.6);
   scene.add(rim);
+
+  // Aim all three lights at the animal and move their targets with it. This
+  // keeps the shoulder, spine and face modelled as the cheetah travels away.
+  const cheetahLightTarget = new THREE.Object3D();
+  scene.add(cheetahLightTarget);
+  sun.target = cheetahLightTarget;
+  fill.target = cheetahLightTarget;
+  rim.target = cheetahLightTarget;
   const finaleKey = new THREE.DirectionalLight(0xfff1df, 0);
   finaleKey.position.set(-4.2, 3.6, 4.8);
   scene.add(finaleKey);
@@ -1039,17 +1153,26 @@ function createRunScene() {
   });
   const composer = new EffectComposer(renderer, composerTarget);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.72, 0.7, 0.72);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.62, 0.55, 0.72);
   composer.addPass(bloom);
 
   let mixer = null;
   let model = null;
   let modelBaseScale = null;
   const finaleMaterials = new Set();
-  const finaleEmissiveStart = new THREE.Color(0x170702);
+  const coatLightingUniforms = {
+    uMwapFloorY: { value: -0.62 },
+    uMwapHeight: { value: 1.75 },
+    uMwapGlowStrength: { value: 0.48 },
+    uMwapTopShade: { value: 0.34 },
+    uMwapGlowColor: { value: new THREE.Color(0x4a0c0d).convertSRGBToLinear() },
+  };
+  const finaleEmissiveStart = new THREE.Color(0x1f0500);
+  const furDetailTexture = createFurDetailTexture();
+  furDetailTexture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
   loader.load('/assets/RUN.Fbx', (fbx) => {
     model = fbx;
-    applyFurMaterial(model);
+    applyFurMaterial(model, furDetailTexture);
     normalizeModel(model, 1.75);
     modelBaseScale = model.scale.x;
     applyRunScrollPose(model, getRunScrollProgress());
@@ -1060,10 +1183,19 @@ function createRunScene() {
       const materials = Array.isArray(object.material) ? object.material : [object.material];
       materials.forEach((material) => {
         if (!('emissive' in material)) return;
-        material.emissive.set(0x170702);
-        material.emissiveIntensity = 0.16;
+        material.emissive.copy(finaleEmissiveStart);
+        material.emissiveIntensity = 0.04;
+        applyVerticalCoatLighting(material, coatLightingUniforms);
         finaleMaterials.add(material);
-        if ('roughness' in material) material.roughness = Math.max(material.roughness, 0.8);
+        // Fur needs a broad, restrained sheen: enough response to reveal
+        // anatomy, but never the sharp reflections of plastic or polished hide.
+        if ('roughness' in material) {
+          material.roughness = THREE.MathUtils.clamp(material.roughness, 0.62, 0.76);
+        }
+        if ('metalness' in material) material.metalness = 0;
+        if ('specular' in material) material.specular.set(0x604a3c);
+        if ('shininess' in material) material.shininess = 18;
+        material.needsUpdate = true;
       });
     });
     scene.add(model);
@@ -1173,7 +1305,7 @@ function createRunScene() {
     finaleKey.intensity = finalProfile * 3.6;
     finaleMaterials.forEach((material) => {
       material.emissive.copy(finaleEmissiveStart);
-      material.emissiveIntensity = lerp(0.16, 0.06, finalProfile);
+      material.emissiveIntensity = lerp(0.04, 0.012, finalProfile);
     });
     pose.position.y = heightAt(pose.position.x, pose.position.z) + 0.008;
     if (model) {
@@ -1183,7 +1315,30 @@ function createRunScene() {
       const maskScale = THREE.MathUtils.smoothstep(runProgress, 0.945, 0.998);
       const recedingScale = lerp(1, 0.56, maskScale);
       model.scale.setScalar(modelBaseScale * lerp(recedingScale, 0.4, finalProfile));
+      coatLightingUniforms.uMwapFloorY.value = pose.position.y;
+      coatLightingUniforms.uMwapHeight.value = 1.75 * (model.scale.x / modelBaseScale);
+      coatLightingUniforms.uMwapGlowStrength.value = lerp(0.48, 0.1, finalProfile);
     }
+    cheetahLightTarget.position.set(
+      pose.position.x,
+      pose.position.y + 0.72,
+      pose.position.z
+    );
+    sun.position.set(
+      pose.position.x - 4.6,
+      pose.position.y + 5.8,
+      pose.position.z + 4.0
+    );
+    fill.position.set(
+      pose.position.x + 4.4,
+      pose.position.y + 2.8,
+      pose.position.z + 3.6
+    );
+    rim.position.set(
+      pose.position.x + 4.2,
+      pose.position.y + 2.7,
+      pose.position.z - 4.6
+    );
     const groundTravel = setTravel(runProgress, locomotionDistance);
     const polaroidVisibility = updateDestinationPolaroids(runProgress, pose.position);
     const finalApproach = THREE.MathUtils.smoothstep(runProgress, 0.86, 0.98);
@@ -1258,10 +1413,10 @@ function createRunScene() {
     contact.scale.x = 1.55 + Math.sin(gaitPhase * 2) * 0.08 * gaitEnergy;
     contact.scale.z = 0.52 + Math.abs(Math.cos(gaitPhase * 2)) * 0.045 * gaitEnergy;
     const fractureBuild = THREE.MathUtils.smoothstep(runProgress, 0.58, 0.82);
-    contact.material.opacity = lerp(0.4, 0.22, fractureBuild)
+    contact.material.opacity = lerp(0.52, 0.28, fractureBuild)
       * (0.82 + gaitEnergy * 0.18)
       * (1 - THREE.MathUtils.smoothstep(abyssRun, 0.65, 1));
-    bloom.strength = (lerp(0.64, 0.78, fractureBuild) + finalApproach * 0.03)
+    bloom.strength = (lerp(0.52, 0.62, fractureBuild) + finalApproach * 0.025)
       * lerp(1, 0.72, polaroidVisibility);
     updateStars(now, camera.position);
     composer.render();

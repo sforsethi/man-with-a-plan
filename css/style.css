@@ -8,6 +8,7 @@
   --serif: "Cormorant Garamond", Georgia, serif;
   --caps: "Marcellus", "Cormorant Garamond", serif;
   --numbers: "Sora", "Helvetica Neue", Arial, sans-serif;
+  --paw-cursor: url('/assets/cheetah-paw-cursor.png') 24 22, auto;
   --heading-page: clamp(3rem, 6.4vw, 6.4rem);
   --heading-section: clamp(2.4rem, 4.3vw, 4.6rem);
 }
@@ -16,6 +17,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Keep the paw-print cursor consistent across every page and control. */
+html,
+body,
+body *,
+body *::before,
+body *::after {
+  cursor: var(--paw-cursor) !important;
 }
 
 html {
@@ -265,6 +275,7 @@ a {
 }
 
 .run-hero {
+  cursor: url('/assets/cheetah-paw-cursor.png') 32 28, pointer;
   background:
     radial-gradient(circle at 55% 36%, rgba(105, 18, 16, 0.14), transparent 34%),
     radial-gradient(circle at 50% 0%, rgba(46, 90, 158, 0.55), transparent 55%),
@@ -493,7 +504,13 @@ body.experience-started .experience-gate {
 }
 
 #cheetah-run-canvas {
+  cursor: url('/assets/cheetah-paw-cursor.png') 32 28, pointer;
   filter: drop-shadow(0 0 12px rgba(74, 174, 210, 0.18));
+}
+
+.run-hero:active,
+#cheetah-run-canvas:active {
+  cursor: url('/assets/cheetah-paw-cursor.png') 32 28, grabbing;
 }
 
 .run-copy p:last-child {

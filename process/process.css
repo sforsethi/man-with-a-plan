@@ -13,10 +13,12 @@
   --content-gutter: clamp(1.5rem, 6vw, 6.5rem);
   --step-number-column: 2.5rem;
   --step-column-gap: clamp(2rem, 4vw, 4.5rem);
+  --paw-cursor: url('/assets/cheetah-paw-cursor.png') 24 22, auto;
   --step-heading-gap: clamp(1.75rem, 2.2vw, 2.4rem);
 }
 
 * { box-sizing: border-box; }
+html, body, body *, body *::before, body *::after { cursor: var(--paw-cursor) !important; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--ink); color: var(--ivory); font-family: var(--serif); }
 main { overflow: hidden; }
