@@ -433,19 +433,21 @@ function applyVerticalCoatLighting(material, uniforms) {
           0.0,
           1.0
         );
-        // Keep the paws almost black, then let the wine-maroon glow rise from
-        // just above them through the lower torso rather than lighting the feet.
-        float mwapFootShadow = 1.0 - smoothstep(0.04, 0.2, mwapHeight);
-        float mwapBottomGlow = smoothstep(0.12, 0.27, mwapHeight)
-          * (1.0 - smoothstep(0.45, 0.66, mwapHeight));
+        // Hold the paws and underside back in deep shadow; the glow begins
+        // higher on the torso so the animal remains grounded in the scene.
+        float mwapFootShadow = 1.0 - smoothstep(0.05, 0.24, mwapHeight);
+        float mwapLowerShadow = 1.0 - smoothstep(0.13, 0.46, mwapHeight);
+        float mwapBottomGlow = smoothstep(0.25, 0.42, mwapHeight)
+          * (1.0 - smoothstep(0.5, 0.7, mwapHeight));
         float mwapTopDarkening = smoothstep(0.48, 1.0, mwapHeight);
-        gl_FragColor.rgb *= 1.0 - mwapFootShadow * 0.82;
+        gl_FragColor.rgb *= 1.0 - mwapFootShadow * 0.94;
+        gl_FragColor.rgb *= 1.0 - mwapLowerShadow * 0.38;
         gl_FragColor.rgb *= 1.0 - mwapTopDarkening * uMwapTopShade;
         gl_FragColor.rgb += uMwapGlowColor * mwapBottomGlow * uMwapGlowStrength;
         #include <tonemapping_fragment>`
       );
   };
-  material.customProgramCacheKey = () => `mwap-vertical-coat-light-v1-${material.type}`;
+  material.customProgramCacheKey = () => `mwap-vertical-coat-light-v2-${material.type}`;
   material.needsUpdate = true;
 }
 
@@ -741,6 +743,82 @@ function createGround(scene) {
   };
 }
 
+function createSideFog(scene) {
+  // Low, translucent sprite clusters provide localized fog banks that live in
+  // the 3D world: they recede with the camera and pass behind the cheetah and
+  // destination cards instead of acting as a fixed screen overlay.
+  const fogCanvas = document.createElement('canvas');
+  fogCanvas.width = fogCanvas.height = 512;
+  const context = fogCanvas.getContext('2d');
+  // A broad, rounded base gives every bank a soft curved crown; the smaller
+  // puffs below it add natural variation without a jagged top silhouette.
+  const dome = context.createRadialGradient(256, 430, 18, 256, 430, 408);
+  dome.addColorStop(0, 'rgba(255, 255, 255, 0.14)');
+  dome.addColorStop(0.5, 'rgba(255, 255, 255, 0.065)');
+  dome.addColorStop(1, 'rgba(255, 255, 255, 0)');
+  context.fillStyle = dome;
+  context.fillRect(0, 0, fogCanvas.width, fogCanvas.height);
+  for (let i = 0; i < 42; i++) {
+    const radius = 48 + (i % 7) * 15;
+    const x = 80 + ((i * 83) % 350);
+    const y = 96 + ((i * 137) % 310);
+    const puff = context.createRadialGradient(x, y, 0, x, y, radius);
+    puff.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
+    puff.addColorStop(0.48, 'rgba(255, 255, 255, 0.065)');
+    puff.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    context.fillStyle = puff;
+    context.beginPath();
+    context.arc(x, y, radius, 0, Math.PI * 2);
+    context.fill();
+  }
+  const fogTexture = new THREE.CanvasTexture(fogCanvas);
+  fogTexture.colorSpace = THREE.SRGBColorSpace;
+  const puffs = [];
+
+  for (let i = 0; i < 14; i++) {
+    const side = i % 2 === 0 ? -1 : 1;
+    const material = new THREE.SpriteMaterial({
+      map: fogTexture,
+      color: side < 0 ? 0x819fb3 : 0x9aafb9,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      depthTest: true,
+      blending: THREE.NormalBlending,
+    });
+    const puff = new THREE.Sprite(material);
+    puff.userData = {
+      side,
+      lane: Math.floor(i / 2),
+      phase: i * 1.73,
+      scale: 6.2 + (i % 4) * 0.9,
+    };
+    scene.add(puff);
+    puffs.push(puff);
+  }
+
+  return (cheetahPosition, travel, now, fadeOut) => {
+    const time = now * 0.00022;
+    puffs.forEach((puff) => {
+      const { side, lane, phase, scale } = puff.userData;
+      // Each bank begins beyond a screen edge, travels toward the viewer as
+      // the run advances, then dissolves before it can cross the cheetah.
+      const flow = THREE.MathUtils.euclideanModulo(travel * 0.09 + lane * 0.17 + phase * 0.04, 1);
+      const edgeDistance = (side < 0 ? 10.3 : 8.4) - flow * 2.35;
+      const drift = Math.sin(time + phase) * 0.16;
+      const visibility = Math.sin(flow * Math.PI);
+      puff.position.set(
+        cheetahPosition.x + side * edgeDistance + drift,
+        cheetahPosition.y + 0.48 + (lane % 3) * 0.26 + Math.cos(time * 1.4 + phase) * 0.07,
+        cheetahPosition.z - 8.8 + flow * 8.2
+      );
+      const breathe = (0.66 + flow * 0.56) * (1 + Math.sin(time * 1.25 + phase) * 0.07);
+      puff.scale.set(scale * breathe, scale * 0.92 * breathe, 1);
+      puff.material.opacity = visibility * (0.09 + (lane % 3) * 0.018) * (1 - fadeOut * 0.62);
+    });
+  };
+}
+
 function createStarfield(scene) {
   const starCount = 190;
   const positions = new Float32Array(starCount * 3);
@@ -878,7 +956,9 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
       label.width = 900;
       label.height = 220;
       const context = label.getContext('2d');
-      context.clearRect(0, 0, label.width, label.height);
+      // Keep the caption panel visually continuous with the polaroid paper.
+      context.fillStyle = '#aaa8a3';
+      context.fillRect(0, 0, label.width, label.height);
       context.fillStyle = '#3a2617';
       context.font = '500 88px Marcellus, Georgia, serif';
       context.textAlign = 'center';
@@ -1143,6 +1223,7 @@ function createRunScene() {
   const { contact, heightAt, setTravel } = createGround(scene);
   const updateFractures = createFractureField(scene);
   const updateDestinationPolaroids = createDestinationPolaroids(scene, heightAt, canvas, camera, renderer);
+  const updateSideFog = createSideFog(scene);
   const { update: updateStars } = createStarfield(scene);
 
   // EffectComposer renders through an offscreen target, so the canvas-level
@@ -1358,7 +1439,7 @@ function createRunScene() {
     const finalCameraMove = 0;
     const orbitPosition = new THREE.Vector3(
       0,
-      1.2 + bobY,
+      1.9 + bobY,
       5.8
     );
     const pawTarget = new THREE.Vector3(pose.position.x + 0.12, pose.position.y + 0.12, pose.position.z + 0.22);
@@ -1367,7 +1448,8 @@ function createRunScene() {
     chaseCamera.x += bobX;
     // Keep the destination camera on one fixed rear axis. The cheetah's
     // depth and foreground pass provide the motion instead of a camera swing.
-    const lookTarget = new THREE.Vector3(0, 1.0, -1.8);
+    // Keep the rear chase camera elevated, with a clear downward view of the cheetah.
+    const lookTarget = new THREE.Vector3(0, 0.72, -1.8);
 
     // Hold a complete, slow-motion side profile before interaction, then rise
     // across the shoulder and stitch into the established rear chase camera.
@@ -1418,6 +1500,7 @@ function createRunScene() {
       * (1 - THREE.MathUtils.smoothstep(abyssRun, 0.65, 1));
     bloom.strength = (lerp(0.52, 0.62, fractureBuild) + finalApproach * 0.025)
       * lerp(1, 0.72, polaroidVisibility);
+    updateSideFog(pose.position, groundTravel, now, finalPalette);
     updateStars(now, camera.position);
     composer.render();
   });
