@@ -959,7 +959,6 @@ body.experience-started .experience-gate {
     transform: translateX(50%);
   }
 }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -969,18 +968,37 @@ body.experience-started .experience-gate {
 }
 
 @media (max-width: 640px) {
+  .destination-story .run-hero {
+    display: block;
+  }
+
+  body:not(.coming-soon) #cheetah-run-canvas {
+    inset: auto 0 0;
+    height: 50%;
+  }
+
+  .three-destination-polaroids .destination-polaroids {
+    display: block;
+  }
+
   .destination-polaroids .destination-polaroid {
-    top: 25%;
-    width: min(21rem, calc(100vw - 3rem));
-  }
-
-  .destination-polaroids .destination-polaroid.is-left {
-    left: 1.25rem;
+    top: clamp(5.5rem, 12svh, 7rem);
+    left: 50%;
     right: auto;
+    width: min(18.5rem, calc(100vw - 2.5rem));
+    transform: translate3d(-50%, -1rem, 0) rotate(0) scale(0.96);
   }
 
+  .destination-polaroids .destination-polaroid.is-left,
   .destination-polaroids .destination-polaroid.is-right {
-    right: 1.25rem;
+    left: 50%;
+    right: auto;
+    transform: translate3d(-50%, -1rem, 0) rotate(0) scale(0.96);
+  }
+
+  .destination-polaroids .destination-polaroid.is-left.is-visible,
+  .destination-polaroids .destination-polaroid.is-right.is-visible {
+    transform: translate3d(-50%, 0, 0) rotate(0) scale(1);
   }
 }
 

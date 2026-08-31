@@ -877,6 +877,7 @@ function normalizeModel(model, targetHeight) {
 
 function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
   const sourceCards = Array.from(document.querySelectorAll('.destination-polaroid'));
+  const mobileStack = window.matchMedia('(max-width: 640px)');
   const cards = [];
   const textureLoader = new THREE.TextureLoader();
   const cardWidth = 2.55;
@@ -1048,6 +1049,15 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
   canvas.addEventListener('pointerleave', () => { canvas.style.cursor = 'default'; });
 
   return (progress, cheetahPosition) => {
+    if (mobileStack.matches) {
+      cards.forEach(({ group, footprintGroup, shadow }) => {
+        group.visible = false;
+        footprintGroup.visible = false;
+        shadow.visible = false;
+      });
+      return 0;
+    }
+
     let activeOpacity = 0;
     cards.forEach(({ group, fadeMaterials, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side }) => {
       const localProgress = THREE.MathUtils.clamp(

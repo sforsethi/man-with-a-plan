@@ -544,9 +544,18 @@ body[data-destination="thailand"][data-event="ritika-manav"] .detail-hero-media 
   .gallery-columns, .gallery-grid { grid-template-columns: 1fr; gap: 18px; }
   .gallery-sequence, .gallery-row { gap: 18px; }
   .gallery-row { flex-direction: column; }
+  .gallery-row .gallery-button {
+    flex: none;
+    width: 100%;
+    aspect-ratio: auto !important;
+  }
+  .gallery-row .gallery-button img {
+    height: auto;
+  }
   .gallery-row.is-incomplete .gallery-button { max-width: none; }
   .gallery-col { gap: 18px; }
   .site-footer { flex-direction: column; }
+  .reveal { opacity: 1; transform: none; }
 }
 
 @media (min-width: 721px) and (max-width: 1050px) {

@@ -382,8 +382,13 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
     setupPortfolioHeroSlideshow();
   }
 
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-  }), { threshold: .08 });
-  document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  const revealElements = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    }), { threshold: .08 });
+    revealElements.forEach(element => observer.observe(element));
+  } else {
+    revealElements.forEach(element => element.classList.add('is-visible'));
+  }
 })();
