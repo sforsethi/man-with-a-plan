@@ -1379,6 +1379,101 @@ body.experience-started .experience-gate {
   transform: translate(.18rem, -50%);
 }
 
+.instagram-marquee-section {
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.75rem) 0 clamp(4.5rem, 7vw, 7.5rem);
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(117, 30, 17, .26), transparent 52%),
+    #0d0201;
+  color: var(--ivory);
+}
+
+.instagram-marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.instagram-marquee-track,
+.instagram-marquee-group {
+  display: flex;
+  width: max-content;
+}
+
+.instagram-marquee-track {
+  animation: instagram-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.instagram-marquee-viewport:hover .instagram-marquee-track,
+.instagram-marquee-viewport:focus-within .instagram-marquee-track {
+  animation-play-state: paused;
+}
+
+.instagram-marquee-group {
+  gap: clamp(.75rem, 1.4vw, 1.35rem);
+  padding-right: clamp(.75rem, 1.4vw, 1.35rem);
+}
+
+.instagram-post {
+  position: relative;
+  display: block;
+  width: clamp(11.5rem, 17vw, 16.5rem);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #260604;
+  box-shadow: 0 1.2rem 2.5rem rgba(0, 0, 0, .28);
+}
+
+.instagram-post::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11, 2, 1, .72), transparent 45%);
+  opacity: .72;
+  transition: opacity .35s ease;
+}
+
+.instagram-post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.22, .61, .36, 1);
+}
+
+.instagram-post span {
+  position: absolute;
+  z-index: 1;
+  left: 1rem;
+  bottom: .9rem;
+  color: var(--ivory);
+  font-family: var(--caps);
+  font-size: .64rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.instagram-post:hover img,
+.instagram-post:focus-visible img {
+  transform: scale(1.07);
+}
+
+.instagram-post:hover::after,
+.instagram-post:focus-visible::after {
+  opacity: .95;
+}
+
+.instagram-post:focus-visible {
+  outline: 1px solid var(--gold-pale);
+  outline-offset: 3px;
+}
+
+@keyframes instagram-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: minmax(15rem, 1.5fr) repeat(3, minmax(9rem, 0.75fr));
@@ -2267,6 +2362,14 @@ body.experience-started .experience-gate {
 
   .testimonials-section {
     padding-inline: 1rem;
+  }
+
+  .instagram-marquee-track {
+    animation-duration: 34s;
+  }
+
+  .instagram-post {
+    width: 10.75rem;
   }
 
   .testimonial-slide-copy {

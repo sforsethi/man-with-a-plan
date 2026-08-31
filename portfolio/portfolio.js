@@ -294,7 +294,7 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
       const ratio = customRatio || IMAGE_RATIOS[src] || 1.5;
       const style = isFeatured ? '' : ` style="--image-ratio: ${Number(ratio).toFixed(3)}; aspect-ratio: ${Number(ratio).toFixed(3)};"`;
       return `
-        <button class="gallery-button${isFeatured ? ' is-featured' : ''} reveal" type="button" data-image="${src}"${style} aria-label="Open image ${index + 1} of ${images.length}">
+        <button class="gallery-button${isFeatured ? ' is-featured' : ''}" type="button" data-image="${src}"${style} aria-label="Open image ${index + 1} of ${images.length}">
           <img src="${src}" alt="${event.title}, photograph ${index + 1}" loading="${index < 2 ? 'eager' : 'lazy'}">
         </button>`;
     };
