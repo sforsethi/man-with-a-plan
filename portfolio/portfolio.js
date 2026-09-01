@@ -1,4 +1,10 @@
 (() => {
+  if (!document.documentElement.dataset.pawCursorReady) {
+    const pawCursorScript = document.createElement('script');
+    pawCursorScript.src = '/js/paw-cursor.js?v=1';
+    document.head.appendChild(pawCursorScript);
+  }
+
   const destinations = window.MWAP_PORTFOLIO || [];
   const destinationSequence = [
     'delhi',

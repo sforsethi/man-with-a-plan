@@ -7,7 +7,7 @@
   --gold: #c8a46b;
   --muted: #c9bdb0;
   --line: rgba(220, 190, 139, .28);
-  --paw-cursor: url('/assets/cheetah-paw-cursor.png') 24 22, auto;
+  --paw-cursor: url('/assets/cheetah-paw-cursor.png?v=3') 18 17, auto;
   --heading-page: clamp(3rem, 6.4vw, 6.4rem);
   --heading-section: clamp(2.4rem, 4.3vw, 4.6rem);
 }

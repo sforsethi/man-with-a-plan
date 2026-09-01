@@ -250,8 +250,8 @@ function applyRunScrollPose(model, progress) {
 
 function createDragTuner({ canvas, modelRef, sceneName }) {
   const target = canvas.closest('.story-screen') || canvas;
-  const pawCursor = "url('/assets/cheetah-paw-cursor.png') 32 28, grab";
-  const pawCursorActive = "url('/assets/cheetah-paw-cursor.png') 32 28, grabbing";
+  const pawCursor = "url('/assets/cheetah-paw-cursor.png?v=3') 18 17, auto";
+  const pawCursorActive = pawCursor;
   const drag = {
     active: false,
     pointerId: null,
@@ -1044,9 +1044,9 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
     if (destinationSlug) window.location.assign(`/portfolio/${destinationSlug}/`);
   });
   canvas.addEventListener('pointermove', (event) => {
-    canvas.style.cursor = destinationAtPointer(event) ? 'pointer' : 'default';
+    canvas.style.cursor = 'var(--paw-cursor)';
   });
-  canvas.addEventListener('pointerleave', () => { canvas.style.cursor = 'default'; });
+  canvas.addEventListener('pointerleave', () => { canvas.style.cursor = 'var(--paw-cursor)'; });
 
   return (progress, cheetahPosition) => {
     if (mobileStack.matches) {

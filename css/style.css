@@ -8,7 +8,7 @@
   --serif: "Cormorant Garamond", Georgia, serif;
   --caps: "Marcellus", "Cormorant Garamond", serif;
   --numbers: "Sora", "Helvetica Neue", Arial, sans-serif;
-  --paw-cursor: url('/assets/cheetah-paw-cursor.png') 24 22, auto;
+  --paw-cursor: url('/assets/cheetah-paw-cursor.png?v=3') 18 17, auto;
   --heading-page: clamp(3rem, 6.4vw, 6.4rem);
   --heading-section: clamp(2.4rem, 4.3vw, 4.6rem);
 }
@@ -275,7 +275,7 @@ a {
 }
 
 .run-hero {
-  cursor: url('/assets/cheetah-paw-cursor.png') 32 28, pointer;
+  cursor: var(--paw-cursor);
   background:
     radial-gradient(circle at 55% 36%, rgba(105, 18, 16, 0.14), transparent 34%),
     radial-gradient(circle at 50% 0%, rgba(46, 90, 158, 0.55), transparent 55%),
@@ -504,13 +504,13 @@ body.experience-started .experience-gate {
 }
 
 #cheetah-run-canvas {
-  cursor: url('/assets/cheetah-paw-cursor.png') 32 28, pointer;
+  cursor: var(--paw-cursor);
   filter: drop-shadow(0 0 12px rgba(74, 174, 210, 0.18));
 }
 
 .run-hero:active,
 #cheetah-run-canvas:active {
-  cursor: url('/assets/cheetah-paw-cursor.png') 32 28, grabbing;
+  cursor: var(--paw-cursor);
 }
 
 .run-copy p:last-child {
@@ -723,6 +723,10 @@ body.experience-started .experience-gate {
   filter: none;
 }
 
+.destination-polaroids .destination-polaroid[data-destination="jaipur"] img {
+  object-position: center 30%;
+}
+
 .destination-polaroids .polaroid-caption {
   display: block;
   padding: 0.85rem 0.15rem 0;
@@ -752,12 +756,12 @@ body.experience-started .experience-gate {
 }
 
 .grand-hero canvas {
-  cursor: grab;
+  cursor: var(--paw-cursor);
   touch-action: none;
 }
 
 .grand-hero canvas:active {
-  cursor: grabbing;
+  cursor: var(--paw-cursor);
 }
 
 .grand-hero-fallback {
@@ -1455,7 +1459,7 @@ body.experience-started .experience-gate {
 .instagram-post img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform .7s cubic-bezier(.22, .61, .36, 1);
 }
 
