@@ -878,6 +878,7 @@ function normalizeModel(model, targetHeight) {
 function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
   const sourceCards = Array.from(document.querySelectorAll('.destination-polaroid'));
   const mobileStack = window.matchMedia('(max-width: 640px)');
+  const mobileGroundLabel = document.querySelector('.mobile-destination-ground-label');
   const cards = [];
   const textureLoader = new THREE.TextureLoader();
   const cardWidth = 2.55;
@@ -1050,13 +1051,36 @@ function createDestinationPolaroids(scene, heightAt, canvas, camera, renderer) {
 
   return (progress, cheetahPosition) => {
     if (mobileStack.matches) {
-      cards.forEach(({ group, footprintGroup, shadow }) => {
+      let activeDestination = '';
+      let activeOpacity = 0;
+
+      cards.forEach(({ group, footprintGroup, shadow, destination }) => {
         group.visible = false;
         footprintGroup.visible = false;
         shadow.visible = false;
+
+        const localProgress = THREE.MathUtils.clamp(
+          (progress - destination.start) / (destination.end - destination.start),
+          0,
+          1
+        );
+        const reveal = THREE.MathUtils.smoothstep(localProgress, 0, 0.14);
+        const fade = THREE.MathUtils.clamp((1 - localProgress) / 0.27, 0, 1);
+        const opacity = reveal * fade;
+        if (opacity > activeOpacity) {
+          activeOpacity = opacity;
+          activeDestination = destination.name;
+        }
       });
-      return 0;
+
+      if (mobileGroundLabel) {
+        mobileGroundLabel.textContent = activeDestination;
+        mobileGroundLabel.style.opacity = activeOpacity.toFixed(3);
+      }
+      return activeOpacity;
     }
+
+    if (mobileGroundLabel) mobileGroundLabel.style.opacity = '0';
 
     let activeOpacity = 0;
     cards.forEach(({ group, fadeMaterials, footprintGroup, footprintMaterial, shadow, shadowMaterial, destination, side }) => {

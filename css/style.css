@@ -739,6 +739,10 @@ body.experience-started .experience-gate {
   text-transform: uppercase;
 }
 
+.mobile-destination-ground-label {
+  display: none;
+}
+
 .grand-hero {
   position: relative;
   min-height: 100svh;
@@ -979,6 +983,27 @@ body.experience-started .experience-gate {
   body:not(.coming-soon) #cheetah-run-canvas {
     inset: auto 0 0;
     height: 50%;
+  }
+
+  .mobile-destination-ground-label {
+    position: absolute;
+    z-index: 5;
+    bottom: clamp(2.75rem, 7svh, 4.5rem);
+    left: 50%;
+    display: block;
+    width: 100%;
+    color: rgba(255, 248, 237, 0.9);
+    font-family: var(--caps);
+    font-size: clamp(0.78rem, 3.6vw, 1rem);
+    letter-spacing: 0.22em;
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.22s ease;
   }
 
   .three-destination-polaroids .destination-polaroids {
