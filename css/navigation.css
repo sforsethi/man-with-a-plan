@@ -1,0 +1,14 @@
+/* Shared navigation accommodates the collaborations page at all widths. */
+.nav-links, .process-nav nav, .header-links { flex-wrap: wrap; justify-content: flex-end; }
+.nav-links a[aria-current="page"] { border-bottom-color: var(--gold, #c99a58); }
+@media (max-width: 1000px) {
+ .nav, .process-nav, .site-header { gap: 1rem; }
+ .nav-links, .process-nav nav, .header-links { gap: .5rem 1rem; }
+ .nav-links a, .process-nav nav a, .header-links a { font-size: .75rem; letter-spacing: .08em; }
+}
+@media (max-width: 640px) {
+ .nav, .process-nav, .site-header { align-items: flex-start; }
+ .nav-mark, .process-mark, .site-header .brand { flex-shrink: 0; }
+ .nav-links, .process-nav nav, .header-links { max-width: 78%; gap: .4rem .9rem; }
+ .nav-links a, .process-nav nav a, .header-links a { font-size: .75rem; letter-spacing: .03em; }
+}

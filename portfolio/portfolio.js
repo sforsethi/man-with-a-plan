@@ -183,6 +183,7 @@ Object.assign(IMAGE_RATIOS, window.MWAP_CURATED_RATIOS || {}, window.MWAP_DRIVE_
         <a href="/mwp/">MWP</a>
         <a href="/portfolio/" aria-current="page">Portfolio</a>
         <a href="/story.html#pursuit">Our Process</a>
+        <a href="/collaborations/">The collaborations</a>
         <a href="/contact/">Contact Us</a>
       </nav>
     </header>`;
